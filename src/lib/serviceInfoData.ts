@@ -17,9 +17,9 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
   // ── Web & Digital Presence ──────────────────────────────────────
   "web-basic": {
     es: {
-      does: "Diseñamos una web de una página con tu información, servicios, contacto y ubicación. Pensada para el móvil y optimizada para cargar rápido.",
-      result: "Una web profesional online con tu dominio, lista para compartir y recibir contactos.",
-      value: "Tus clientes te encuentran, ven que eres profesional y pueden contactarte en un clic.",
+      does: "Diseñamos una web profesional con tu información, servicios, contacto y ubicación. Optimizada para móvil, rápida y preparada para que te encuentren en Google.",
+      result: "Una web profesional con tu dominio propio, lista para compartir, recibir contactos y posicionarte en buscadores.",
+      value: "Tus clientes te encuentran en Google, ven que eres profesional y pueden contactarte en un clic.",
     },
     en: {
       does: "We design a single-page website with your info, services, contact and location. Built for mobile and optimized for speed.",
@@ -40,9 +40,9 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "web-landing": {
     es: {
-      does: "Creamos una página pensada para vender: titular llamativo, beneficios claros, testimonios, preguntas frecuentes, formulario y botones para que te contacten. Incluye seguimiento de resultados y configuración para aparecer en Google.",
-      result: "Una página pensada para que los visitantes te contacten, con datos para saber qué funciona.",
-      value: "Más consultas y reservas desde tu web, con datos para saber qué funciona.",
+      does: "Diseñamos una página de ventas optimizada para que te encuentren en Google (SEO) y para que quien la visite te contacte: titular llamativo, beneficios claros, testimonios reales, preguntas frecuentes, formulario y botones de acción. Incluye seguimiento de resultados para saber qué funciona.",
+      result: "Una página que aparece en Google, convierte visitas en contactos reales y te muestra con datos claros qué funciona y qué mejorar.",
+      value: "Más visibilidad en buscadores, más consultas desde tu web y datos claros para tomar decisiones.",
     },
     en: {
       does: "We build a page designed to sell: eye-catching headline, clear benefits, testimonials, common questions, form and contact buttons. Includes result tracking and setup to show up on Google.",
@@ -63,9 +63,9 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "web-multi": {
     es: {
-      does: "Desarrollamos hasta 5 páginas (Inicio, Servicios, Sobre nosotros, Blog/Galería, Contacto) preparadas para aparecer en búsquedas de tu zona en Google.",
-      result: "Un sitio web completo que aparece en búsquedas locales y presenta todos tus servicios.",
-      value: "Apareces mejor en Google para tu zona, más visitas desde buscadores e imagen de negocio serio.",
+      does: "Desarrollamos hasta 5 páginas (Inicio, Servicios, Sobre nosotros, Blog/Galería, Contacto) preparadas para que te encuentren en búsquedas de tu zona en Google (SEO local).",
+      result: "Un sitio web completo que aparece en búsquedas locales de Google y presenta todos tus servicios de forma profesional.",
+      value: "Apareces en Google cuando alguien busca negocios como el tuyo en tu zona, atraes más visitas y proyectas imagen de negocio serio.",
     },
     en: {
       does: "We build up to 5 pages (Home, Services, About, Blog/Gallery, Contact) set up to show up in local Google searches for your area.",
@@ -86,8 +86,8 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "web-ecommerce": {
     es: {
-      does: "Montamos tu tienda en Shopify o WooCommerce con catálogo pequeño (~30 productos), pagos con tarjeta/Bizum, envíos estándar y página de producto optimizada.",
-      result: "Una tienda online funcionando con productos, carrito, checkout y confirmación de pedido.",
+      does: "Montamos tu tienda online con hasta ~30 productos, cobro con tarjeta o Bizum, envíos estándar y ficha de producto profesional.",
+      result: "Una tienda online funcionando con productos, carrito, proceso de compra y confirmación de pedido.",
       value: "Vendes online 24/7 sin depender de un local físico ni de marketplaces con comisiones altas.",
     },
     en: {
@@ -110,7 +110,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
   // ── Bookings & Appointments ─────────────────────────────────────
   "booking-setup": {
     es: {
-      does: "Configuramos Booksy o Fresha completo: servicios, precios, horarios, staff, y lo integramos en tu web.",
+      does: "Configuramos tu app de reservas (Booksy o Fresha) completa: servicios, precios, horarios, personal, y la integramos en tu web.",
       result: "Tus clientes pueden reservar online desde tu web o redes sociales en cualquier momento.",
       value: "Menos llamadas para agendar, menos errores de horario y una agenda siempre actualizada.",
     },
@@ -133,7 +133,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "booking-calendly": {
     es: {
-      does: "Configuramos una agenda online tipo Calendly con tus servicios, disponibilidad, formularios previos a la cita y confirmaciones automáticas.",
+      does: "Configuramos una agenda de citas online (tipo Calendly) con tus servicios, disponibilidad, formularios previos a la cita y confirmaciones automáticas.",
       result: "Un enlace de reserva profesional que puedes compartir por WhatsApp, email o web.",
       value: "El cliente reserva solo, sin intercambiar mensajes. Tú solo ves tu agenda confirmada.",
     },
@@ -158,7 +158,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
     es: {
       does: "Configuramos recordatorios automáticos por SMS, WhatsApp o email antes de cada cita (24h y 1h antes, personalizable).",
       result: "Tus clientes reciben avisos automáticos y pueden confirmar o reprogramar fácilmente.",
-      value: "Menos ausencias (no-shows), menos huecos en tu agenda y más facturación real.",
+      value: "Menos clientes que no se presentan, menos huecos en tu agenda y más facturación real.",
     },
     en: {
       does: "We set up automatic reminders via SMS, WhatsApp or email before each appointment (24h and 1h before, customizable).",
@@ -179,7 +179,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "booking-deposits": {
     es: {
-      does: "Configuramos cobro de señal o pago completo al reservar, con pasarela segura (Stripe/PayPal).",
+      does: "Configuramos cobro de señal o pago completo al reservar, con sistema de pago seguro (Stripe o PayPal).",
       result: "El cliente paga al reservar. Si no viene, ya tienes la señal.",
       value: "Eliminas las reservas que no se presentan. Quien paga, viene.",
     },
@@ -249,7 +249,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "wa-secretary": {
     es: {
-      does: "Implementamos un bot conversacional con IA que responde preguntas frecuentes, filtra consultas, captura datos del cliente potencial y deriva a una persona cuando es necesario.",
+      does: "Instalamos un asistente virtual con inteligencia artificial (IA) en tu WhatsApp que responde preguntas frecuentes, filtra consultas, guarda datos del posible cliente y pasa a una persona cuando hace falta.",
       result: "Un asistente virtual 24/7 que atiende, recoge información y te pasa solo los clientes realmente interesados.",
       value: "Atiendes más consultas sin contratar personal. Tu equipo se enfoca en cerrar ventas, no en responder lo mismo 50 veces.",
     },
@@ -296,7 +296,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
   // ── CRM & Lead Management ──────────────────────────────────────
   "crm-integration": {
     es: {
-      does: "Conectamos todos tus formularios, WhatsApp y reservas a un gestor de contactos organizado (Sheets, Notion o HubSpot) para que cada contacto quede registrado automáticamente.",
+      does: "Conectamos todos tus formularios, WhatsApp y reservas a una lista de contactos organizada (en Sheets, Notion o un gestor de clientes) para que cada persona interesada quede registrada automáticamente.",
       result: "Un panel donde ves todos tus contactos organizados por fecha, origen y estado.",
       value: "No se te escapa ningún contacto. Sabes de dónde vienen y en qué estado están.",
     },
@@ -343,9 +343,9 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
   // ── Marketing & Advertising ────────────────────────────────────
   "mkt-ads": {
     es: {
-      does: "Creamos tu primera campaña en Meta (Instagram/Facebook) o Google Ads: creatividades, textos, público objetivo, seguimiento de anuncios y medición de resultados.",
+      does: "Creamos tu primera campaña de anuncios en Instagram/Facebook o Google: diseños, textos, elegimos a quién le llega, y medimos los resultados.",
       result: "Una campaña activa lista para atraer visitantes y clientes potenciales desde el día 1.",
-      value: "Empiezas a atraer clientes nuevos de forma predecible, con datos para medir el retorno.",
+      value: "Empiezas a atraer clientes nuevos de forma constante, con datos para saber si la inversión vale la pena.",
     },
     en: {
       does: "We create your first campaign on Meta (Instagram/Facebook) or Google Ads: creatives, texts, target audience, ad tracking and result measurement.",
@@ -366,7 +366,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "mkt-social": {
     es: {
-      does: "Diseñamos 12 posts al mes con tu marca (feed + stories), escribimos los textos, definimos hashtags y entregamos un calendario de publicación.",
+      does: "Diseñamos 12 publicaciones al mes con tu marca (para el feed y stories de Instagram), escribimos los textos y entregamos un calendario de publicación.",
       result: "Contenido profesional listo para publicar cada mes, con coherencia visual y mensaje claro.",
       value: "Presencia activa en redes sin pensar qué publicar. Tu marca se ve profesional y constante.",
     },
@@ -390,7 +390,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
   "mkt-reputation": {
     es: {
       does: "Configuramos un sistema automático que envía solicitudes de reseña a tus clientes por WhatsApp o email después de cada visita o compra.",
-      result: "Un flujo automático que genera reseñas en Google sin que tengas que pedirlas tú.",
+      result: "Un sistema automático que consigue reseñas en Google sin que tengas que pedirlas tú.",
       value: "Más reseñas positivas = mejor posicionamiento en Google Maps y más confianza para nuevos clientes.",
     },
     en: {
@@ -412,9 +412,9 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "mkt-newsletter": {
     es: {
-      does: "Diseñamos y enviamos 1 newsletter al mes con promociones, novedades o contenido de valor. Incluye plantilla con tu marca y organización de contactos básica.",
+      does: "Diseñamos y enviamos 1 boletín por email (newsletter) al mes con promociones, novedades o contenido útil. Incluye plantilla con tu marca y organización de contactos básica.",
       result: "Un email profesional mensual que llega a tu lista de contactos con contenido relevante.",
-      value: "Tu marca presente en la mente de clientes actuales. Reactivas contactos dormidos.",
+      value: "Tu marca presente en la mente de tus clientes. Recuperas contactos que dejaron de venir.",
     },
     en: {
       does: "We design and send 1 newsletter per month with promotions, news or valuable content. Includes a branded template and basic contact organization.",
@@ -435,7 +435,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "mkt-gbp": {
     es: {
-      does: "Optimizamos tu ficha de Google Business: fotos profesionales, horarios, servicios, categorías correctas, descripción con palabras clave y primeras publicaciones.",
+      does: "Optimizamos tu ficha en Google Maps (Google Business): fotos profesionales, horarios, servicios, categorías correctas, descripción pensada para que te encuentren y primeras publicaciones.",
       result: "Un perfil de Google Business completo y optimizado que aparece mejor en búsquedas locales.",
       value: "Más visibilidad en Google Maps y búsquedas tipo 'peluquería cerca de mí'. Gratis y permanente.",
     },
@@ -459,8 +459,8 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
   // ── Design & Content ───────────────────────────────────────────
   "design-branding": {
     es: {
-      does: "Diseñamos tu logo, definimos paleta de colores, tipografías y creamos una guía de marca básica para mantener coherencia en todo.",
-      result: "Un kit de identidad visual: logo en varios formatos, colores, tipografías y guía de uso.",
+      does: "Diseñamos tu logo, elegimos tus colores y tipografías, y creamos una guía para que todo lo que publiques tenga la misma imagen profesional.",
+      result: "Un kit de imagen de marca (branding): logo en varios formatos, colores, tipografías y guía de uso.",
       value: "Tu negocio se ve profesional y reconocible. Todo lo que publiques tiene la misma imagen.",
     },
     en: {
@@ -482,7 +482,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "design-copywriting": {
     es: {
-      does: "Escribimos todos los textos de tu web: titulares, descripciones de servicios, 'sobre nosotros', botones y textos cortos (botones, formularios). Pensados para que el visitante te contacte.",
+      does: "Escribimos todos los textos de tu web: titulares, descripciones de servicios, sección 'sobre nosotros' y textos de botones y formularios. Redactados para que quien visite tu web acabe contactándote.",
       result: "Textos profesionales listos para tu web, escritos para que el visitante actúe.",
       value: "Tu web comunica bien, genera confianza y mueve al visitante a contactar o comprar.",
     },
@@ -505,8 +505,8 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "design-email": {
     es: {
-      does: "Configuramos tu herramienta de email (Mailchimp/Brevo), diseñamos plantillas con tu marca y creamos flujos básicos (bienvenida, recordatorio).",
-      result: "Un sistema de email listo para enviar campañas y automatizaciones con tu imagen.",
+      does: "Configuramos tu herramienta de envío de emails (como Mailchimp o Brevo), diseñamos plantillas con tu marca y dejamos listos envíos automáticos de bienvenida y recordatorio.",
+      result: "Un sistema de email listo para enviar promociones y mensajes automáticos con tu imagen de marca.",
       value: "Comunicas por email de forma profesional y automatizas los mensajes más repetitivos.",
     },
     en: {
@@ -528,7 +528,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "design-social-kit": {
     es: {
-      does: "Creamos plantillas editables en Canva con tu marca: posts, stories, destacados y portadas. Tú solo cambias el texto y la foto.",
+      does: "Creamos plantillas editables en Canva con tu marca: publicaciones, stories, destacados y portadas. Tú solo cambias el texto y la foto.",
       result: "Un kit de +15 plantillas listas para usar en tus redes, todas con tu identidad visual.",
       value: "Publicas contenido bonito y coherente sin necesitar un diseñador cada vez.",
     },
@@ -622,7 +622,7 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
   // ── AI & Automation ────────────────────────────────────────────
   "ai-chatbot-setup": {
     es: {
-      does: "Implementamos un chatbot con IA en tu web y/o WhatsApp que responde preguntas frecuentes, captura datos del visitante y deriva a una persona cuando corresponde.",
+      does: "Instalamos un asistente virtual con inteligencia artificial (chatbot) en tu web y/o WhatsApp que responde preguntas frecuentes, guarda datos del visitante y pasa a una persona cuando hace falta.",
       result: "Un asistente virtual funcionando 24/7 que atiende, filtra y registra cada conversación.",
       value: "Atiendes más consultas sin más personal. Captas clientes potenciales incluso de madrugada.",
     },
@@ -645,8 +645,8 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "ai-chatbot-monthly": {
     es: {
-      does: "Revisamos mensualmente las conversaciones del chatbot, actualizamos respuestas, entrenamos nuevas preguntas frecuentes y verificamos que no haya errores.",
-      result: "Un chatbot que mejora cada mes y se adapta a las nuevas preguntas de tus clientes.",
+      does: "Revisamos cada mes las conversaciones del asistente virtual, actualizamos respuestas, añadimos nuevas preguntas frecuentes y verificamos que funcione bien.",
+      result: "Un asistente virtual que mejora cada mes y se adapta a las nuevas preguntas de tus clientes.",
       value: "Tu asistente virtual se mantiene preciso y útil, no se queda desactualizado.",
     },
     en: {
@@ -668,8 +668,8 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "ai-automations": {
     es: {
-      does: "Identificamos 1 proceso repetitivo en tu negocio y lo dejamos automatizado de punta a punta (n8n, Make o Zapier) (ej: nuevo contacto interesado → notificación + gestor de contactos + email).",
-      result: "Un flujo automático funcionando que elimina una tarea manual de tu día a día.",
+      does: "Identificamos 1 tarea que haces a mano en tu negocio y la dejamos funcionando sola con herramientas de automatización (ejemplo: alguien te escribe → te llega aviso + se guarda en tu lista de contactos + se le envía un email automático).",
+      result: "Un proceso automático funcionando que elimina una tarea manual de tu día a día.",
       value: "Ahorras horas cada semana en tareas repetitivas. Menos errores, más velocidad.",
     },
     en: {
@@ -691,8 +691,8 @@ export const serviceInfoData: Record<string, Record<Language, ServiceInfoDetail>
 
   "ai-audit": {
     es: {
-      does: "Analizamos tus procesos actuales (ventas, atención, administración) y entregamos un informe con las oportunidades donde la IA te ahorraría más tiempo.",
-      result: "Un documento claro con diagnóstico + recomendaciones priorizadas por impacto y facilidad.",
+      does: "Analizamos cómo trabajas hoy (ventas, atención al cliente, administración) y te entregamos un informe con las tareas donde la tecnología te puede ahorrar más tiempo y dinero.",
+      result: "Un documento claro con diagnóstico y recomendaciones ordenadas por impacto y facilidad de implementar.",
       value: "Sabes exactamente dónde invertir en tecnología para obtener el mayor retorno con el menor esfuerzo.",
     },
     en: {

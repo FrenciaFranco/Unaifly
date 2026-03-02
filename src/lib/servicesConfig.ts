@@ -33,7 +33,7 @@ export const serviceCategories: ServiceCategory[] = [
     },
     description: {
       en: "Website, sales page & online store",
-      es: "Web, página de ventas y tienda online",
+      es: "Páginas web, tienda online y que te encuentren en Google (SEO)",
       ca: "Web, pàgina de vendes i botiga online",
       it: "Sito, pagina di vendita e negozio online",
     },
@@ -51,7 +51,7 @@ export const serviceCategories: ServiceCategory[] = [
         },
         description: {
           en: "Simple site to present your business and get contacted",
-          es: "Web sencilla para presentar tu negocio y que te contacten",
+          es: "Tu negocio visible en Google con dominio propio, diseño profesional y formulario de contacto",
           ca: "Web senzilla per presentar el teu negoci i que et contactin",
           it: "Sito semplice per presentare il tuo business e farti contattare",
         },
@@ -63,13 +63,13 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["popular"],
         name: {
           en: "Sales page",
-          es: "Página de ventas",
+          es: "Página de ventas para que te encuentren en Google (SEO)",
           ca: "Pàgina de vendes",
           it: "Pagina di vendita",
         },
         description: {
           en: "Page designed to sell: with testimonials, common questions, form and clear contact buttons",
-          es: "Página pensada para vender: con testimonios, preguntas frecuentes, formulario y botones claros para que te contacten",
+          es: "Página diseñada para que te encuentren en Google (SEO) y te contacten: testimonios, preguntas frecuentes, formulario y seguimiento de resultados",
           ca: "Pàgina pensada per vendre: amb testimonis, preguntes freqüents, formulari i botons clars perquè et contactin",
           it: "Pagina pensata per vendere: con testimonianze, domande frequenti, modulo e pulsanti di contatto chiari",
         },
@@ -86,7 +86,7 @@ export const serviceCategories: ServiceCategory[] = [
         },
         description: {
           en: "Full website with custom sections, ready to show up on Google and designed to look great on mobile",
-          es: "Web completa con secciones a medida, preparada para aparecer en Google y adaptada al móvil",
+          es: "Sitio completo con hasta 5 páginas, preparado para que te encuentren en Google en tu zona (SEO local) y adaptado a móvil",
           ca: "Web completa amb seccions a mida, preparada per aparèixer a Google i adaptada al mòbil",
           it: "Sito completo con sezioni su misura, pronto per apparire su Google e progettato per essere perfetto su mobile",
         },
@@ -103,7 +103,7 @@ export const serviceCategories: ServiceCategory[] = [
         },
         description: {
           en: "Shopify / WooCommerce store with small catalog, standard payments & shipping",
-          es: "Tienda Shopify / WooCommerce con catálogo pequeño, pagos y envíos estándar",
+          es: "Tu tienda online lista para vender: catálogo de productos, cobro con tarjeta o Bizum y ficha de producto profesional",
           ca: "Botiga Shopify / WooCommerce amb catàleg petit, pagaments i enviaments estàndard",
           it: "Negozio Shopify / WooCommerce con catalogo piccolo, pagamenti e spedizioni standard",
         },
@@ -121,7 +121,7 @@ export const serviceCategories: ServiceCategory[] = [
     },
     description: {
       en: "Booking systems & reminders so you never lose a client",
-      es: "Sistemas de reservas y recordatorios para que no falten clientes",
+      es: "Reservas online y recordatorios automáticos para llenar tu agenda",
       ca: "Sistemes de reserves i recordatoris perquè no faltin clients",
       it: "Sistemi di prenotazione e promemoria per non perdere clienti",
     },
@@ -133,7 +133,7 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["popular"],
         name: {
           en: "Full Booksy / Fresha setup",
-          es: "Configuración completa Booksy / Fresha",
+          es: "Configuración completa de app de reservas (Booksy / Fresha)",
           ca: "Configuració completa Booksy / Fresha",
           it: "Configurazione completa Booksy / Fresha",
         },
@@ -150,13 +150,13 @@ export const serviceCategories: ServiceCategory[] = [
         price: 150,
         name: {
           en: "Calendly-style agenda + forms",
-          es: "Agenda tipo Calendly + formularios",
+          es: "Agenda de citas online (tipo Calendly) + formularios",
           ca: "Agenda tipus Calendly + formularis",
           it: "Agenda tipo Calendly + moduli",
         },
         description: {
           en: "Services, prices, hours, staff & pre-consultation forms",
-          es: "Servicios, precios, horarios, staff y formularios previos",
+          es: "Servicios, precios, horarios, personal y formularios previos a la cita",
           ca: "Serveis, preus, horaris, staff i formularis previs",
           it: "Servizi, prezzi, orari, staff e moduli preliminari",
         },
@@ -208,7 +208,7 @@ export const serviceCategories: ServiceCategory[] = [
     },
     description: {
       en: "Respond, filter enquiries & capture potential clients 24/7",
-      es: "Responde, filtra consultas y capta clientes potenciales 24/7",
+      es: "Atiende, filtra y capta clientes potenciales por WhatsApp las 24 horas",
       ca: "Respon, filtra consultes i capta clients potencials 24/7",
       it: "Rispondi, filtra richieste e acquisisci potenziali clienti 24/7",
     },
@@ -220,13 +220,13 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["recommended"],
         name: {
           en: "WhatsApp on your site (button + result tracking)",
-          es: "WhatsApp en tu web (botón + seguimiento de resultados)",
+          es: "Botón de WhatsApp en tu web (con seguimiento de resultados)",
           ca: "WhatsApp a la teva web (botó + seguiment de resultats)",
           it: "WhatsApp sul tuo sito (pulsante + monitoraggio risultati)",
         },
         description: {
           en: "Professional button with ready-to-send message and tracking of how many people write to you",
-          es: "Botón profesional con mensaje listo y seguimiento de cuántos te escriben",
+          es: "Botón visible en toda tu web con mensaje listo para enviar y datos de cuántos clientes te escriben",
           ca: "Botó professional amb missatge llest i seguiment de quants t'escriuen",
           it: "Pulsante professionale con messaggio pronto e monitoraggio di quanti ti scrivono",
         },
@@ -237,7 +237,7 @@ export const serviceCategories: ServiceCategory[] = [
         price: 200,
         name: {
           en: "Basic automation (menus + after hours)",
-          es: "Automatización básica (menús + fuera de horario)",
+          es: "Respuestas automáticas (menús + fuera de horario)",
           ca: "Automatització bàsica (menús + fora d'horari)",
           it: "Automazione base (menu + fuori orario)",
         },
@@ -255,7 +255,7 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["popular"],
         name: {
           en: "WhatsApp Secretary (AI bot)",
-          es: "Secretario WhatsApp (bot con IA)",
+          es: "Asistente virtual en WhatsApp (bot con IA)",
           ca: "Secretari WhatsApp (bot amb IA)",
           it: "Segretario WhatsApp (bot con IA)",
         },
@@ -290,13 +290,13 @@ export const serviceCategories: ServiceCategory[] = [
     colorKey: "amber",
     name: {
       en: "Contact & Client Management",
-      es: "Gestión de contactos y clientes",
+      es: "Gestión de contactos y clientes (CRM)",
       ca: "Gestió de contactes i clients",
       it: "Gestione contatti e clienti",
     },
     description: {
       en: "Organize your contacts & track what works every month",
-      es: "Organiza tus contactos y mide qué funciona cada mes",
+      es: "Centraliza tus contactos, mide resultados y descubre de dónde vienen tus mejores clientes",
       ca: "Organitza els teus contactes i mesura què funciona cada mes",
       it: "Organizza i tuoi contatti e misura cosa funziona ogni mese",
     },
@@ -307,7 +307,7 @@ export const serviceCategories: ServiceCategory[] = [
         price: 150,
         name: {
           en: "Contacts → Organized manager (Sheets / Notion)",
-          es: "Contactos → Gestor organizado (Sheets / Notion)",
+          es: "Todos tus contactos en un solo lugar (Sheets / Notion)",
           ca: "Contactes → Gestor organitzat (Sheets / Notion)",
           it: "Contatti → Gestore organizzato (Sheets / Notion)",
         },
@@ -324,7 +324,7 @@ export const serviceCategories: ServiceCategory[] = [
         price: 79,
         name: {
           en: "Monthly report + client tracking",
-          es: "Informe mensual + seguimiento de clientes",
+          es: "Informe mensual + seguimiento de contactos interesados",
           ca: "Informe mensual + seguiment de clients",
           it: "Report mensile + monitoraggio clienti",
         },
@@ -348,7 +348,7 @@ export const serviceCategories: ServiceCategory[] = [
     },
     description: {
       en: "Ads, social media content & online reputation",
-      es: "Anuncios, contenido para redes y reputación online",
+      es: "Publicidad digital, gestión de redes sociales y reputación en Google",
       ca: "Anuncis, contingut per a xarxes i reputació online",
       it: "Annunci, contenuti social e reputazione online",
     },
@@ -359,13 +359,13 @@ export const serviceCategories: ServiceCategory[] = [
         price: 350,
         name: {
           en: "Meta / Google Ads campaign setup",
-          es: "Configuración campañas Meta / Google Ads",
+          es: "Campañas de anuncios en Instagram/Facebook y Google (Meta Ads / Google Ads)",
           ca: "Configuració campanyes Meta / Google Ads",
           it: "Configurazione campagne Meta / Google Ads",
         },
         description: {
           en: "First campaign ready to launch: designs, target audience & ad tracking",
-          es: "Primera campaña lista para lanzar: diseños, público objetivo, seguimiento de anuncios",
+          es: "Primera campaña lista para lanzar: diseños de anuncio, elegimos a quién le llega y medimos resultados",
           ca: "Primera campanya llesta per llançar: dissenys, públic objectiu, seguiment d'anuncis",
           it: "Prima campagna pronta al lancio: design, pubblico obiettivo, tracciamento annunci",
         },
@@ -377,13 +377,13 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["popular"],
         name: {
           en: "Social media content (12 posts/month)",
-          es: "Contenido para redes sociales (12 posts/mes)",
+          es: "Contenido para redes sociales (12 publicaciones/mes)",
           ca: "Contingut per a xarxes socials (12 posts/mes)",
           it: "Contenuti per social (12 post/mese)",
         },
         description: {
           en: "12 designed posts per month with text, hashtags & publishing calendar",
-          es: "12 posts diseñados al mes con textos, hashtags y calendario de publicación",
+          es: "12 publicaciones diseñadas al mes con textos y calendario de publicación",
           ca: "12 posts dissenyats al mes amb textos, hashtags i calendari de publicació",
           it: "12 post progettati al mese con testi, hashtag e calendario di pubblicazione",
         },
@@ -411,7 +411,7 @@ export const serviceCategories: ServiceCategory[] = [
         price: 99,
         name: {
           en: "Monthly newsletter",
-          es: "Newsletter mensual",
+          es: "Boletín mensual por email (newsletter)",
           ca: "Newsletter mensual",
           it: "Newsletter mensile",
         },
@@ -429,13 +429,13 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["new"],
         name: {
           en: "Google Business Profile setup",
-          es: "Ficha Google Business optimizada",
+          es: "Tu ficha en Google Maps optimizada (Google Business)",
           ca: "Fitxa Google Business optimitzada",
           it: "Scheda Google Business ottimizzata",
         },
         description: {
           en: "Optimized profile: photos, hours, services, categories & first posts",
-          es: "Perfil optimizado: fotos, horarios, servicios, categorías y primeras publicaciones",
+          es: "Perfil completo y optimizado: fotos, horarios, servicios, categorías y primeras publicaciones",
           ca: "Perfil optimitzat: fotos, horaris, serveis, categories i primeres publicacions",
           it: "Profilo ottimizzato: foto, orari, servizi, categorie e primi post",
         },
@@ -453,7 +453,7 @@ export const serviceCategories: ServiceCategory[] = [
     },
     description: {
       en: "Brand identity, professional texts & email",
-      es: "Imagen de marca, textos para tu web y email",
+      es: "Identidad visual profesional, textos que convierten y comunicación por email",
       ca: "Imatge de marca, textos per a la teva web i email",
       it: "Identità di marca, testi per il tuo sito ed email",
     },
@@ -464,13 +464,13 @@ export const serviceCategories: ServiceCategory[] = [
         price: 300,
         name: {
           en: "Logo + basic brand identity",
-          es: "Logo + imagen de marca básica",
+          es: "Logo + imagen de marca (branding)",
           ca: "Logo + imatge de marca bàsica",
           it: "Logo + identità di marca base",
         },
         description: {
           en: "Logo, color palette, typography & brand guidelines",
-          es: "Logo, paleta de colores, tipografía y guía de marca",
+          es: "Logo, colores, tipografía y guía para mantener tu imagen coherente",
           ca: "Logo, paleta de colors, tipografia i guia de marca",
           it: "Logo, palette colori, tipografia e linee guida brand",
         },
@@ -481,7 +481,7 @@ export const serviceCategories: ServiceCategory[] = [
         price: 250,
         name: {
           en: "Professional website texts",
-          es: "Textos profesionales para tu web",
+          es: "Textos profesionales para tu web (copywriting)",
           ca: "Textos professionals per a la teva web",
           it: "Testi professionali per il tuo sito",
         },
@@ -498,7 +498,7 @@ export const serviceCategories: ServiceCategory[] = [
         price: 150,
         name: {
           en: "Automated email setup",
-          es: "Configuración de emails automáticos",
+          es: "Emails automáticos de bienvenida y recordatorios",
           ca: "Configuració d'emails automàtics",
           it: "Configurazione email automatiche",
         },
@@ -516,13 +516,13 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["new"],
         name: {
           en: "Social media template kit",
-          es: "Kit de plantillas para redes sociales",
+          es: "Plantillas editables para redes sociales (Canva)",
           ca: "Kit de plantilles per a xarxes socials",
           it: "Kit template per social",
         },
         description: {
           en: "Branded Canva templates for posts, stories & highlights",
-          es: "Plantillas Canva con tu marca para posts, stories y destacados",
+          es: "Plantillas con tu marca para publicaciones, stories y destacados — tú solo cambias texto y foto",
           ca: "Plantilles Canva amb la teva marca per a posts, stories i destacats",
           it: "Template Canva brandizzati per post, stories e highlight",
         },
@@ -540,7 +540,7 @@ export const serviceCategories: ServiceCategory[] = [
     },
     description: {
       en: "Keep your site fast, secure & always improving",
-      es: "Tu web rápida, segura y mejorando cada mes",
+      es: "Tu web siempre actualizada, segura y mejorando con datos reales cada mes",
       ca: "La teva web ràpida, segura i millorant cada mes",
       it: "Il tuo sito veloce, sicuro e in miglioramento ogni mese",
     },
@@ -605,13 +605,13 @@ export const serviceCategories: ServiceCategory[] = [
     colorKey: "cyan",
     name: {
       en: "AI & Automation",
-      es: "IA y automatización",
+      es: "Inteligencia artificial (IA) y automatización",
       ca: "IA i automatització",
       it: "IA e automazione",
     },
     description: {
       en: "AI chatbots, workflow automations & smart integrations",
-      es: "Asistentes con IA, automatizaciones y conexiones entre herramientas",
+      es: "Asistentes virtuales (chatbots), automatización de tareas repetitivas y ahorro de tiempo real",
       ca: "Chatbots amb IA, automatitzacions i connexions intel·ligents",
       it: "Chatbot con IA, automazioni e integrazioni intelligenti",
     },
@@ -623,7 +623,7 @@ export const serviceCategories: ServiceCategory[] = [
         tags: ["popular"],
         name: {
           en: "AI Chatbot (web + WhatsApp) — setup",
-          es: "Chatbot IA (web + WhatsApp) — configuración",
+          es: "Asistente virtual con IA (chatbot) para web + WhatsApp",
           ca: "Chatbot IA (web + WhatsApp) — configuració",
           it: "Chatbot IA (web + WhatsApp) — configurazione",
         },
@@ -640,13 +640,13 @@ export const serviceCategories: ServiceCategory[] = [
         price: 69,
         name: {
           en: "AI Chatbot — monthly tuning",
-          es: "Chatbot IA — ajuste mensual",
+          es: "Asistente virtual con IA — ajuste mensual",
           ca: "Chatbot IA — ajust mensual",
           it: "Chatbot IA — tuning mensile",
         },
         description: {
           en: "Monthly review: update answers, train new common questions & check performance",
-          es: "Revisión mensual: actualizar respuestas, entrenar nuevas preguntas frecuentes y verificar rendimiento",
+          es: "Revisión mensual: actualizamos respuestas, añadimos nuevas preguntas frecuentes y verificamos que funcione bien",
           ca: "Revisió mensual: actualitzar respostes, entrenar noves preguntes freqüents i verificar rendiment",
           it: "Revisione mensile: aggiornare risposte, addestrare nuove domande frequenti e verifica rendimento",
         },
@@ -657,13 +657,13 @@ export const serviceCategories: ServiceCategory[] = [
         price: 250,
         name: {
           en: "Workflow automation (1 main flow)",
-          es: "Automatización de procesos (1 flujo principal)",
+          es: "Automatizar 1 tarea repetitiva de tu negocio",
           ca: "Automatització de processos (1 flux principal)",
           it: "Automazione di processi (1 flusso principale)",
         },
         description: {
           en: "We identify 1 repetitive task and automate it end-to-end (n8n / Make / Zapier)",
-          es: "Identificamos 1 tarea repetitiva y la dejamos automatizada de punta a punta (n8n / Make / Zapier)",
+          es: "Identificamos 1 tarea que haces a mano y la dejamos funcionando sola con herramientas de automatización",
           ca: "Identifiquem 1 tasca repetitiva i la deixem automatitzada de punta a punta (n8n / Make / Zapier)",
           it: "Identifichiamo 1 attività ripetitiva e la automatizziamo end-to-end (n8n / Make / Zapier)",
         },
@@ -674,13 +674,13 @@ export const serviceCategories: ServiceCategory[] = [
         price: 200,
         name: {
           en: "Digital business audit",
-          es: "Auditoría digital del negocio",
+          es: "Diagnóstico digital de tu negocio",
           ca: "Auditoria digital del negoci",
           it: "Audit digitale del business",
         },
         description: {
           en: "We review your processes and recommend where AI and automation save you time",
-          es: "Revisamos tus procesos y te decimos dónde la IA y la automatización te ahorran tiempo",
+          es: "Analizamos cómo trabajas hoy y te decimos dónde la tecnología te puede ahorrar tiempo y dinero",
           ca: "Revisem els teus processos i et diem on la IA i l'automatització t'estalvien temps",
           it: "Analizziamo i tuoi processi e ti consigliamo dove IA e automazione ti fanno risparmiare tempo",
         },
