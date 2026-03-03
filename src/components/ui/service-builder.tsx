@@ -853,6 +853,12 @@ export default function ServiceBuilder() {
   const dragMovedRef = useRef(false);
   const dragLastPointRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const dragVelocityRef = useRef({ x: 0, y: 0 });
+  const closeFloatingOverlays = useCallback(() => {
+    setCurrencyBubbleOpen(false);
+    setLangBubbleOpen(false);
+    setChatbotOpen(false);
+    setAiChatOpen(false);
+  }, []);
 
   useEffect(() => {
     setStorageItem("language", language);
@@ -868,13 +874,21 @@ export default function ServiceBuilder() {
       const target = event.target as Node | null;
       if (!target) return;
       if (bubblesContainerRef.current?.contains(target)) return;
-      setCurrencyBubbleOpen(false);
-      setLangBubbleOpen(false);
+      if (target instanceof Element && target.closest("[data-chat-panel='true']")) return;
+      closeFloatingOverlays();
+    };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      closeFloatingOverlays();
     };
 
     window.addEventListener("pointerdown", handleOutsidePointerDown);
-    return () => window.removeEventListener("pointerdown", handleOutsidePointerDown);
-  }, []);
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      window.removeEventListener("pointerdown", handleOutsidePointerDown);
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [closeFloatingOverlays]);
 
   useEffect(() => {
     let isMounted = true;
@@ -1314,18 +1328,18 @@ export default function ServiceBuilder() {
                 exit={{ opacity: 0, y: 8, scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 360, damping: 26, mass: 0.9 }}
                 data-floating-panel="true"
-                className={`${popoverClassesByCorner[bubbleCorner]} w-[300px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-cyan-200/22 bg-gradient-to-br from-slate-900/90 via-cyan-950/76 to-indigo-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(56,189,248,0.38)] backdrop-blur-2xl`}
+                className={`${popoverClassesByCorner[bubbleCorner]} w-[300px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-amber-200/22 bg-gradient-to-br from-slate-900/90 via-amber-950/76 to-yellow-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(251,191,36,0.38)] backdrop-blur-2xl`}
               >
-                <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/80 to-transparent" />
-                <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-cyan-300/10 blur-3xl" />
-                <div className="relative z-10 px-2 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-100/80">Currency</div>
+                <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-amber-200/80 to-transparent" />
+                <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-amber-300/10 blur-3xl" />
+                <div className="relative z-10 px-2 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-100/80">Currency</div>
                 {currencyOptions.map((option) => (
                   <button
                     key={option.code}
-                    className={`relative z-10 flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-xs transition-all duration-300 ${currency === option.code ? "bg-gradient-to-r from-cyan-400/25 to-sky-300/10 text-cyan-50 ring-1 ring-cyan-200/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}
+                    className={`relative z-10 flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-xs transition-all duration-300 ${currency === option.code ? "bg-gradient-to-r from-amber-400/25 to-yellow-300/10 text-amber-50 ring-1 ring-amber-200/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}
                     onClick={() => { setCurrency(option.code); setCurrencyBubbleOpen(false); }}
                   >
-                    <span className={`font-mono font-extrabold w-9 shrink-0 ${currency === option.code ? "text-cyan-100" : "text-slate-100"}`}>{option.label}</span>
+                    <span className={`font-mono font-extrabold w-9 shrink-0 ${currency === option.code ? "text-amber-100" : "text-slate-100"}`}>{option.label}</span>
                     <span className="min-w-0 flex-1 truncate text-[12px] opacity-90">{option.name} · {getCurrencyHint(option.code, currency, currencyRates)}</span>
                   </button>
                 ))}
@@ -1343,8 +1357,9 @@ export default function ServiceBuilder() {
               setCurrencyBubbleOpen(!currencyBubbleOpen);
               setLangBubbleOpen(false);
               setChatbotOpen(false);
+              setAiChatOpen(false);
             }}
-            className="absolute inset-0 flex items-center justify-center rounded-full border border-cyan-200/34 bg-gradient-to-br from-cyan-400/16 via-sky-400/10 to-indigo-500/14 text-cyan-50 shadow-[0_10px_24px_-12px_rgba(56,189,248,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-100/55 hover:from-cyan-300/24 hover:to-indigo-400/22"
+            className="absolute inset-0 flex items-center justify-center rounded-full border border-amber-200/34 bg-gradient-to-br from-amber-400/18 via-yellow-400/12 to-orange-500/14 text-amber-50 shadow-[0_10px_24px_-12px_rgba(251,191,36,0.55)] backdrop-blur-xl transition-all duration-300 hover:border-amber-100/55 hover:from-amber-300/26 hover:to-yellow-400/24"
             aria-label="Select currency"
           >
             <CircleDollarSign className="h-5 w-5 text-primary" />
@@ -1361,18 +1376,18 @@ export default function ServiceBuilder() {
                 exit={{ opacity: 0, y: 8, scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 360, damping: 26, mass: 0.9 }}
                 data-floating-panel="true"
-                className={`${popoverClassesByCorner[bubbleCorner]} w-[220px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-indigo-200/22 bg-gradient-to-br from-slate-900/90 via-indigo-950/78 to-violet-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(129,140,248,0.38)] backdrop-blur-2xl`}
+                className={`${popoverClassesByCorner[bubbleCorner]} w-[220px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-blue-200/22 bg-gradient-to-br from-slate-900/90 via-blue-950/78 to-cyan-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(59,130,246,0.38)] backdrop-blur-2xl`}
               >
-                <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-indigo-200/80 to-transparent" />
-                <div className="pointer-events-none absolute -top-24 left-0 h-40 w-40 rounded-full bg-indigo-300/10 blur-3xl" />
-                <div className="relative z-10 px-2 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-indigo-100/80">Language</div>
+                <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-blue-200/80 to-transparent" />
+                <div className="pointer-events-none absolute -top-24 left-0 h-40 w-40 rounded-full bg-blue-300/10 blur-3xl" />
+                <div className="relative z-10 px-2 pb-2 pt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-100/80">Language</div>
                 {languageOptions.map((option) => (
                   <button
                     key={option.code}
-                    className={`relative z-10 flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-xs transition-all duration-300 ${language === option.code ? "bg-gradient-to-r from-indigo-400/25 to-violet-300/10 text-indigo-50 ring-1 ring-indigo-200/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}
+                    className={`relative z-10 flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-xs transition-all duration-300 ${language === option.code ? "bg-gradient-to-r from-blue-400/25 to-cyan-300/10 text-blue-50 ring-1 ring-blue-200/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]" : "text-slate-200 hover:bg-white/10 hover:text-white"}`}
                     onClick={() => { setLanguage(option.code); setLangBubbleOpen(false); }}
                   >
-                    <span className={`font-mono font-extrabold w-6 shrink-0 ${language === option.code ? "text-indigo-100" : "text-slate-100"}`}>{option.label}</span>
+                    <span className={`font-mono font-extrabold w-6 shrink-0 ${language === option.code ? "text-blue-100" : "text-slate-100"}`}>{option.label}</span>
                     <span className="text-[12px] opacity-90">{option.name}</span>
                   </button>
                 ))}
@@ -1390,8 +1405,9 @@ export default function ServiceBuilder() {
               setLangBubbleOpen(!langBubbleOpen);
               setCurrencyBubbleOpen(false);
               setChatbotOpen(false);
+              setAiChatOpen(false);
             }}
-            className="absolute inset-0 flex items-center justify-center rounded-full border border-indigo-200/34 bg-gradient-to-br from-indigo-400/17 via-violet-400/10 to-fuchsia-500/14 text-indigo-50 shadow-[0_10px_24px_-12px_rgba(129,140,248,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-indigo-100/55 hover:from-indigo-300/25 hover:to-fuchsia-400/22"
+            className="absolute inset-0 flex items-center justify-center rounded-full border border-blue-200/34 bg-gradient-to-br from-blue-400/18 via-cyan-400/12 to-sky-500/14 text-blue-50 shadow-[0_10px_24px_-12px_rgba(59,130,246,0.55)] backdrop-blur-xl transition-all duration-300 hover:border-blue-100/55 hover:from-blue-300/26 hover:to-cyan-400/24"
             aria-label="Select language"
           >
             <Languages className="h-5 w-5 text-primary" />
@@ -1408,6 +1424,7 @@ export default function ServiceBuilder() {
               setChatbotOpen(!chatbotOpen);
               setCurrencyBubbleOpen(false);
               setLangBubbleOpen(false);
+              setAiChatOpen(false);
             }}
             className="absolute inset-0 flex items-center justify-center rounded-full border border-emerald-200/34 bg-gradient-to-br from-emerald-400/16 via-teal-400/10 to-cyan-500/14 text-emerald-50 shadow-[0_10px_24px_-12px_rgba(16,185,129,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-emerald-100/55 hover:from-emerald-300/24 hover:to-teal-400/22"
             aria-label="FAQ Chatbot"
@@ -1434,10 +1451,22 @@ export default function ServiceBuilder() {
       </motion.div>
 
       {/* Chatbot Panel */}
-      <ChatBotPanel language={language} isOpen={chatbotOpen} onClose={() => setChatbotOpen(false)} />
+      <ChatBotPanel
+        language={language}
+        isOpen={chatbotOpen}
+        onClose={() => setChatbotOpen(false)}
+        anchorCorner={bubbleCorner}
+        bubbleColumn="left"
+      />
 
       {/* AI Chat Panel */}
-      <AIChatPanel language={language} isOpen={aiChatOpen} onClose={() => setAiChatOpen(false)} />
+      <AIChatPanel
+        language={language}
+        isOpen={aiChatOpen}
+        onClose={() => setAiChatOpen(false)}
+        anchorCorner={bubbleCorner}
+        bubbleColumn="right"
+      />
     </div>
   );
 }

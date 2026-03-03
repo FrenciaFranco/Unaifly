@@ -16,13 +16,21 @@ interface ChatBotPanelProps {
   language: Language;
   isOpen: boolean;
   onClose: () => void;
+  anchorCorner?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  bubbleColumn?: "left" | "right";
 }
 
 /**
  * The chat panel (window) only — no trigger button.
  * The parent is responsible for rendering a trigger and controlling isOpen.
  */
-export function ChatBotPanel({ language, isOpen, onClose }: ChatBotPanelProps) {
+export function ChatBotPanel({
+  language,
+  isOpen,
+  onClose,
+  anchorCorner = "bottom-right",
+  bubbleColumn = "left",
+}: ChatBotPanelProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMessage, setSelectedMessage] = useState<ChatMessage | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -62,6 +70,25 @@ export function ChatBotPanel({ language, isOpen, onClose }: ChatBotPanelProps) {
   const whatsappUrl = `${WHATSAPP_CHAT_URL}${encodeURIComponent(
     labels.title + " " + labels.subtitle
   )}`;
+  const panelPositionClasses: Record<
+    NonNullable<ChatBotPanelProps["anchorCorner"]>,
+    string
+  > = {
+    "top-left": "top-24 left-4 sm:left-6",
+    "top-right": "top-24 right-4 sm:right-6",
+    "bottom-left": "bottom-32 left-4 sm:left-6",
+    "bottom-right": "bottom-32 right-4 sm:right-6",
+  };
+  const isRightAnchored = anchorCorner.endsWith("right");
+  const isTopAnchored = anchorCorner.startsWith("top");
+  const horizontalTailClass = isRightAnchored
+    ? bubbleColumn === "left"
+      ? "right-[4.5rem]"
+      : "right-7"
+    : bubbleColumn === "left"
+      ? "left-7"
+      : "left-[4.5rem]";
+  const verticalTailClass = isTopAnchored ? "-top-2" : "-bottom-2";
 
   return (
     <AnimatePresence>
@@ -71,8 +98,12 @@ export function ChatBotPanel({ language, isOpen, onClose }: ChatBotPanelProps) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.8 }}
-          className="fixed bottom-32 right-4 z-[60] w-[calc(100vw-2rem)] max-w-[380px] overflow-hidden rounded-2xl border border-emerald-200/22 bg-gradient-to-br from-slate-900/95 via-emerald-950/80 to-teal-950/85 text-slate-100 shadow-[0_20px_60px_-20px_rgba(16,185,129,0.4)] backdrop-blur-2xl sm:right-6"
+          data-chat-panel="true"
+          className={`fixed z-[60] w-[calc(100vw-2rem)] max-w-[380px] overflow-visible rounded-2xl border border-emerald-200/22 bg-gradient-to-br from-slate-900/95 via-emerald-950/80 to-teal-950/85 text-slate-100 shadow-[0_20px_60px_-20px_rgba(16,185,129,0.4)] backdrop-blur-2xl ${panelPositionClasses[anchorCorner]}`}
         >
+          <div
+            className={`pointer-events-none absolute h-4 w-4 rotate-45 border border-emerald-200/22 bg-emerald-950/80 ${verticalTailClass} ${horizontalTailClass}`}
+          />
           {/* Decorative elements */}
           <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/80 to-transparent" />
           <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-emerald-300/10 blur-3xl" />

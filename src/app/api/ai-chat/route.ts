@@ -257,9 +257,22 @@ export async function POST(req: NextRequest) {
     });
 
     if (!response.ok) {
-      console.error(`[ai-chat] Provider error: ${response.status}`);
+      let providerMsg = "";
+      try {
+        const errBody = await response.json();
+        providerMsg = errBody?.error?.message || errBody?.error?.code || "";
+      } catch { /* ignore parse errors */ }
+      console.error(`[ai-chat] Provider error: ${response.status} — ${providerMsg}`);
+      // Return safe diagnostics (no secrets). Common causes:
+      // 401 = bad key, 403 = key lacks permission, 404 = wrong model, 429 = quota
+      const hint =
+        response.status === 401 ? "Invalid API key configured."
+        : response.status === 403 ? "API key lacks permission for this model."
+        : response.status === 404 ? `Model "${model}" not found.`
+        : response.status === 429 ? "AI provider rate limit / quota exceeded."
+        : `Provider returned ${response.status}.`;
       return Response.json(
-        { error: "AI service error. Please try again." },
+        { error: `AI service error: ${hint}` },
         { status: 502 }
       );
     }
