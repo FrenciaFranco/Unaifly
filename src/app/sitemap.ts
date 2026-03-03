@@ -17,6 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/inteligencia-artificial-empresas-barcelona",
     "/terminos-y-condiciones",
     "/politica-de-privacidad",
+    "/politica-de-cookies",
+    "/aviso-legal",
   ];
 
   return routes.map((route) => ({
