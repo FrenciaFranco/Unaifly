@@ -237,13 +237,25 @@ export async function POST(req: NextRequest) {
   // 10. Call AI provider (OpenAI-compatible API)
   const apiBase = process.env.AI_CHAT_API_BASE || "https://api.openai.com/v1";
   const model = process.env.AI_CHAT_MODEL || "gpt-4o-mini";
+  const isGitHubModels = apiBase.includes("models.github.ai");
+  const githubApiVersion = process.env.AI_CHAT_GITHUB_API_VERSION || "2022-11-28";
+  const githubOrg = process.env.AI_CHAT_GITHUB_ORG?.trim();
+  const endpoint = isGitHubModels && githubOrg
+    ? `${apiBase}/orgs/${encodeURIComponent(githubOrg)}/inference/chat/completions`
+    : `${apiBase}/chat/completions`;
 
   try {
-    const response = await fetch(`${apiBase}/chat/completions`, {
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
+        ...(isGitHubModels
+          ? {
+              Accept: "application/vnd.github+json",
+              "X-GitHub-Api-Version": githubApiVersion,
+            }
+          : {}),
       },
       body: JSON.stringify({
         model,
@@ -267,12 +279,12 @@ export async function POST(req: NextRequest) {
       // 401 = bad key, 403 = key lacks permission, 404 = wrong model, 429 = quota
       const hint =
         response.status === 401 ? "Invalid API key configured."
-        : response.status === 403 ? "API key lacks permission for this model."
+        : response.status === 403 ? "API key lacks permission for this model/account."
         : response.status === 404 ? `Model "${model}" not found.`
         : response.status === 429 ? "AI provider rate limit / quota exceeded."
         : `Provider returned ${response.status}.`;
       return Response.json(
-        { error: `AI service error: ${hint}` },
+        { error: `AI service error: ${hint}${providerMsg ? ` (${providerMsg})` : ""}` },
         { status: 502 }
       );
     }

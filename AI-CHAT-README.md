@@ -9,6 +9,24 @@ Set these in Vercel Dashboard > Project Settings > Environment Variables:
 | `AI_CHAT_API_KEY` | Yes | Your AI provider API key (e.g., OpenAI). **Never prefix with `NEXT_PUBLIC_`!** |
 | `AI_CHAT_API_BASE` | No | API base URL. Default: `https://api.openai.com/v1`. Change for Azure, Anthropic-compatible proxies, etc. |
 | `AI_CHAT_MODEL` | No | Model ID. Default: `gpt-4o-mini`. |
+| `AI_CHAT_GITHUB_ORG` | No | For GitHub Models org billing/policies, set the org slug (e.g., `my-org`). |
+| `AI_CHAT_GITHUB_API_VERSION` | No | GitHub API version header. Default: `2022-11-28`. |
+
+### GitHub Models quick config
+
+If using GitHub Models:
+
+```
+AI_CHAT_API_BASE=https://models.github.ai/inference
+AI_CHAT_MODEL=openai/gpt-4.1
+AI_CHAT_API_KEY=github_pat_...
+```
+
+Optional (org-scoped inference path):
+
+```
+AI_CHAT_GITHUB_ORG=your-org-slug
+```
 
 ## Allowed Origins
 
