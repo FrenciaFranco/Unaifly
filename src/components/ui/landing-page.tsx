@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion, useInView } from "framer-motion"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import { useTheme } from "next-themes"
 import {
   Menu,
@@ -30,6 +30,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { AmbientBackground } from "@/components/ui/ambient-background"
 import { ProjectCard } from "@/components/ui/project-card"
+import { ChatBotPanel } from "@/components/ui/chatbot-bubble"
+import { AIChatPanel } from "@/components/ui/ai-chat-panel"
 import { getStorageItem, setStorageItem } from "@/lib/storage"
 
 // Animation variants
@@ -768,6 +770,8 @@ export function DesignAgency() {
   }
 
   const [langBubbleOpen, setLangBubbleOpen] = useState(false)
+  const [chatbotOpen, setChatbotOpen] = useState(false)
+  const [aiChatOpen, setAiChatOpen] = useState(false)
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
@@ -1535,40 +1539,77 @@ export function DesignAgency() {
         </div>
       </footer>
 
-      {/* Floating Language Bubble - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
-        {langBubbleOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 10 }}
-            className="flex flex-col gap-1 rounded-2xl border bg-background/90 backdrop-blur-md p-2 shadow-lg"
-          >
-            {languageOptions.map((option) => (
-              <button
-                key={option.code}
-                className={`flex items-center gap-2 rounded-xl px-3 py-2 text-left text-xs transition-colors ${language === option.code ? "bg-primary text-primary-foreground font-semibold" : "hover:bg-muted text-foreground"}`}
-                onClick={() => {
-                  setLanguage(option.code)
-                  setLangBubbleOpen(false)
-                }}
+      {/* Floating Bubbles - 2x2 Grid */}
+      <div className="fixed bottom-6 right-4 z-50 grid grid-cols-2 gap-2 sm:right-6">
+        {/* Language */}
+        <div className="relative h-12 w-12">
+          <AnimatePresence>
+            {langBubbleOpen && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: 10 }}
+                className="absolute bottom-full right-0 mb-2 flex flex-col gap-1 rounded-2xl border bg-background/90 backdrop-blur-md p-2 shadow-lg"
               >
-                <span className="font-mono font-bold w-6">{option.label}</span>
-                <span className="text-[11px] opacity-75">{option.name}</span>
-              </button>
-            ))}
-          </motion.div>
-        )}
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={() => setLangBubbleOpen(!langBubbleOpen)}
-          className="flex h-12 w-12 items-center justify-center rounded-full border bg-background/90 backdrop-blur-md shadow-lg transition-colors hover:bg-muted"
-          aria-label={t.header.languagePicker}
-        >
-          <Globe className="h-5 w-5 text-primary" />
-        </motion.button>
+                {languageOptions.map((option) => (
+                  <button
+                    key={option.code}
+                    className={`flex items-center gap-2 rounded-xl px-3 py-2 text-left text-xs transition-colors ${language === option.code ? "bg-primary text-primary-foreground font-semibold" : "hover:bg-muted text-foreground"}`}
+                    onClick={() => {
+                      setLanguage(option.code)
+                      setLangBubbleOpen(false)
+                    }}
+                  >
+                    <span className="font-mono font-bold w-6">{option.label}</span>
+                    <span className="text-[11px] opacity-75">{option.name}</span>
+                  </button>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => { setLangBubbleOpen(!langBubbleOpen); setChatbotOpen(false) }}
+            className="flex h-12 w-12 items-center justify-center rounded-full border bg-background/90 backdrop-blur-md shadow-lg transition-colors hover:bg-muted"
+            aria-label={t.header.languagePicker}
+          >
+            <Globe className="h-5 w-5 text-primary" />
+          </motion.button>
+        </div>
+
+        {/* FAQ Chatbot */}
+        <div className="relative h-12 w-12">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => { setChatbotOpen(!chatbotOpen); setLangBubbleOpen(false) }}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-emerald-200/34 bg-gradient-to-br from-emerald-400/16 via-teal-400/10 to-cyan-500/14 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-emerald-100/55"
+            aria-label="FAQ Chat"
+          >
+            <MessageCircle className="h-5 w-5 text-primary" />
+          </motion.button>
+        </div>
+
+        {/* AI Chat */}
+        <div className="relative h-12 w-12">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => { setAiChatOpen(!aiChatOpen); setChatbotOpen(false); setLangBubbleOpen(false) }}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-violet-200/34 bg-gradient-to-br from-violet-400/16 via-purple-400/10 to-fuchsia-500/14 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-violet-100/55"
+            aria-label="AI Chat"
+          >
+            <Bot className="h-5 w-5 text-primary" />
+          </motion.button>
+        </div>
       </div>
+
+      {/* Chatbot Panel */}
+      <ChatBotPanel language={language} isOpen={chatbotOpen} onClose={() => setChatbotOpen(false)} />
+
+      {/* AI Chat Panel */}
+      <AIChatPanel language={language} isOpen={aiChatOpen} onClose={() => setAiChatOpen(false)} />
     </div>
   )
 }

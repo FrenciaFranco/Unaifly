@@ -12,6 +12,8 @@ import {
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AmbientBackground } from "@/components/ui/ambient-background";
+import { ChatBotPanel } from "@/components/ui/chatbot-bubble";
+import { AIChatPanel } from "@/components/ui/ai-chat-panel";
 import { getStorageItem, setStorageItem } from "@/lib/storage";
 import {
   serviceCategories,
@@ -834,6 +836,8 @@ export default function ServiceBuilder() {
   const [currencyRates, setCurrencyRates] = useState<Record<Currency, number>>(fallbackCurrencyRates);
   const [langBubbleOpen, setLangBubbleOpen] = useState(false);
   const [currencyBubbleOpen, setCurrencyBubbleOpen] = useState(false);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [aiChatOpen, setAiChatOpen] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(serviceCategories.map((c) => c.id))
@@ -1294,12 +1298,13 @@ export default function ServiceBuilder() {
         ref={bubblesContainerRef}
         layout
         transition={{ type: "spring", stiffness: 360, damping: 28, mass: 0.9 }}
-        className={`fixed z-50 flex items-end gap-2 select-none touch-none ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
+        className={`fixed z-50 grid grid-cols-2 gap-2 select-none touch-none ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
         onPointerDown={handleBubblesPointerDown}
         onPointerMove={handleBubblesPointerMove}
         onPointerUp={stopBubbleDragging}
         onPointerCancel={stopBubbleDragging}
       >
+        {/* Top-left: Currency */}
         <div className="relative h-12 w-12">
           <AnimatePresence>
             {currencyBubbleOpen && (
@@ -1337,6 +1342,7 @@ export default function ServiceBuilder() {
               }
               setCurrencyBubbleOpen(!currencyBubbleOpen);
               setLangBubbleOpen(false);
+              setChatbotOpen(false);
             }}
             className="absolute inset-0 flex items-center justify-center rounded-full border border-cyan-200/34 bg-gradient-to-br from-cyan-400/16 via-sky-400/10 to-indigo-500/14 text-cyan-50 shadow-[0_10px_24px_-12px_rgba(56,189,248,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-100/55 hover:from-cyan-300/24 hover:to-indigo-400/22"
             aria-label="Select currency"
@@ -1345,6 +1351,7 @@ export default function ServiceBuilder() {
           </motion.button>
         </div>
 
+        {/* Top-right: Language */}
         <div className="relative h-12 w-12">
           <AnimatePresence>
             {langBubbleOpen && (
@@ -1382,6 +1389,7 @@ export default function ServiceBuilder() {
               }
               setLangBubbleOpen(!langBubbleOpen);
               setCurrencyBubbleOpen(false);
+              setChatbotOpen(false);
             }}
             className="absolute inset-0 flex items-center justify-center rounded-full border border-indigo-200/34 bg-gradient-to-br from-indigo-400/17 via-violet-400/10 to-fuchsia-500/14 text-indigo-50 shadow-[0_10px_24px_-12px_rgba(129,140,248,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-indigo-100/55 hover:from-indigo-300/25 hover:to-fuchsia-400/22"
             aria-label="Select language"
@@ -1389,7 +1397,47 @@ export default function ServiceBuilder() {
             <Languages className="h-5 w-5 text-primary" />
           </motion.button>
         </div>
+
+        {/* Bottom-left: FAQ Chatbot */}
+        <div className="relative h-12 w-12">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => {
+              if (dragMovedRef.current) { dragMovedRef.current = false; return; }
+              setChatbotOpen(!chatbotOpen);
+              setCurrencyBubbleOpen(false);
+              setLangBubbleOpen(false);
+            }}
+            className="absolute inset-0 flex items-center justify-center rounded-full border border-emerald-200/34 bg-gradient-to-br from-emerald-400/16 via-teal-400/10 to-cyan-500/14 text-emerald-50 shadow-[0_10px_24px_-12px_rgba(16,185,129,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-emerald-100/55 hover:from-emerald-300/24 hover:to-teal-400/22"
+            aria-label="FAQ Chatbot"
+          >
+            <MessageCircle className="h-5 w-5 text-primary" />
+          </motion.button>
+        </div>
+
+        {/* AI Chat */}
+        <div className="relative h-12 w-12">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => {
+              if (dragMovedRef.current) { dragMovedRef.current = false; return; }
+              setAiChatOpen(!aiChatOpen); setChatbotOpen(false); setLangBubbleOpen(false); setCurrencyBubbleOpen(false);
+            }}
+            className="absolute inset-0 flex items-center justify-center rounded-full border border-violet-200/34 bg-gradient-to-br from-violet-400/16 via-purple-400/10 to-fuchsia-500/14 text-violet-50 shadow-[0_10px_24px_-12px_rgba(139,92,246,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-violet-100/55 hover:from-violet-300/24 hover:to-fuchsia-400/22"
+            aria-label="AI Chat"
+          >
+            <Bot className="h-5 w-5 text-primary" />
+          </motion.button>
+        </div>
       </motion.div>
+
+      {/* Chatbot Panel */}
+      <ChatBotPanel language={language} isOpen={chatbotOpen} onClose={() => setChatbotOpen(false)} />
+
+      {/* AI Chat Panel */}
+      <AIChatPanel language={language} isOpen={aiChatOpen} onClose={() => setAiChatOpen(false)} />
     </div>
   );
 }

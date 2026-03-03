@@ -13,6 +13,8 @@ import Image from "next/image";
 import inesImage from "../../../images/ines.png";
 import { Button } from "@/components/ui/button";
 import { AmbientBackground } from "@/components/ui/ambient-background";
+import { ChatBotPanel } from "@/components/ui/chatbot-bubble";
+import { AIChatPanel } from "@/components/ui/ai-chat-panel";
 import { presetPlans, serviceCategories as svcCategories } from "@/lib/servicesConfig";
 import { calculateTotals } from "@/lib/pricing";
 import { getStorageItem, setStorageItem } from "@/lib/storage";
@@ -201,7 +203,7 @@ const t = {
     ],
     builderCtaTitle: "Build your custom plan",
     builderCtaDesc: "Pick only what your business needs today, combine services as you grow, and see transparent pricing instantly.",
-    builderCtaButton: "Build your plan",
+    builderCtaButton: "Build my plan",
     easyTitle: "We make it easy",
     easySubtitle: "Select one of our plans",
     includesPrevious: "Everything in {prev}, plus:",
@@ -339,9 +341,9 @@ const t = {
       { title: "Launch & Optimize", desc: "Go live, track performance, and refine conversions." },
     ],
     ctaTitle: "Ready to scale your business?",
-    ctaDesc: "Stop losing hours to manual tasks. Let's build a system that works for you 24/7.",
+    ctaDesc: "Tell us what your business needs. We'll do a quick diagnostic, propose a clear plan, and get started when you're ready. We meet via Google Meet.",
     ctaWhatsApp: "Let's talk on WhatsApp",
-    ctaBook: "Book a call",
+    ctaBook: "Schedule a meeting",
     ctaFooter: "Fast turnaround • Clear communication • Practical results",
     lastPlanNote: "Custom plan for your next stage",
     caseNoticeTitle: "Let's talk about your case",
@@ -393,7 +395,7 @@ const t = {
     ],
     builderCtaTitle: "Arma tu plan a medida",
     builderCtaDesc: "Elige solo lo que necesitas hoy, combínalo cuando crezcas y ve el precio al instante. Sin sorpresas.",
-    builderCtaButton: "Ver servicios y armar plan",
+    builderCtaButton: "Armar mi plan",
     easyTitle: "Te lo hacemos fácil",
     easySubtitle: "Selecciona uno de nuestros planes",
     includesPrevious: "Todo lo del plan {prev}, más:",
@@ -531,9 +533,9 @@ const t = {
       { title: "Lanzamiento y mejora", desc: "Publicamos, medimos resultados y seguimos optimizando junto a ti." },
     ],
     ctaTitle: "¿Listo para dar el siguiente paso?",
-    ctaDesc: "Cuéntanos qué necesita tu negocio. Hacemos un diagnóstico rápido, te proponemos un plan claro y arrancamos cuando estés listo.",
+    ctaDesc: "Cuéntanos qué necesita tu negocio. Hacemos un diagnóstico rápido, te proponemos un plan claro y arrancamos cuando estés listo. Nos reunimos por Google Meet.",
     ctaWhatsApp: "Hablemos por WhatsApp",
-    ctaBook: "Reserva una llamada",
+    ctaBook: "Agenda una reunión",
     ctaFooter: "Respuesta en menos de 24 h · Presupuesto gratuito · Sin compromiso",
     lastPlanNote: "Plan a medida para tu siguiente etapa",
     caseNoticeTitle: "Hablemos de tu caso",
@@ -585,7 +587,7 @@ const t = {
     ],
     builderCtaTitle: "Munta el teu pla a mida",
     builderCtaDesc: "Tria només el que necessites avui, combina serveis quan creixis i obtén el preu a l'instant.",
-    builderCtaButton: "Veure serveis i muntar pla",
+    builderCtaButton: "Muntar el meu pla",
     easyTitle: "T'ho posem fàcil",
     easySubtitle: "Selecciona un dels nostres plans",
     includesPrevious: "Tot el del pla {prev}, més:",
@@ -723,9 +725,9 @@ const t = {
       { title: "Llançament i optimització", desc: "Sortim en viu, mesurem el rendiment i refinem les conversions." },
     ],
     ctaTitle: "Llest per escalar el teu negoci?",
-    ctaDesc: "Deixa de perdre hores en tasques manuals. Construïm un sistema que treballi per tu 24/7.",
+    ctaDesc: "Explica'ns què necessita el teu negoci. Fem un diagnòstic ràpid, et proposem un pla clar i arranquem quan estiguis a punt. Ens reunim per Google Meet.",
     ctaWhatsApp: "Parlem per WhatsApp",
-    ctaBook: "Reserva una trucada",
+    ctaBook: "Agenda una reunió",
     ctaFooter: "Entregues ràpides • Comunicació clara • Resultats pràctics",
     lastPlanNote: "Pla a mida per a la teva etapa següent",
     caseNoticeTitle: "Parlem del teu cas",
@@ -777,7 +779,7 @@ const t = {
     ],
     builderCtaTitle: "Costruisci il tuo piano su misura",
     builderCtaDesc: "Scegli solo ciò che ti serve oggi, combina i servizi mentre cresci e ottieni il prezzo all'istante.",
-    builderCtaButton: "Vedi servizi e costruisci piano",
+    builderCtaButton: "Costruisci il mio piano",
     easyTitle: "Te lo rendiamo facile",
     easySubtitle: "Seleziona uno dei nostri piani",
     includesPrevious: "Tutto del piano {prev}, più:",
@@ -915,9 +917,9 @@ const t = {
       { title: "Lancio e ottimizzazione", desc: "Andiamo live, monitoriamo le performance e raffiniamo le conversioni." },
     ],
     ctaTitle: "Pronto a scalare il tuo business?",
-    ctaDesc: "Smetti di perdere ore in attività manuali. Costruiamo un sistema che lavora per te 24/7.",
+    ctaDesc: "Raccontaci di cosa ha bisogno il tuo business. Facciamo una diagnosi rapida, ti proponiamo un piano chiaro e partiamo quando sei pronto. Ci incontriamo su Google Meet.",
     ctaWhatsApp: "Parliamo su WhatsApp",
-    ctaBook: "Prenota una chiamata",
+    ctaBook: "Fissa un incontro",
     ctaFooter: "Tempi rapidi • Comunicazione chiara • Risultati pratici",
     lastPlanNote: "Piano su misura per la tua prossima fase",
     caseNoticeTitle: "Parliamo del tuo caso",
@@ -973,6 +975,8 @@ export default function DigitalTransformation() {
   const [currencyRates, setCurrencyRates] = useState<Record<Currency, number>>(fallbackCurrencyRates);
   const [langBubbleOpen, setLangBubbleOpen] = useState(false);
   const [currencyBubbleOpen, setCurrencyBubbleOpen] = useState(false);
+  const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [aiChatOpen, setAiChatOpen] = useState(false);
   const [bubbleCorner, setBubbleCorner] = useState<FloatingCorner>(getInitialBubbleCorner);
   const [isDraggingBubbles, setIsDraggingBubbles] = useState(false);
   const bubblesContainerRef = useRef<HTMLDivElement>(null);
@@ -1354,7 +1358,7 @@ export default function DigitalTransformation() {
               >
                 <Button
                   size="lg"
-                  className="rounded-2xl text-base font-bold px-9 bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-500 text-white border-0 shadow-[0_4px_32px_rgba(139,92,246,0.45)] hover:shadow-[0_6px_44px_rgba(139,92,246,0.60)] hover:brightness-110 transition-all duration-300"
+                  className="rounded-2xl text-base font-bold px-6 sm:px-9 max-w-full whitespace-normal text-center bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-500 text-white border-0 shadow-[0_4px_32px_rgba(139,92,246,0.45)] hover:shadow-[0_6px_44px_rgba(139,92,246,0.60)] hover:brightness-110 transition-all duration-300"
                   asChild
                 >
                   <Link href="/services-builder">
@@ -1632,8 +1636,8 @@ export default function DigitalTransformation() {
                     <MessageCircle className="mr-2 h-5 w-5" />{lang.ctaWhatsApp}
                   </a>
                 </Button>
-                <Button variant="outline" size="lg" className="rounded-3xl" asChild>
-                  <a href="https://calendly.com/frencia92" target="_blank" rel="noreferrer">
+                <Button size="lg" className="rounded-3xl bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-500 text-white border-0 shadow-[0_4px_32px_rgba(139,92,246,0.45)] hover:shadow-[0_6px_44px_rgba(139,92,246,0.60)] hover:brightness-110 transition-all duration-300" asChild>
+                  <a href="https://calendly.com/frencia92/30min" target="_blank" rel="noreferrer">
                     {lang.ctaBook}<ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
@@ -1811,7 +1815,7 @@ export default function DigitalTransformation() {
         ref={bubblesContainerRef}
         layout
         transition={{ type: "spring", stiffness: 360, damping: 28, mass: 0.9 }}
-        className={`fixed z-50 flex items-end gap-3 p-1 select-none touch-none ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
+        className={`fixed z-50 grid grid-cols-2 gap-2 p-1 select-none touch-none ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
         onPointerDown={handleBubblesPointerDown}
         onPointerMove={handleBubblesPointerMove}
         onPointerUp={stopBubbleDragging}
@@ -1854,6 +1858,7 @@ export default function DigitalTransformation() {
               }
               setCurrencyBubbleOpen(!currencyBubbleOpen);
               setLangBubbleOpen(false);
+              setChatbotOpen(false);
             }}
             className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-cyan-200/34 bg-gradient-to-br from-cyan-400/16 via-sky-400/10 to-indigo-500/14 text-cyan-50 shadow-[0_10px_24px_-12px_rgba(56,189,248,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-100/55 hover:from-cyan-300/24 hover:to-indigo-400/22 sm:h-12 sm:w-12"
             aria-label="Select currency"
@@ -1899,6 +1904,7 @@ export default function DigitalTransformation() {
               }
               setLangBubbleOpen(!langBubbleOpen);
               setCurrencyBubbleOpen(false);
+              setChatbotOpen(false);
             }}
             className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-indigo-200/34 bg-gradient-to-br from-indigo-400/17 via-violet-400/10 to-fuchsia-500/14 text-indigo-50 shadow-[0_10px_24px_-12px_rgba(129,140,248,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-indigo-100/55 hover:from-indigo-300/25 hover:to-fuchsia-400/22 sm:h-12 sm:w-12"
             aria-label="Select language"
@@ -1906,7 +1912,45 @@ export default function DigitalTransformation() {
             <Languages className="h-6 w-6 text-primary sm:h-5 sm:w-5" />
           </motion.button>
         </div>
+
+        <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => {
+              if (dragMovedRef.current) { dragMovedRef.current = false; return; }
+              setChatbotOpen(!chatbotOpen);
+              setCurrencyBubbleOpen(false);
+              setLangBubbleOpen(false);
+            }}
+            className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-emerald-200/34 bg-gradient-to-br from-emerald-400/16 via-teal-400/10 to-cyan-500/14 text-emerald-50 shadow-[0_10px_24px_-12px_rgba(16,185,129,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-emerald-100/55 hover:from-emerald-300/24 hover:to-teal-400/22 sm:h-12 sm:w-12"
+            aria-label="FAQ Chat"
+          >
+            <MessageCircle className="h-6 w-6 text-primary sm:h-5 sm:w-5" />
+          </motion.button>
+        </div>
+
+        <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => {
+              if (dragMovedRef.current) { dragMovedRef.current = false; return; }
+              setAiChatOpen(!aiChatOpen); setChatbotOpen(false); setLangBubbleOpen(false); setCurrencyBubbleOpen(false);
+            }}
+            className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-violet-200/34 bg-gradient-to-br from-violet-400/16 via-purple-400/10 to-fuchsia-500/14 text-violet-50 shadow-[0_10px_24px_-12px_rgba(139,92,246,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-violet-100/55 hover:from-violet-300/24 hover:to-fuchsia-400/22 sm:h-12 sm:w-12"
+            aria-label="AI Chat"
+          >
+            <Bot className="h-6 w-6 text-primary sm:h-5 sm:w-5" />
+          </motion.button>
+        </div>
       </motion.div>
+
+      {/* Chatbot Panel */}
+      <ChatBotPanel language={language} isOpen={chatbotOpen} onClose={() => setChatbotOpen(false)} />
+
+      {/* AI Chat Panel */}
+      <AIChatPanel language={language} isOpen={aiChatOpen} onClose={() => setAiChatOpen(false)} />
     </div>
   );
 }
