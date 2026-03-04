@@ -38,7 +38,7 @@ type Language = "en" | "es" | "ca" | "it";
 type Currency = "EUR" | "USD" | "ARS" | "BTC";
 type FloatingCorner = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 const BUBBLE_CORNER_STORAGE_KEY = "bubble-corner" as const satisfies import("@/lib/storage").StorageKey;
-const BUBBLE_DRAG_THRESHOLD_PX = 12;
+const BUBBLE_DRAG_THRESHOLD_PX = 4;
 
 const cornerContainerClasses: Record<FloatingCorner, string> = {
   "top-left": "top-6 left-6",
@@ -1212,6 +1212,8 @@ export default function DigitalTransformation() {
       setIsDraggingBubbles(true);
       setCurrencyBubbleOpen(false);
       setLangBubbleOpen(false);
+      setChatbotOpen(false);
+      setAiChatOpen(false);
       if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
         event.currentTarget.setPointerCapture(event.pointerId);
       }
@@ -1840,6 +1842,7 @@ export default function DigitalTransformation() {
         ref={bubblesContainerRef}
         layout
         transition={{ type: "spring", stiffness: 360, damping: 28, mass: 0.9 }}
+        style={{ touchAction: isDraggingBubbles ? "none" : "auto" }}
         className={`fixed z-50 flex max-w-[calc(100vw-1.5rem)] flex-wrap items-center gap-2 rounded-full p-1 select-none sm:flex-nowrap ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
         onPointerDown={handleBubblesPointerDown}
         onPointerMove={handleBubblesPointerMove}
@@ -1848,7 +1851,8 @@ export default function DigitalTransformation() {
       >
         {/* Drag grip handle */}
         <div
-          className="flex h-12 w-4 shrink-0 cursor-grab items-center justify-center opacity-35 transition-opacity hover:opacity-65 active:cursor-grabbing"
+          style={{ touchAction: "none" }}
+          className="flex h-12 w-8 shrink-0 cursor-grab items-center justify-center opacity-35 transition-opacity hover:opacity-65 active:cursor-grabbing sm:w-4"
           aria-hidden="true"
           title="Arrastrar"
         >

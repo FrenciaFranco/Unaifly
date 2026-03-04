@@ -958,18 +958,20 @@ export default function ServiceBuilder() {
     }
     dragLastPointRef.current = { x: event.clientX, y: event.clientY, time: now };
 
-    if (!dragMovedRef.current && Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8) {
+    if (!dragMovedRef.current && Math.hypot(event.clientX - start.x, event.clientY - start.y) > 4) {
       dragMovedRef.current = true;
       setIsDraggingBubbles(true);
       setCurrencyBubbleOpen(false);
       setLangBubbleOpen(false);
+      setChatbotOpen(false);
+      setAiChatOpen(false);
       if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
         event.currentTarget.setPointerCapture(event.pointerId);
       }
     }
     if (!dragMovedRef.current) return;
     setBubbleCorner(getCornerFromPoint(event.clientX, event.clientY));
-  }, [getCornerFromPoint, isDraggingBubbles]);
+  }, [getCornerFromPoint]);
 
   const stopBubbleDragging = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
     if (dragPointerIdRef.current !== event.pointerId) return;
@@ -1323,6 +1325,7 @@ export default function ServiceBuilder() {
         ref={bubblesContainerRef}
         layout
         transition={{ type: "spring", stiffness: 360, damping: 28, mass: 0.9 }}
+        style={{ touchAction: isDraggingBubbles ? "none" : "auto" }}
         className={`fixed z-50 flex max-w-[calc(100vw-1.5rem)] flex-wrap items-center gap-2 rounded-full select-none sm:flex-nowrap ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
         onPointerDown={handleBubblesPointerDown}
         onPointerMove={handleBubblesPointerMove}
@@ -1331,7 +1334,8 @@ export default function ServiceBuilder() {
       >
         {/* Drag grip handle */}
         <div
-          className="flex h-10 w-4 shrink-0 cursor-grab items-center justify-center opacity-35 transition-opacity hover:opacity-65 active:cursor-grabbing"
+          style={{ touchAction: "none" }}
+          className="flex h-12 w-8 shrink-0 cursor-grab items-center justify-center opacity-35 transition-opacity hover:opacity-65 active:cursor-grabbing sm:w-4"
           aria-hidden="true"
           title="Arrastrar"
         >
