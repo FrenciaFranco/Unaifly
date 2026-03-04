@@ -57,7 +57,7 @@ const itemFadeIn = {
 type LangKey = Language;
 type Currency = "EUR" | "USD" | "ARS" | "BTC";
 type FloatingCorner = "top-left" | "top-right" | "bottom-left" | "bottom-right";
-const BUBBLE_CORNER_STORAGE_KEY = "unaifly-floating-bubble-corner";
+const BUBBLE_CORNER_STORAGE_KEY = "bubble-corner" as const satisfies import("@/lib/storage").StorageKey;
 
 const cornerContainerClasses: Record<FloatingCorner, string> = {
   "top-left": "top-4 left-4 lg:top-6 lg:left-6",
