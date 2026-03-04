@@ -772,6 +772,8 @@ export function DesignAgency() {
   const [langBubbleOpen, setLangBubbleOpen] = useState(false)
   const [chatbotOpen, setChatbotOpen] = useState(false)
   const [aiChatOpen, setAiChatOpen] = useState(false)
+  const faqButtonRef = useRef<HTMLButtonElement>(null)
+  const aiButtonRef = useRef<HTMLButtonElement>(null)
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
@@ -1539,10 +1541,15 @@ export function DesignAgency() {
         </div>
       </footer>
 
-      {/* Floating Bubbles - 2x2 Grid */}
-      <div className="fixed bottom-6 right-4 z-50 grid grid-cols-2 gap-2 sm:right-6">
+      {/* Floating Bubbles Toolbar */}
+      <div className="fixed bottom-6 right-4 z-50 flex max-w-[calc(100vw-1.5rem)] items-center gap-2 overflow-x-auto rounded-full sm:right-6">
+        {!langBubbleOpen && !chatbotOpen && !aiChatOpen && (
+          <div className="pointer-events-none absolute bottom-full right-0 mb-2 max-w-[250px] rounded-full border border-border/70 bg-background/90 px-3 py-1.5 text-right text-[10px] font-medium leading-tight text-foreground/85 shadow-sm backdrop-blur-md sm:text-xs">
+            Estos ajustes y asistentes pueden verse en tu web
+          </div>
+        )}
         {/* Language */}
-        <div className="relative h-12 w-12">
+        <div className="relative h-12 w-12 shrink-0">
           <AnimatePresence>
             {langBubbleOpen && (
               <motion.div
@@ -1579,26 +1586,30 @@ export function DesignAgency() {
         </div>
 
         {/* FAQ Chatbot */}
-        <div className="relative h-12 w-12">
+        <div className="relative h-12 w-12 shrink-0">
           <motion.button
+            ref={faqButtonRef}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => { setChatbotOpen(!chatbotOpen); setLangBubbleOpen(false) }}
             className="flex h-12 w-12 items-center justify-center rounded-full border border-emerald-200/34 bg-gradient-to-br from-emerald-400/16 via-teal-400/10 to-cyan-500/14 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-emerald-100/55"
             aria-label="FAQ Chat"
+            aria-expanded={chatbotOpen}
           >
             <MessageCircle className="h-5 w-5 text-primary" />
           </motion.button>
         </div>
 
         {/* AI Chat */}
-        <div className="relative h-12 w-12">
+        <div className="relative h-12 w-12 shrink-0">
           <motion.button
+            ref={aiButtonRef}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => { setAiChatOpen(!aiChatOpen); setChatbotOpen(false); setLangBubbleOpen(false) }}
             className="flex h-12 w-12 items-center justify-center rounded-full border border-violet-200/34 bg-gradient-to-br from-violet-400/16 via-purple-400/10 to-fuchsia-500/14 shadow-lg backdrop-blur-xl transition-all duration-300 hover:border-violet-100/55"
             aria-label="AI Chat"
+            aria-expanded={aiChatOpen}
           >
             <Bot className="h-5 w-5 text-primary" />
           </motion.button>
@@ -1606,10 +1617,10 @@ export function DesignAgency() {
       </div>
 
       {/* Chatbot Panel */}
-      <ChatBotPanel language={language} isOpen={chatbotOpen} onClose={() => setChatbotOpen(false)} />
+      <ChatBotPanel language={language} isOpen={chatbotOpen} onClose={() => setChatbotOpen(false)} triggerRef={faqButtonRef} useTriggerAnchor />
 
       {/* AI Chat Panel */}
-      <AIChatPanel language={language} isOpen={aiChatOpen} onClose={() => setAiChatOpen(false)} />
+      <AIChatPanel language={language} isOpen={aiChatOpen} onClose={() => setAiChatOpen(false)} triggerRef={aiButtonRef} useTriggerAnchor />
     </div>
   )
 }

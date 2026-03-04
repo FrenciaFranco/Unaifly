@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, ArrowLeft } from "lucide-react";
 import type { Language } from "@/lib/servicesConfig";
@@ -18,6 +18,8 @@ interface ChatBotPanelProps {
   onClose: () => void;
   anchorCorner?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
   bubbleColumn?: "left" | "right";
+  triggerRef?: React.RefObject<HTMLElement | null>;
+  useTriggerAnchor?: boolean;
 }
 
 /**
@@ -30,24 +32,29 @@ export function ChatBotPanel({
   onClose,
   anchorCorner = "bottom-right",
   bubbleColumn = "left",
+  triggerRef,
+  useTriggerAnchor = false,
 }: ChatBotPanelProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMessage, setSelectedMessage] = useState<ChatMessage | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [anchoredStyle, setAnchoredStyle] = useState<React.CSSProperties>({});
 
   const labels = chatbotLabels[language];
   const filteredMessages = searchQuery
     ? searchMessages(searchQuery, language)
     : chatbotMessages;
+  const handleClose = useCallback(() => {
+    setSelectedMessage(null);
+    setSearchQuery("");
+    onClose();
+  }, [onClose]);
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
-    }
-    if (!isOpen) {
-      setSelectedMessage(null);
-      setSearchQuery("");
     }
   }, [isOpen]);
 
@@ -56,6 +63,77 @@ export function ChatBotPanel({
       scrollRef.current.scrollTop = 0;
     }
   }, [selectedMessage]);
+
+  useLayoutEffect(() => {
+    if (!isOpen || !triggerRef?.current || !panelRef.current) return;
+
+    const updatePosition = () => {
+      const anchor = triggerRef.current;
+      if (!anchor) return;
+
+      const anchorRect = anchor.getBoundingClientRect();
+      const viewportPadding = 8;
+      const offset = 8;
+
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const right = Math.max(vw - anchorRect.right, viewportPadding);
+
+      // Open above if enough space, otherwise open below
+      const spaceAbove = anchorRect.top;
+      const spaceBelow = vh - anchorRect.bottom;
+      const openAbove = spaceAbove > spaceBelow;
+
+      if (openAbove) {
+        setAnchoredStyle({
+          bottom: Math.max(vh - anchorRect.top + offset, viewportPadding),
+          right,
+          top: "auto",
+          left: "auto",
+        });
+      } else {
+        setAnchoredStyle({
+          top: anchorRect.bottom + offset,
+          right,
+          bottom: "auto",
+          left: "auto",
+        });
+      }
+    };
+
+    const raf = requestAnimationFrame(updatePosition);
+    const onScrollOrResize = () => requestAnimationFrame(updatePosition);
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+    window.addEventListener("scroll", onScrollOrResize, { passive: true, capture: true });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onScrollOrResize);
+      window.removeEventListener("scroll", onScrollOrResize, true);
+    };
+  }, [isOpen, triggerRef, selectedMessage, searchQuery, anchorCorner]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") handleClose();
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      const panel = panelRef.current;
+      const anchor = triggerRef?.current;
+      if (panel?.contains(target) || anchor?.contains(target)) return;
+      handleClose();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [isOpen, triggerRef, handleClose]);
 
   const handleSelectQuestion = (msg: ChatMessage) => {
     setSelectedMessage(msg);
@@ -76,19 +154,11 @@ export function ChatBotPanel({
   > = {
     "top-left": "top-24 left-4 sm:left-6",
     "top-right": "top-24 right-4 sm:right-6",
-    "bottom-left": "bottom-32 left-4 sm:left-6",
-    "bottom-right": "bottom-32 right-4 sm:right-6",
+    "bottom-left": "bottom-24 left-4 sm:left-6",
+    "bottom-right": "bottom-24 right-4 sm:right-6",
   };
-  const isRightAnchored = anchorCorner.endsWith("right");
-  const isTopAnchored = anchorCorner.startsWith("top");
-  const horizontalTailClass = isRightAnchored
-    ? bubbleColumn === "left"
-      ? "right-[4.5rem]"
-      : "right-7"
-    : bubbleColumn === "left"
-      ? "left-7"
-      : "left-[4.5rem]";
-  const verticalTailClass = isTopAnchored ? "-top-2" : "-bottom-2";
+  void bubbleColumn;
+  const useAnchoredPosition = useTriggerAnchor;
 
   return (
     <AnimatePresence>
@@ -99,11 +169,10 @@ export function ChatBotPanel({
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.8 }}
           data-chat-panel="true"
-          className={`fixed z-[60] w-[calc(100vw-2rem)] max-w-[380px] overflow-visible rounded-2xl border border-emerald-200/22 bg-gradient-to-br from-slate-900/95 via-emerald-950/80 to-teal-950/85 text-slate-100 shadow-[0_20px_60px_-20px_rgba(16,185,129,0.4)] backdrop-blur-2xl ${panelPositionClasses[anchorCorner]}`}
+          ref={panelRef}
+          className={`fixed z-[80] w-[calc(100vw-2rem)] max-w-[380px] overflow-visible rounded-2xl border border-emerald-200/22 bg-gradient-to-br from-slate-900/95 via-emerald-950/80 to-teal-950/85 text-slate-100 shadow-[0_20px_60px_-20px_rgba(16,185,129,0.4)] backdrop-blur-2xl ${useAnchoredPosition ? "" : panelPositionClasses[anchorCorner]}`}
+          style={useAnchoredPosition ? anchoredStyle : undefined}
         >
-          <div
-            className={`pointer-events-none absolute h-4 w-4 rotate-45 border border-emerald-200/22 bg-emerald-950/80 ${verticalTailClass} ${horizontalTailClass}`}
-          />
           {/* Decorative elements */}
           <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/80 to-transparent" />
           <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-emerald-300/10 blur-3xl" />
@@ -130,7 +199,7 @@ export function ChatBotPanel({
               </div>
             </div>
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white/10"
               aria-label={labels.close}
             >

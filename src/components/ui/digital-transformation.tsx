@@ -54,6 +54,13 @@ const popoverClassesByCorner: Record<FloatingCorner, string> = {
   "bottom-right": "absolute bottom-full right-0 mb-2",
 };
 
+const hintClassesByCorner: Record<FloatingCorner, string> = {
+  "top-left": "top-full left-0 mt-2",
+  "top-right": "top-full right-0 mt-2 text-right",
+  "bottom-left": "bottom-full left-0 mb-2",
+  "bottom-right": "bottom-full right-0 mb-2 text-right",
+};
+
 const languageOptions: Array<{ code: Language; label: string; name: string }> = [
   { code: "es", label: "ES", name: "Castellano" },
   { code: "en", label: "EN", name: "English" },
@@ -95,7 +102,7 @@ function getInitialCurrency(): Currency {
 
 function getInitialBubbleCorner(): FloatingCorner {
   if (typeof window === "undefined") return "bottom-right";
-  const savedCorner = getStorageItem("bubble-corner");
+  const savedCorner = getStorageItem(BUBBLE_CORNER_STORAGE_KEY);
   if (savedCorner === "top-left" || savedCorner === "top-right" || savedCorner === "bottom-left" || savedCorner === "bottom-right") {
     return savedCorner as FloatingCorner;
   }
@@ -980,6 +987,8 @@ export default function DigitalTransformation() {
   const [bubbleCorner, setBubbleCorner] = useState<FloatingCorner>(getInitialBubbleCorner);
   const [isDraggingBubbles, setIsDraggingBubbles] = useState(false);
   const bubblesContainerRef = useRef<HTMLDivElement>(null);
+  const faqButtonRef = useRef<HTMLButtonElement>(null);
+  const aiButtonRef = useRef<HTMLButtonElement>(null);
   const dragPointerIdRef = useRef<number | null>(null);
   const dragStartRef = useRef<{ x: number; y: number } | null>(null);
   const dragMovedRef = useRef(false);
@@ -1000,7 +1009,7 @@ export default function DigitalTransformation() {
   }, [language, currency]);
 
   useEffect(() => {
-    setStorageItem("bubble-corner", bubbleCorner);
+    setStorageItem(BUBBLE_CORNER_STORAGE_KEY, bubbleCorner);
   }, [bubbleCorner]);
 
   useEffect(() => {
@@ -1009,6 +1018,7 @@ export default function DigitalTransformation() {
       if (!target) return;
       if (bubblesContainerRef.current?.contains(target)) return;
       if (target instanceof Element && target.closest("[data-chat-panel='true']")) return;
+      if (target instanceof Element && target.closest("[data-floating-panel='true']")) return;
       closeFloatingOverlays();
     };
     const handleEscape = (event: KeyboardEvent) => {
@@ -1829,13 +1839,20 @@ export default function DigitalTransformation() {
         ref={bubblesContainerRef}
         layout
         transition={{ type: "spring", stiffness: 360, damping: 28, mass: 0.9 }}
-        className={`fixed z-50 grid grid-cols-2 gap-2 p-1 select-none touch-none ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
+        className={`fixed z-50 flex max-w-[calc(100vw-1.5rem)] flex-wrap items-center gap-2 rounded-full p-1 select-none sm:flex-nowrap ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
         onPointerDown={handleBubblesPointerDown}
         onPointerMove={handleBubblesPointerMove}
         onPointerUp={stopBubbleDragging}
         onPointerCancel={stopBubbleDragging}
       >
-        <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+        {!currencyBubbleOpen && !langBubbleOpen && !chatbotOpen && !aiChatOpen && (
+          <div
+            className={`pointer-events-none absolute max-w-[250px] rounded-full border border-white/15 bg-slate-900/72 px-3 py-1.5 text-[10px] font-medium leading-tight text-slate-200/90 backdrop-blur-xl sm:text-xs ${hintClassesByCorner[bubbleCorner]}`}
+          >
+            Estos ajustes y asistentes pueden verse en tu web
+          </div>
+        )}
+        <div className="relative h-14 w-14 shrink-0 sm:h-12 sm:w-12">
           <AnimatePresence>
             {currencyBubbleOpen && (
               <motion.div
@@ -1877,12 +1894,14 @@ export default function DigitalTransformation() {
             }}
             className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-amber-200/34 bg-gradient-to-br from-amber-400/18 via-yellow-400/12 to-orange-500/14 text-amber-50 shadow-[0_10px_24px_-12px_rgba(251,191,36,0.55)] backdrop-blur-xl transition-all duration-300 hover:border-amber-100/55 hover:from-amber-300/26 hover:to-yellow-400/24 sm:h-12 sm:w-12"
             aria-label="Select currency"
+            aria-expanded={currencyBubbleOpen}
+            aria-controls="currency-popover"
           >
             <CircleDollarSign className="h-6 w-6 text-primary sm:h-5 sm:w-5" />
           </motion.button>
         </div>
 
-        <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+        <div className="relative h-14 w-14 shrink-0 sm:h-12 sm:w-12">
           <AnimatePresence>
             {langBubbleOpen && (
               <motion.div
@@ -1924,13 +1943,16 @@ export default function DigitalTransformation() {
             }}
             className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-blue-200/34 bg-gradient-to-br from-blue-400/18 via-cyan-400/12 to-sky-500/14 text-blue-50 shadow-[0_10px_24px_-12px_rgba(59,130,246,0.55)] backdrop-blur-xl transition-all duration-300 hover:border-blue-100/55 hover:from-blue-300/26 hover:to-cyan-400/24 sm:h-12 sm:w-12"
             aria-label="Select language"
+            aria-expanded={langBubbleOpen}
+            aria-controls="language-popover"
           >
             <Languages className="h-6 w-6 text-primary sm:h-5 sm:w-5" />
           </motion.button>
         </div>
 
-        <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+        <div className="relative h-14 w-14 shrink-0 sm:h-12 sm:w-12">
           <motion.button
+            ref={faqButtonRef}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => {
@@ -1942,13 +1964,15 @@ export default function DigitalTransformation() {
             }}
             className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-emerald-200/34 bg-gradient-to-br from-emerald-400/16 via-teal-400/10 to-cyan-500/14 text-emerald-50 shadow-[0_10px_24px_-12px_rgba(16,185,129,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-emerald-100/55 hover:from-emerald-300/24 hover:to-teal-400/22 sm:h-12 sm:w-12"
             aria-label="FAQ Chat"
+            aria-expanded={chatbotOpen}
           >
             <MessageCircle className="h-6 w-6 text-primary sm:h-5 sm:w-5" />
           </motion.button>
         </div>
 
-        <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+        <div className="relative h-14 w-14 shrink-0 sm:h-12 sm:w-12">
           <motion.button
+            ref={aiButtonRef}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => {
@@ -1957,6 +1981,7 @@ export default function DigitalTransformation() {
             }}
             className="absolute inset-0 touch-manipulation flex h-14 w-14 items-center justify-center rounded-full border border-violet-200/34 bg-gradient-to-br from-violet-400/16 via-purple-400/10 to-fuchsia-500/14 text-violet-50 shadow-[0_10px_24px_-12px_rgba(139,92,246,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-violet-100/55 hover:from-violet-300/24 hover:to-fuchsia-400/22 sm:h-12 sm:w-12"
             aria-label="AI Chat"
+            aria-expanded={aiChatOpen}
           >
             <Bot className="h-6 w-6 text-primary sm:h-5 sm:w-5" />
           </motion.button>
@@ -1970,6 +1995,8 @@ export default function DigitalTransformation() {
         onClose={() => setChatbotOpen(false)}
         anchorCorner={bubbleCorner}
         bubbleColumn="left"
+        triggerRef={faqButtonRef}
+        useTriggerAnchor
       />
 
       {/* AI Chat Panel */}
@@ -1979,6 +2006,8 @@ export default function DigitalTransformation() {
         onClose={() => setAiChatOpen(false)}
         anchorCorner={bubbleCorner}
         bubbleColumn="right"
+        triggerRef={aiButtonRef}
+        useTriggerAnchor
       />
     </div>
   );

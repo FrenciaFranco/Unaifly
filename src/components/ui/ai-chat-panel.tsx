@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Bot, User, Loader2 } from "lucide-react";
 import type { Language } from "@/lib/servicesConfig";
@@ -21,6 +21,8 @@ interface AIChatPanelProps {
   onClose: () => void;
   anchorCorner?: "top-left" | "top-right" | "bottom-left" | "bottom-right";
   bubbleColumn?: "left" | "right";
+  triggerRef?: React.RefObject<HTMLElement | null>;
+  useTriggerAnchor?: boolean;
 }
 
 // ─── i18n labels ─────────────────────────────────────────────────────
@@ -41,14 +43,14 @@ const labels: Record<
 > = {
   es: {
     title: "Asistente UNAiFLY",
-    subtitle: "IA · Demo",
+    subtitle: "Agente de IA para tu web",
     placeholder: "Escribe tu pregunta sobre UNAiFLY...",
     close: "Cerrar",
-    poweredBy: "UNAiFLY AI · Demo",
+    poweredBy: "UNAiFLY AI",
     disclaimer:
-      "Demo con conocimiento limitado. Solo responde sobre UNAiFLY. Para presupuestos precisos o consultas personalizadas, contáctanos por WhatsApp o reserva una llamada.",
+      "Así podría verse un agente de IA en tu web. Este chat es un ejemplo: puede responder sobre nuestros servicios y ayudarte a elegir una solución. Para un presupuesto exacto, contáctanos por WhatsApp o reserva una llamada.",
     welcome:
-      "¡Hola! Soy el asistente virtual de UNAiFLY. Puedo ayudarte con información sobre nuestros servicios de transformación digital, precios orientativos, proceso de trabajo y cómo contactarnos. Ten en cuenta que soy una demo con conocimiento limitado — para presupuestos exactos, escríbenos por WhatsApp. ¿En qué puedo ayudarte?",
+      "¡Hola! Soy el asistente virtual de UNAiFLY. Puedo ayudarte con información sobre nuestros servicios de transformación digital, precios orientativos, proceso de trabajo y cómo contactarnos. Para presupuestos exactos, escríbenos por WhatsApp. ¿En qué puedo ayudarte?",
     errorGeneric: "Ha ocurrido un error. Inténtalo de nuevo.",
     errorRate: "Demasiados mensajes. Espera un momento.",
     chips: [
@@ -60,14 +62,14 @@ const labels: Record<
   },
   en: {
     title: "UNAiFLY Assistant",
-    subtitle: "AI · Demo",
+    subtitle: "AI Agent for your Website",
     placeholder: "Ask about UNAiFLY...",
     close: "Close",
-    poweredBy: "UNAiFLY AI · Demo",
+    poweredBy: "UNAiFLY AI",
     disclaimer:
-      "Demo with limited knowledge. Only answers about UNAiFLY. For precise quotes or custom requests, contact us via WhatsApp or book a call.",
+      "This is how an AI agent could look on your website. This chat is an example: it can answer questions about our services and help you choose the right solution. For exact pricing, contact us on WhatsApp or book a call.",
     welcome:
-      "Hi! I'm UNAiFLY's virtual assistant. I can help with info about our digital transformation services, indicative pricing, our process, and how to contact us. Note that I'm a demo with limited knowledge — for exact quotes, message us on WhatsApp. How can I help?",
+      "Hi! I'm UNAiFLY's virtual assistant. I can help with info about our digital transformation services, indicative pricing, our process, and how to contact us. For exact quotes, message us on WhatsApp. How can I help?",
     errorGeneric: "An error occurred. Please try again.",
     errorRate: "Too many messages. Please wait a moment.",
     chips: [
@@ -79,14 +81,14 @@ const labels: Record<
   },
   ca: {
     title: "Assistent UNAiFLY",
-    subtitle: "IA · Demo",
+    subtitle: "Agent d'IA per al teu web",
     placeholder: "Escriu la teva pregunta sobre UNAiFLY...",
     close: "Tancar",
-    poweredBy: "UNAiFLY AI · Demo",
+    poweredBy: "UNAiFLY AI",
     disclaimer:
-      "Demo amb coneixement limitat. Només respon sobre UNAiFLY. Per a pressupostos precisos, contacta'ns per WhatsApp o reserva una trucada.",
+      "Així podria veure's un agent d'IA al teu web. Aquest xat és un exemple: pot respondre sobre els nostres serveis i ajudar-te a triar una solució. Per a un pressupost exacte, contacta'ns per WhatsApp o reserva una trucada.",
     welcome:
-      "Hola! Soc l'assistent virtual d'UNAiFLY. Puc ajudar-te amb informació sobre els nostres serveis, preus orientatius, procés i com contactar-nos. Soc una demo — per a pressupostos exactes, escriu-nos per WhatsApp. En què puc ajudar-te?",
+      "Hola! Soc l'assistent virtual d'UNAiFLY. Puc ajudar-te amb informació sobre els nostres serveis, preus orientatius, procés i com contactar-nos. Per a pressupostos exactes, escriu-nos per WhatsApp. En què puc ajudar-te?",
     errorGeneric: "S'ha produït un error. Torna-ho a provar.",
     errorRate: "Massa missatges. Espera un moment.",
     chips: [
@@ -98,14 +100,14 @@ const labels: Record<
   },
   it: {
     title: "Assistente UNAiFLY",
-    subtitle: "IA · Demo",
+    subtitle: "Agente IA per il tuo sito",
     placeholder: "Scrivi la tua domanda su UNAiFLY...",
     close: "Chiudi",
-    poweredBy: "UNAiFLY AI · Demo",
+    poweredBy: "UNAiFLY AI",
     disclaimer:
-      "Demo con conoscenza limitata. Risponde solo su UNAiFLY. Per preventivi precisi, contattaci su WhatsApp o prenota una chiamata.",
+      "Così potrebbe apparire un agente IA sul tuo sito. Questa chat è un esempio: può rispondere sui nostri servizi e aiutarti a scegliere la soluzione giusta. Per un preventivo esatto, contattaci su WhatsApp o prenota una chiamata.",
     welcome:
-      "Ciao! Sono l'assistente virtuale di UNAiFLY. Posso aiutarti con informazioni sui nostri servizi, prezzi indicativi, processo e come contattarci. Sono una demo — per preventivi esatti, scrivici su WhatsApp. Come posso aiutarti?",
+      "Ciao! Sono l'assistente virtuale di UNAiFLY. Posso aiutarti con informazioni sui nostri servizi, prezzi indicativi, processo e come contattarci. Per preventivi esatti, scrivici su WhatsApp. Come posso aiutarti?",
     errorGeneric: "Si è verificato un errore. Riprova.",
     errorRate: "Troppi messaggi. Attendi un momento.",
     chips: [
@@ -128,6 +130,8 @@ export function AIChatPanel({
   onClose,
   anchorCorner = "bottom-right",
   bubbleColumn = "right",
+  triggerRef,
+  useTriggerAnchor = false,
 }: AIChatPanelProps) {
   const l = labels[language];
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -138,6 +142,8 @@ export function AIChatPanel({
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [anchoredStyle, setAnchoredStyle] = useState<React.CSSProperties>({});
   const adjustInputHeight = useCallback(() => {
     const el = inputRef.current;
     if (!el) return;
@@ -170,6 +176,77 @@ export function AIChatPanel({
   useEffect(() => {
     return () => abortRef.current?.abort();
   }, []);
+
+  useLayoutEffect(() => {
+    if (!isOpen || !triggerRef?.current || !panelRef.current) return;
+
+    const updatePosition = () => {
+      const anchor = triggerRef.current;
+      if (!anchor) return;
+
+      const anchorRect = anchor.getBoundingClientRect();
+      const viewportPadding = 8;
+      const offset = 8;
+
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+      const right = Math.max(vw - anchorRect.right, viewportPadding);
+
+      // Open above if enough space, otherwise open below
+      const spaceAbove = anchorRect.top;
+      const spaceBelow = vh - anchorRect.bottom;
+      const openAbove = spaceAbove > spaceBelow;
+
+      if (openAbove) {
+        setAnchoredStyle({
+          bottom: Math.max(vh - anchorRect.top + offset, viewportPadding),
+          right,
+          top: "auto",
+          left: "auto",
+        });
+      } else {
+        setAnchoredStyle({
+          top: anchorRect.bottom + offset,
+          right,
+          bottom: "auto",
+          left: "auto",
+        });
+      }
+    };
+
+    const raf = requestAnimationFrame(updatePosition);
+    const onScrollOrResize = () => requestAnimationFrame(updatePosition);
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+    window.addEventListener("scroll", onScrollOrResize, { passive: true, capture: true });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", onScrollOrResize);
+      window.removeEventListener("scroll", onScrollOrResize, true);
+    };
+  }, [isOpen, triggerRef, messages.length, isLoading, anchorCorner]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      const panel = panelRef.current;
+      const anchor = triggerRef?.current;
+      if (panel?.contains(target) || anchor?.contains(target)) return;
+      onClose();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [isOpen, onClose, triggerRef]);
 
   const sendMessage = useCallback(
     async (text: string) => {
@@ -300,19 +377,11 @@ export function AIChatPanel({
   > = {
     "top-left": "top-24 left-4 sm:left-6",
     "top-right": "top-24 right-4 sm:right-6",
-    "bottom-left": "bottom-32 left-4 sm:left-6",
-    "bottom-right": "bottom-32 right-4 sm:right-6",
+    "bottom-left": "bottom-24 left-4 sm:left-6",
+    "bottom-right": "bottom-24 right-4 sm:right-6",
   };
-  const isRightAnchored = anchorCorner.endsWith("right");
-  const isTopAnchored = anchorCorner.startsWith("top");
-  const horizontalTailClass = isRightAnchored
-    ? bubbleColumn === "left"
-      ? "right-[4.5rem]"
-      : "right-7"
-    : bubbleColumn === "left"
-      ? "left-7"
-      : "left-[4.5rem]";
-  const verticalTailClass = isTopAnchored ? "-top-2" : "-bottom-2";
+  void bubbleColumn;
+  const useAnchoredPosition = useTriggerAnchor;
 
   return (
     <AnimatePresence>
@@ -323,12 +392,10 @@ export function AIChatPanel({
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
           transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.8 }}
           data-chat-panel="true"
-          className={`fixed z-[60] flex w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-visible rounded-2xl border border-violet-200/22 bg-gradient-to-br from-slate-900/95 via-violet-950/80 to-fuchsia-950/85 text-slate-100 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.4)] backdrop-blur-2xl ${panelPositionClasses[anchorCorner]}`}
-          style={{ maxHeight: "min(80vh, 600px)" }}
+          ref={panelRef}
+          className={`fixed z-[80] flex w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-visible rounded-2xl border border-violet-200/22 bg-gradient-to-br from-slate-900/95 via-violet-950/80 to-fuchsia-950/85 text-slate-100 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.4)] backdrop-blur-2xl ${useAnchoredPosition ? "" : panelPositionClasses[anchorCorner]}`}
+          style={{ maxHeight: "min(80vh, 600px)", ...(useAnchoredPosition ? anchoredStyle : {}) }}
         >
-          <div
-            className={`pointer-events-none absolute h-4 w-4 rotate-45 border border-violet-200/22 bg-violet-950/80 ${verticalTailClass} ${horizontalTailClass}`}
-          />
           {/* Decorative elements */}
           <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/80 to-transparent" />
           <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-violet-300/10 blur-3xl" />
