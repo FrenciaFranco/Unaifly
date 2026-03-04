@@ -77,28 +77,20 @@ export function ChatBotPanel({
 
       const vw = document.documentElement.clientWidth;
       const vh = document.documentElement.clientHeight;
-      const right = Math.max(vw - anchorRect.right, viewportPadding);
 
-      // Open above if enough space, otherwise open below
-      const spaceAbove = anchorRect.top;
-      const spaceBelow = vh - anchorRect.bottom;
-      const openAbove = spaceAbove > spaceBelow;
+      // Vertical: open above if more space there, otherwise below
+      const openAbove = anchorRect.top > vh - anchorRect.bottom;
+      const vertStyle: React.CSSProperties = openAbove
+        ? { bottom: Math.max(vh - anchorRect.top + offset, viewportPadding), top: "auto" }
+        : { top: Math.max(anchorRect.bottom + offset, viewportPadding), bottom: "auto" };
 
-      if (openAbove) {
-        setAnchoredStyle({
-          bottom: Math.max(vh - anchorRect.top + offset, viewportPadding),
-          right,
-          top: "auto",
-          left: "auto",
-        });
-      } else {
-        setAnchoredStyle({
-          top: anchorRect.bottom + offset,
-          right,
-          bottom: "auto",
-          left: "auto",
-        });
-      }
+      // Horizontal: align to same side as anchor to stay on-screen
+      const anchorIsOnRight = anchorRect.right > vw / 2;
+      const horizStyle: React.CSSProperties = anchorIsOnRight
+        ? { right: Math.max(vw - anchorRect.right, viewportPadding), left: "auto" }
+        : { left: Math.max(anchorRect.left, viewportPadding), right: "auto" };
+
+      setAnchoredStyle({ ...vertStyle, ...horizStyle });
     };
 
     const raf = requestAnimationFrame(updatePosition);

@@ -995,6 +995,8 @@ export default function DigitalTransformation() {
   const dragMovedRef = useRef(false);
   const dragLastPointRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const dragVelocityRef = useRef({ x: 0, y: 0 });
+  const bubbleCornerRef = useRef<FloatingCorner>("bottom-right");
+  useEffect(() => { bubbleCornerRef.current = bubbleCorner; }, [bubbleCorner]);
   const { setTheme, resolvedTheme } = useTheme();
   const mounted = resolvedTheme !== undefined;
   const closeFloatingOverlays = useCallback(() => {
@@ -1172,8 +1174,12 @@ export default function DigitalTransformation() {
   ];
 
   const getCornerFromPoint = useCallback((x: number, y: number): FloatingCorner => {
-    const horizontal = x < window.innerWidth / 2 ? "left" : "right";
     const vertical = y < window.innerHeight / 2 ? "top" : "bottom";
+    if (window.innerWidth < 640) {
+      const h = bubbleCornerRef.current.includes("left") ? "left" : "right";
+      return `${vertical}-${h}` as FloatingCorner;
+    }
+    const horizontal = x < window.innerWidth / 2 ? "left" : "right";
     return `${vertical}-${horizontal}` as FloatingCorner;
   }, []);
 
