@@ -845,6 +845,7 @@ export default function ServiceBuilder() {
   const [currencyBubbleOpen, setCurrencyBubbleOpen] = useState(false);
   const [chatbotOpen, setChatbotOpen] = useState(false);
   const [aiChatOpen, setAiChatOpen] = useState(false);
+  const [hintDismissed, setHintDismissed] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
     new Set(serviceCategories.map((c) => c.id))
@@ -941,7 +942,7 @@ export default function ServiceBuilder() {
   }, []);
 
   const handleBubblesPointerMove = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDraggingBubbles || dragPointerIdRef.current !== event.pointerId) return;
+    if (dragPointerIdRef.current !== event.pointerId) return;
     const start = dragStartRef.current;
     if (!start) return;
     const now = performance.now();
@@ -1328,13 +1329,52 @@ export default function ServiceBuilder() {
         onPointerUp={stopBubbleDragging}
         onPointerCancel={stopBubbleDragging}
       >
-        {!currencyBubbleOpen && !langBubbleOpen && !chatbotOpen && !aiChatOpen && (
-          <div
-            className={`pointer-events-none absolute max-w-[250px] rounded-full border border-white/15 bg-slate-900/72 px-3 py-1.5 text-[10px] font-medium leading-tight text-slate-200/90 backdrop-blur-xl sm:text-xs ${hintClassesByCorner[bubbleCorner]}`}
-          >
-            Estos ajustes y asistentes pueden verse en tu web
-          </div>
-        )}
+        {/* Drag grip handle */}
+        <div
+          className="flex h-10 w-4 shrink-0 cursor-grab items-center justify-center opacity-35 transition-opacity hover:opacity-65 active:cursor-grabbing"
+          aria-hidden="true"
+          title="Arrastrar"
+        >
+          <svg width="8" height="14" viewBox="0 0 8 14" fill="currentColor" className="text-slate-300">
+            <circle cx="1.5" cy="1.5" r="1.5"/><circle cx="6.5" cy="1.5" r="1.5"/>
+            <circle cx="1.5" cy="7" r="1.5"/><circle cx="6.5" cy="7" r="1.5"/>
+            <circle cx="1.5" cy="12.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/>
+          </svg>
+        </div>
+        <AnimatePresence>
+          {!currencyBubbleOpen && !langBubbleOpen && !chatbotOpen && !aiChatOpen && !hintDismissed && (
+            <motion.div
+              key="tour-hint"
+              initial={{ opacity: 0, y: 8, scale: 0.93 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 6, scale: 0.93 }}
+              transition={{ type: "spring", stiffness: 340, damping: 26 }}
+              className={`pointer-events-auto absolute max-w-[240px] overflow-hidden rounded-2xl border border-indigo-400/25 bg-gradient-to-br from-slate-900/92 via-indigo-950/80 to-slate-900/92 px-3 py-2.5 shadow-[0_8px_28px_-6px_rgba(99,102,241,0.42)] backdrop-blur-2xl ${hintClassesByCorner[bubbleCorner]}`}
+            >
+              <div className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent" />
+              <div className="flex items-start gap-2">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-500/20 ring-1 ring-indigo-400/40">
+                  <svg className="h-3 w-3 text-indigo-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <p className="flex-1 text-[11px] leading-snug text-slate-200/90">
+                  Estos ajustes y asistentes{" "}
+                  <span className="font-semibold text-indigo-200">pueden verse en tu web</span>
+                </p>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setHintDismissed(true); }}
+                  className="ml-0.5 mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-white/15 hover:text-slate-200"
+                  aria-label="Cerrar"
+                >
+                  <svg className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         {/* Top-left: Currency */}
         <div className="relative h-12 w-12 shrink-0">
           <AnimatePresence>
@@ -1366,11 +1406,8 @@ export default function ServiceBuilder() {
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={() => {
-              if (dragMovedRef.current) {
-                dragMovedRef.current = false;
-                return;
-              }
               setCurrencyBubbleOpen(!currencyBubbleOpen);
               setLangBubbleOpen(false);
               setChatbotOpen(false);
@@ -1424,6 +1461,7 @@ export default function ServiceBuilder() {
               setChatbotOpen(false);
               setAiChatOpen(false);
             }}
+            onPointerDown={(e) => e.stopPropagation()}
             className="absolute inset-0 flex items-center justify-center rounded-full border border-blue-200/34 bg-gradient-to-br from-blue-400/18 via-cyan-400/12 to-sky-500/14 text-blue-50 shadow-[0_10px_24px_-12px_rgba(59,130,246,0.55)] backdrop-blur-xl transition-all duration-300 hover:border-blue-100/55 hover:from-blue-300/26 hover:to-cyan-400/24"
             aria-label="Select language"
           >
@@ -1437,8 +1475,8 @@ export default function ServiceBuilder() {
             ref={faqButtonRef}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={() => {
-              if (dragMovedRef.current) { dragMovedRef.current = false; return; }
               setChatbotOpen(!chatbotOpen);
               setCurrencyBubbleOpen(false);
               setLangBubbleOpen(false);
@@ -1458,8 +1496,8 @@ export default function ServiceBuilder() {
             ref={aiButtonRef}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            onPointerDown={(e) => e.stopPropagation()}
             onClick={() => {
-              if (dragMovedRef.current) { dragMovedRef.current = false; return; }
               setAiChatOpen(!aiChatOpen); setChatbotOpen(false); setLangBubbleOpen(false); setCurrencyBubbleOpen(false);
             }}
             className="absolute inset-0 flex items-center justify-center rounded-full border border-violet-200/34 bg-gradient-to-br from-violet-400/16 via-purple-400/10 to-fuchsia-500/14 text-violet-50 shadow-[0_10px_24px_-12px_rgba(139,92,246,0.5)] backdrop-blur-xl transition-all duration-300 hover:border-violet-100/55 hover:from-violet-300/24 hover:to-fuchsia-400/22"

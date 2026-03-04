@@ -772,6 +772,7 @@ export function DesignAgency() {
   const [langBubbleOpen, setLangBubbleOpen] = useState(false)
   const [chatbotOpen, setChatbotOpen] = useState(false)
   const [aiChatOpen, setAiChatOpen] = useState(false)
+  const [hintDismissed, setHintDismissed] = useState(false)
   const faqButtonRef = useRef<HTMLButtonElement>(null)
   const aiButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -1543,11 +1544,40 @@ export function DesignAgency() {
 
       {/* Floating Bubbles Toolbar */}
       <div className="fixed bottom-6 right-4 z-50 flex max-w-[calc(100vw-1.5rem)] items-center gap-2 overflow-x-auto rounded-full sm:right-6">
-        {!langBubbleOpen && !chatbotOpen && !aiChatOpen && (
-          <div className="pointer-events-none absolute bottom-full right-0 mb-2 max-w-[250px] rounded-full border border-border/70 bg-background/90 px-3 py-1.5 text-right text-[10px] font-medium leading-tight text-foreground/85 shadow-sm backdrop-blur-md sm:text-xs">
-            Estos ajustes y asistentes pueden verse en tu web
-          </div>
-        )}
+        <AnimatePresence>
+          {!langBubbleOpen && !chatbotOpen && !aiChatOpen && !hintDismissed && (
+            <motion.div
+              key="tour-hint"
+              initial={{ opacity: 0, y: 8, scale: 0.93 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 6, scale: 0.93 }}
+              transition={{ type: "spring", stiffness: 340, damping: 26 }}
+              className="pointer-events-auto absolute bottom-full right-0 mb-2 max-w-[240px] overflow-hidden rounded-2xl border border-indigo-400/25 bg-gradient-to-br from-slate-900/92 via-indigo-950/80 to-slate-900/92 px-3 py-2.5 shadow-[0_8px_28px_-6px_rgba(99,102,241,0.42)] backdrop-blur-2xl"
+            >
+              <div className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent" />
+              <div className="flex items-start gap-2">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-indigo-500/20 ring-1 ring-indigo-400/40">
+                  <svg className="h-3 w-3 text-indigo-300" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <p className="flex-1 text-[11px] leading-snug text-slate-200/90">
+                  Estos ajustes y asistentes{" "}
+                  <span className="font-semibold text-indigo-200">pueden verse en tu web</span>
+                </p>
+                <button
+                  onClick={() => setHintDismissed(true)}
+                  className="ml-0.5 mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-white/15 hover:text-slate-200"
+                  aria-label="Cerrar"
+                >
+                  <svg className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         {/* Language */}
         <div className="relative h-12 w-12 shrink-0">
           <AnimatePresence>
