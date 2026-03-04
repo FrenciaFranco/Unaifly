@@ -161,9 +161,9 @@ export function AIChatPanel({
     }
   }, [messages, isLoading]);
 
-  // Focus input when opened
+  // Focus input only on desktop when opened (mobile: avoid popping keyboard)
   useEffect(() => {
-    if (isOpen && inputRef.current) {
+    if (isOpen && inputRef.current && window.innerWidth >= 640) {
       setTimeout(() => inputRef.current?.focus(), 300);
     }
   }, [isOpen]);
@@ -184,12 +184,46 @@ export function AIChatPanel({
       const anchor = triggerRef.current;
       if (!anchor) return;
 
+      const vw = document.documentElement.clientWidth;
+      const vh = document.documentElement.clientHeight;
+
+      // On mobile: full-width panel opens up/down based on trigger position
+      if (vw < 640) {
+        const anchorRect = anchor.getBoundingClientRect();
+        const viewportPadding = 8;
+        const offset = 8;
+        const openDown = anchorRect.top < vh / 2;
+
+        if (openDown) {
+          const top = Math.max(anchorRect.bottom + offset, viewportPadding);
+          const maxHeight = Math.max(220, vh - top - viewportPadding);
+          setAnchoredStyle({
+            left: 8,
+            right: 8,
+            top,
+            bottom: "auto",
+            width: "auto",
+            maxHeight: `${maxHeight}px`,
+          });
+          return;
+        }
+
+        const bottom = Math.max(vh - anchorRect.top + offset, viewportPadding);
+        const maxHeight = Math.max(220, vh - bottom - viewportPadding);
+        setAnchoredStyle({
+          left: 8,
+          right: 8,
+          bottom,
+          top: "auto",
+          width: "auto",
+          maxHeight: `${maxHeight}px`,
+        });
+        return;
+      }
+
       const anchorRect = anchor.getBoundingClientRect();
       const viewportPadding = 8;
       const offset = 8;
-
-      const vw = document.documentElement.clientWidth;
-      const vh = document.documentElement.clientHeight;
 
       // Vertical: open above if more space there, otherwise below
       const openAbove = anchorRect.top > vh - anchorRect.bottom;

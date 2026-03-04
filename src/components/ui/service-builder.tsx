@@ -66,19 +66,42 @@ const cornerContainerClasses: Record<FloatingCorner, string> = {
   "bottom-right": "bottom-24 right-4 lg:bottom-6 lg:right-6",
 };
 
-const popoverClassesByCorner: Record<FloatingCorner, string> = {
-  "top-left": "absolute top-full left-0 mt-2",
-  "top-right": "absolute top-full right-0 mt-2",
-  "bottom-left": "absolute bottom-full left-0 mb-2",
-  "bottom-right": "absolute bottom-full right-0 mb-2",
-};
-
 const hintClassesByCorner: Record<FloatingCorner, string> = {
   "top-left": "top-full left-0 mt-2",
   "top-right": "top-full right-0 mt-2 text-right",
   "bottom-left": "bottom-full left-0 mb-2",
   "bottom-right": "bottom-full right-0 mb-2 text-right",
 };
+
+const FLOATING_POPOVER_GAP_PX = 8;
+const FLOATING_POPOVER_VIEWPORT_MARGIN_PX = 8;
+
+function getFloatingPopoverStyle(
+  anchorEl: HTMLElement | null,
+  preferredWidth: number,
+  bubbleCorner: FloatingCorner
+): React.CSSProperties | undefined {
+  if (!anchorEl || typeof window === "undefined") return undefined;
+
+  const maxWidth = Math.max(180, Math.min(preferredWidth, window.innerWidth - FLOATING_POPOVER_VIEWPORT_MARGIN_PX * 2));
+  const anchorRect = anchorEl.getBoundingClientRect();
+  const preferredLeft = anchorRect.right - maxWidth;
+  const left = Math.max(
+    FLOATING_POPOVER_VIEWPORT_MARGIN_PX,
+    Math.min(preferredLeft, window.innerWidth - maxWidth - FLOATING_POPOVER_VIEWPORT_MARGIN_PX)
+  );
+  const opensDown = bubbleCorner.startsWith("top");
+
+  return {
+    position: "fixed",
+    zIndex: 90,
+    width: maxWidth,
+    left,
+    ...(opensDown
+      ? { top: anchorRect.bottom + FLOATING_POPOVER_GAP_PX }
+      : { bottom: window.innerHeight - anchorRect.top + FLOATING_POPOVER_GAP_PX }),
+  };
+}
 
 const languageOptions: Array<{ code: LangKey; label: string; name: string }> = [
   { code: "es", label: "ES", name: "Castellano" },
@@ -855,7 +878,11 @@ export default function ServiceBuilder() {
   const [presetsOpen, setPresetsOpen] = useState(true);
   const [bubbleCorner, setBubbleCorner] = useState<FloatingCorner>(getInitialBubbleCorner);
   const [isDraggingBubbles, setIsDraggingBubbles] = useState(false);
+  const [currencyPopoverStyle, setCurrencyPopoverStyle] = useState<React.CSSProperties | undefined>(undefined);
+  const [langPopoverStyle, setLangPopoverStyle] = useState<React.CSSProperties | undefined>(undefined);
   const bubblesContainerRef = useRef<HTMLDivElement>(null);
+  const currencyBubbleRef = useRef<HTMLDivElement>(null);
+  const langBubbleRef = useRef<HTMLDivElement>(null);
   const faqButtonRef = useRef<HTMLButtonElement>(null);
   const aiButtonRef = useRef<HTMLButtonElement>(null);
   const dragPointerIdRef = useRef<number | null>(null);
@@ -917,6 +944,23 @@ export default function ServiceBuilder() {
     const intervalId = window.setInterval(() => { void refreshRates(); }, 30 * 60 * 1000);
     return () => { isMounted = false; controller.abort(); window.clearInterval(intervalId); };
   }, []);
+
+  const updateFloatingPopoverPositions = useCallback(() => {
+    setCurrencyPopoverStyle(getFloatingPopoverStyle(currencyBubbleRef.current, 300, bubbleCorner));
+    setLangPopoverStyle(getFloatingPopoverStyle(langBubbleRef.current, 220, bubbleCorner));
+  }, [bubbleCorner]);
+
+  useEffect(() => {
+    if (!currencyBubbleOpen && !langBubbleOpen) return;
+    const refresh = () => requestAnimationFrame(updateFloatingPopoverPositions);
+    refresh();
+    window.addEventListener("resize", refresh);
+    window.addEventListener("scroll", refresh, true);
+    return () => {
+      window.removeEventListener("resize", refresh);
+      window.removeEventListener("scroll", refresh, true);
+    };
+  }, [currencyBubbleOpen, langBubbleOpen, updateFloatingPopoverPositions]);
 
   const lang = t[language];
   const totals = calculateTotals(selectedIds, serviceCategories);
@@ -1386,7 +1430,7 @@ export default function ServiceBuilder() {
           )}
         </AnimatePresence>
         {/* Top-left: Currency */}
-        <div className="relative h-12 w-12 shrink-0">
+        <div ref={currencyBubbleRef} className="relative h-12 w-12 shrink-0">
           <AnimatePresence>
             {currencyBubbleOpen && (
               <motion.div
@@ -1395,7 +1439,8 @@ export default function ServiceBuilder() {
                 exit={{ opacity: 0, y: 8, scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 360, damping: 26, mass: 0.9 }}
                 data-floating-panel="true"
-                className={`${popoverClassesByCorner[bubbleCorner]} w-[300px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-amber-200/22 bg-gradient-to-br from-slate-900/90 via-amber-950/76 to-yellow-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(251,191,36,0.38)] backdrop-blur-2xl`}
+                style={currencyPopoverStyle}
+                className="overflow-hidden rounded-2xl border border-amber-200/22 bg-gradient-to-br from-slate-900/90 via-amber-950/76 to-yellow-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(251,191,36,0.38)] backdrop-blur-2xl"
               >
                 <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-amber-200/80 to-transparent" />
                 <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-amber-300/10 blur-3xl" />
@@ -1431,7 +1476,7 @@ export default function ServiceBuilder() {
         </div>
 
         {/* Top-right: Language */}
-        <div className="relative h-12 w-12 shrink-0">
+        <div ref={langBubbleRef} className="relative h-12 w-12 shrink-0">
           <AnimatePresence>
             {langBubbleOpen && (
               <motion.div
@@ -1440,7 +1485,8 @@ export default function ServiceBuilder() {
                 exit={{ opacity: 0, y: 8, scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 360, damping: 26, mass: 0.9 }}
                 data-floating-panel="true"
-                className={`${popoverClassesByCorner[bubbleCorner]} w-[220px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-blue-200/22 bg-gradient-to-br from-slate-900/90 via-blue-950/78 to-cyan-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(59,130,246,0.38)] backdrop-blur-2xl`}
+                style={langPopoverStyle}
+                className="overflow-hidden rounded-2xl border border-blue-200/22 bg-gradient-to-br from-slate-900/90 via-blue-950/78 to-cyan-950/80 p-2 text-slate-100 shadow-[0_16px_44px_-18px_rgba(59,130,246,0.38)] backdrop-blur-2xl"
               >
                 <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-blue-200/80 to-transparent" />
                 <div className="pointer-events-none absolute -top-24 left-0 h-40 w-40 rounded-full bg-blue-300/10 blur-3xl" />
