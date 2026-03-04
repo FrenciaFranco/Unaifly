@@ -235,14 +235,9 @@ export async function POST(req: NextRequest) {
   }
 
   // 10. Call AI provider (OpenAI-compatible API)
-  const apiBase = process.env.AI_CHAT_API_BASE || "https://api.openai.com/v1";
-  const model = process.env.AI_CHAT_MODEL || "gpt-4o-mini";
-  const isGitHubModels = apiBase.includes("models.github.ai");
-  const githubApiVersion = process.env.AI_CHAT_GITHUB_API_VERSION || "2022-11-28";
-  const githubOrg = process.env.AI_CHAT_GITHUB_ORG?.trim();
-  const endpoint = isGitHubModels && githubOrg
-    ? `${apiBase}/orgs/${encodeURIComponent(githubOrg)}/inference/chat/completions`
-    : `${apiBase}/chat/completions`;
+  const apiBase = process.env.AI_CHAT_API_BASE || "https://models.github.ai/inference";
+  const model = process.env.AI_CHAT_MODEL || "openai/gpt-4o-mini";
+  const endpoint = `${apiBase}/chat/completions`;
 
   try {
     const response = await fetch(endpoint, {
@@ -250,12 +245,6 @@ export async function POST(req: NextRequest) {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        ...(isGitHubModels
-          ? {
-              Accept: "application/vnd.github+json",
-              "X-GitHub-Api-Version": githubApiVersion,
-            }
-          : {}),
       },
       body: JSON.stringify({
         model,
