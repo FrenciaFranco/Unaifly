@@ -11,6 +11,10 @@ interface ChatMessage {
   content: string;
 }
 
+function sanitizeAssistantText(text: string): string {
+  return text.replace(/\*\*/g, "");
+}
+
 interface AIChatPanelProps {
   language: Language;
   isOpen: boolean;
@@ -218,7 +222,7 @@ export function AIChatPanel({
           if (data.message) {
             setMessages((prev) => [
               ...prev,
-              { role: "assistant", content: data.message },
+              { role: "assistant", content: sanitizeAssistantText(data.message) },
             ]);
           }
           setIsLoading(false);
@@ -257,11 +261,12 @@ export function AIChatPanel({
               const parsed = JSON.parse(data);
               if (parsed.content) {
                 assistantContent += parsed.content;
+                const sanitizedContent = sanitizeAssistantText(assistantContent);
                 setMessages((prev) => {
                   const updated = [...prev];
                   updated[updated.length - 1] = {
                     role: "assistant",
-                    content: assistantContent,
+                    content: sanitizedContent,
                   };
                   return updated;
                 });
@@ -370,18 +375,6 @@ export function AIChatPanel({
                   </div>
                 </div>
 
-                {/* Quick-reply chips */}
-                <div className="flex flex-wrap gap-1.5">
-                  {l.chips.map((chip) => (
-                    <button
-                      key={chip.label}
-                      onClick={() => sendMessage(chip.prompt)}
-                      className="rounded-full bg-violet-500/15 px-3 py-1.5 text-[11px] font-medium text-violet-200 ring-1 ring-violet-300/20 transition-all hover:bg-violet-500/25 hover:text-violet-100 active:scale-95"
-                    >
-                      {chip.label}
-                    </button>
-                  ))}
-                </div>
               </motion.div>
             )}
 
@@ -406,7 +399,17 @@ export function AIChatPanel({
                       : "rounded-bl-md bg-white/8 text-slate-200 ring-1 ring-white/10"
                   }`}
                 >
-                  {msg.content || (
+                  {msg.content ? (
+                    <span
+                      className={
+                        msg.role === "assistant" && isLoading && i === messages.length - 1
+                          ? "chat-text-shimmer"
+                          : undefined
+                      }
+                    >
+                      {msg.content}
+                    </span>
+                  ) : (
                     <span className="inline-flex items-center gap-1 text-slate-400">
                       <Loader2 className="h-3 w-3 animate-spin" />
                     </span>

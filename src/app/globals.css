@@ -164,6 +164,27 @@
   100% { background-position: -100% 50%; }
 }
 
+/* Assistant typing shimmer in chat bubbles */
+.chat-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(203, 213, 225, 0.75) 0%,
+    rgba(255, 255, 255, 0.98) 45%,
+    rgba(233, 213, 255, 0.98) 55%,
+    rgba(203, 213, 225, 0.75) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: chatTextShimmer 1.6s linear infinite;
+}
+
+@keyframes chatTextShimmer {
+  0% { background-position: 120% 50%; }
+  100% { background-position: -120% 50%; }
+}
+
 .explore-btn {
   position: absolute;
   bottom: 40px;
