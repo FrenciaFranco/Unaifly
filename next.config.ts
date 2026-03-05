@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: blob: https://images.unsplash.com https://i.postimg.cc https://www.google-analytics.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://calendly.com https://api.whatsapp.com",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://calendly.com https://api.whatsapp.com https://api.frankfurter.app https://api.coingecko.com",
               "frame-src https://calendly.com",
               "object-src 'none'",
               "base-uri 'self'",

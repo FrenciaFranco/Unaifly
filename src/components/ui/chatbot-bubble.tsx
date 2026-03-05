@@ -235,7 +235,7 @@ export function ChatBotPanel({
           </div>
 
           {/* Content */}
-          <div ref={scrollRef} className="relative z-10 max-h-[60vh] min-h-[280px] overflow-y-auto overscroll-contain">
+          <div ref={scrollRef} className="relative z-10 max-h-[42vh] min-h-[180px] overflow-y-auto overscroll-contain">
             <AnimatePresence mode="wait">
               {selectedMessage ? (
                 /* Answer view */
