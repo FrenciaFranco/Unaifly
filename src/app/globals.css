@@ -185,57 +185,6 @@
   100% { background-position: -120% 50%; }
 }
 
-.explore-btn {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 70;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  color: white;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  opacity: 0;
-  animation: fadeInFromBottomCentered 0.8s ease-out forwards;
-}
-
-.explore-arrow {
-  display: flex;
-  align-items: center;
-}
-
-.arrow-svg {
-  animation: bounce 2s infinite;
-}
-
-@keyframes fadeInFromBottomCentered {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
-}
-
 /* Digital Transformation — glass cards & price rows */
 .glass-card {
   background: rgba(255,255,255,0.05);

@@ -241,29 +241,6 @@ export const HeroFuturistic = () => {
     <div ref={containerRef} className="relative h-svh w-full">
       <HeroOverlay />
 
-      <button
-        className="explore-btn"
-        style={{ animationDelay: "2.2s" }}
-        onClick={() =>
-          window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
-        }
-      >
-        Scroll to explore
-        <span className="explore-arrow">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="arrow-svg"
-          >
-            <path d="M11 5V17" stroke="white" strokeWidth="2" strokeLinecap="round" />
-            <path d="M6 12L11 17L16 12" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        </span>
-      </button>
-
       <HeroCanvas visibleRef={visibleRef} />
     </div>
   );
