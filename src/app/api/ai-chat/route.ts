@@ -5,8 +5,9 @@ import { BUSINESS_CONTEXT } from "@/lib/businessContext";
 const ALLOWED_ORIGINS = [
   "https://unaifly.com",
   "https://www.unaifly.com",
-  "http://localhost:3000",
-  "http://localhost:3001",
+  ...(process.env.NODE_ENV === "development"
+    ? ["http://localhost:3000", "http://localhost:3001"]
+    : []),
 ];
 
 const MAX_BODY_BYTES = 32_000; // 32 KB
@@ -192,7 +193,10 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // 6. Validate & sanitize messages
+  // 6. Validate & sanitize messages.
+  //    Accept "user" and "assistant" roles for conversation history, but
+  //    enforce strict alternation starting with "user" to prevent injection
+  //    via crafted assistant messages that could override the system prompt.
   const validRoles = new Set(["user", "assistant"]);
   const messages: Array<{ role: string; content: string }> = [];
 
@@ -212,7 +216,15 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+    // Enforce alternation: skip consecutive same-role messages
+    const expectedRole = messages.length === 0 ? "user" : messages[messages.length - 1].role === "user" ? "assistant" : "user";
+    if (msg.role !== expectedRole) continue;
     messages.push({ role: msg.role, content: msg.content });
+  }
+
+  // Conversation must start with "user" and end with "user"
+  if (messages.length === 0 || messages[messages.length - 1].role !== "user") {
+    return Response.json({ error: "Invalid message sequence" }, { status: 400 });
   }
 
   // 7. Get the last user message for pre-checks
@@ -264,17 +276,9 @@ export async function POST(req: NextRequest) {
         const errBody = await response.json();
         providerMsg = errBody?.error?.message || errBody?.error?.code || "";
       } catch { /* ignore parse errors */ }
-      console.error(`[ai-chat] Provider error: ${response.status} — ${providerMsg}`);
-      // Return safe diagnostics (no secrets). Common causes:
-      // 401 = bad key, 403 = key lacks permission, 404 = wrong model, 429 = quota
-      const hint =
-        response.status === 401 ? "Invalid API key configured."
-        : response.status === 403 ? "API key lacks permission for this model/account."
-        : response.status === 404 ? `Model "${model}" not found.`
-        : response.status === 429 ? "AI provider rate limit / quota exceeded."
-        : `Provider returned ${response.status}.`;
+      console.error(`[ai-chat] Provider error: ${response.status} — ${providerMsg} (model: ${model})`);
       return Response.json(
-        { error: `AI service error: ${hint}${providerMsg ? ` (${providerMsg})` : ""}` },
+        { error: "AI service is temporarily unavailable. Please try again later." },
         { status: 502 }
       );
     }
