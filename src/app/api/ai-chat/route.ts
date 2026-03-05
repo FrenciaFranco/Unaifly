@@ -64,21 +64,30 @@ ${BUSINESS_CONTEXT}`;
 
 // ─── Helpers ─────────────────────────────────────────────────────────
 function getClientIP(req: NextRequest): string {
-  return (
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("x-real-ip") ||
-    "unknown"
-  );
+  // On Vercel, use the platform-provided IP (not spoofable by clients).
+  // x-forwarded-for is only trusted behind a known reverse proxy.
+  const vercelIP = req.headers.get("x-real-ip");
+  if (vercelIP) return vercelIP;
+
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0]!.trim();
+
+  return "unknown";
 }
 
 function checkOrigin(req: NextRequest): boolean {
   const origin = req.headers.get("origin") || "";
   const referer = req.headers.get("referer") || "";
 
-  // Allow if origin matches
-  if (origin && ALLOWED_ORIGINS.some((o) => origin.startsWith(o))) return true;
-  // Allow if referer matches
-  if (referer && ALLOWED_ORIGINS.some((o) => referer.startsWith(o))) return true;
+  // Allow if origin matches exactly (not prefix match to prevent bypass via e.g. unaifly.com.evil.com)
+  if (origin && ALLOWED_ORIGINS.includes(origin)) return true;
+  // Allow if referer starts with an allowed origin followed by / or end (exact domain match)
+  if (referer) {
+    const refererMatch = ALLOWED_ORIGINS.some(
+      (o) => referer === o || referer.startsWith(o + "/")
+    );
+    if (refererMatch) return true;
+  }
   // In development, allow empty origin (same-origin requests)
   if (!origin && !referer && process.env.NODE_ENV === "development") return true;
 
@@ -155,6 +164,7 @@ export async function POST(req: NextRequest) {
   const ip = getClientIP(req);
   const rateResult = checkRateLimit(ip);
   if (!rateResult.allowed) {
+    console.warn(`[ai-chat] Rate limit exceeded for IP: ${ip}`);
     return Response.json(
       { error: "Too many requests. Please wait a moment." },
       {

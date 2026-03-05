@@ -138,7 +138,7 @@ export function ChatBotPanel({
       window.removeEventListener("resize", onScrollOrResize);
       window.removeEventListener("scroll", onScrollOrResize, true);
     };
-  }, [isOpen, triggerRef, selectedMessage, searchQuery, anchorCorner]);
+  }, [isOpen, triggerRef, anchorCorner]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -352,7 +352,9 @@ export function ChatBotPanel({
 /**
  * Renders markdown-like text with bold (**text**) and line breaks.
  */
-function FormattedAnswer({ text }: { text: string }) {
+const BOLD_REGEX = /(\*\*[^*]+\*\*)/;
+
+const FormattedAnswer = React.memo(function FormattedAnswer({ text }: { text: string }) {
   const lines = text.split("\n");
   return (
     <>
@@ -362,7 +364,7 @@ function FormattedAnswer({ text }: { text: string }) {
             <div className="h-2" />
           ) : (
             <span>
-              {line.split(/(\*\*[^*]+\*\*)/).map((part, j) =>
+              {line.split(BOLD_REGEX).map((part, j) =>
                 part.startsWith("**") && part.endsWith("**") ? (
                   <strong key={j} className="font-semibold text-emerald-100">
                     {part.slice(2, -2)}
@@ -378,4 +380,4 @@ function FormattedAnswer({ text }: { text: string }) {
       ))}
     </>
   );
-}
+});

@@ -43,27 +43,23 @@ const NeonGradientCard: React.FC<NeonGradientCardDivProps> = ({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+
     const updateDimensions = () => {
-      if (containerRef.current) {
-        const { offsetWidth, offsetHeight } = containerRef.current
-        setDimensions({ width: offsetWidth, height: offsetHeight })
-      }
+      setDimensions({ width: el.offsetWidth, height: el.offsetHeight })
     }
 
     updateDimensions()
-    window.addEventListener("resize", updateDimensions)
+
+    // Use ResizeObserver instead of window resize + children dependency
+    const ro = new ResizeObserver(updateDimensions)
+    ro.observe(el)
 
     return () => {
-      window.removeEventListener("resize", updateDimensions)
+      ro.disconnect()
     }
   }, [])
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const { offsetWidth, offsetHeight } = containerRef.current
-      setDimensions({ width: offsetWidth, height: offsetHeight })
-    }
-  }, [children])
 
   return (
     <div

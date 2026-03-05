@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
@@ -266,6 +266,23 @@ const t: Record<LangKey, Record<string, string>> = {
 
 // --- HELPERS ---
 
+// Cache Intl.NumberFormat instances to avoid re-creating on every call
+const intlCache = new Map<string, Intl.NumberFormat>();
+function getCachedFormatter(currency: string, minFrac: number, maxFrac: number): Intl.NumberFormat {
+  const key = `${currency}:${minFrac}:${maxFrac}`;
+  let fmt = intlCache.get(key);
+  if (!fmt) {
+    fmt = new Intl.NumberFormat("es-ES", {
+      style: "currency",
+      currency,
+      minimumFractionDigits: minFrac,
+      maximumFractionDigits: maxFrac,
+    });
+    intlCache.set(key, fmt);
+  }
+  return fmt;
+}
+
 function formatAmount(value: number, currency: Currency) {
   if (!Number.isFinite(value)) return "";
   if (currency === "BTC") {
@@ -273,12 +290,7 @@ function formatAmount(value: number, currency: Currency) {
     return `BTC ${roundedBtc.toLocaleString("es-ES", { minimumFractionDigits: 6, maximumFractionDigits: 6 })}`;
   }
   const roundedValue = Math.ceil(value);
-  return new Intl.NumberFormat("es-ES", {
-    style: "currency",
-    currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(roundedValue);
+  return getCachedFormatter(currency, 0, 0).format(roundedValue);
 }
 
 function formatRateAmount(value: number, currency: Currency) {
@@ -288,13 +300,7 @@ function formatRateAmount(value: number, currency: Currency) {
   }
 
   const maxFractionDigits = Math.abs(value) < 0.01 ? 6 : 2;
-
-  return new Intl.NumberFormat("es-ES", {
-    style: "currency",
-    currency,
-    minimumFractionDigits: 2,
-    maximumFractionDigits: maxFractionDigits,
-  }).format(value);
+  return getCachedFormatter(currency, 2, maxFractionDigits).format(value);
 }
 
 function convertEurValue(valueInEur: number, currency: Currency, currencyRates: Record<Currency, number>) {
@@ -963,10 +969,10 @@ export default function ServiceBuilder() {
   }, [currencyBubbleOpen, langBubbleOpen, updateFloatingPopoverPositions]);
 
   const lang = t[language];
-  const totals = calculateTotals(selectedIds, serviceCategories);
-  const selectedByCategory = getSelectedByCategory(selectedIds, serviceCategories);
+  const totals = useMemo(() => calculateTotals(selectedIds, serviceCategories), [selectedIds]);
+  const selectedByCategory = useMemo(() => getSelectedByCategory(selectedIds, serviceCategories), [selectedIds]);
   const totalSelected = selectedIds.size;
-  const activePresetId = detectActivePreset(selectedIds);
+  const activePresetId = useMemo(() => detectActivePreset(selectedIds), [selectedIds]);
 
   const getCornerFromPoint = useCallback((x: number, y: number): FloatingCorner => {
     const vertical = y < window.innerHeight / 2 ? "top" : "bottom";

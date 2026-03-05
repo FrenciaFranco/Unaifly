@@ -142,6 +142,8 @@ export function AIChatPanel({
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const messagesRef = useRef(messages);
+  messagesRef.current = messages;
   const panelRef = useRef<HTMLDivElement>(null);
   const [anchoredStyle, setAnchoredStyle] = useState<React.CSSProperties>({});
   const adjustInputHeight = useCallback(() => {
@@ -283,7 +285,7 @@ export function AIChatPanel({
       setInput("");
 
       const userMsg: ChatMessage = { role: "user", content: trimmed };
-      const newMessages = [...messages, userMsg];
+      const newMessages = [...messagesRef.current, userMsg];
       setMessages(newMessages);
       setIsLoading(true);
 
@@ -386,7 +388,7 @@ export function AIChatPanel({
         setIsLoading(false);
       }
     },
-    [messages, isLoading, cooldown, language, l]
+    [isLoading, cooldown, language, l]
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
