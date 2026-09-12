@@ -1,0 +1,276 @@
+- generic [active] [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - link "Saltar al contenido" [ref=f2e3] [cursor=pointer]:
+      - /url: "#contenido"
+    - banner [ref=f2e4]:
+      - link "UNAiFLY, inicio" [ref=f2e5] [cursor=pointer]:
+        - /url: /
+        - img "UNAiFLY" [ref=f2e6]
+      - navigation "Navegación principal" [ref=f2e7]:
+        - link "Cómo trabajamos" [ref=f2e8] [cursor=pointer]:
+          - /url: "#metodo"
+        - link "Qué mejoramos" [ref=f2e9] [cursor=pointer]:
+          - /url: "#soluciones"
+        - link "Casos de uso" [ref=f2e10] [cursor=pointer]:
+          - /url: "#casos"
+      - generic [ref=f2e11]:
+        - switch "Modo claro" [disabled] [ref=f2e12] [cursor=pointer]
+        - link "Analizar mi empresa" [ref=f2e22] [cursor=pointer]:
+          - /url: "#diagnostico"
+    - main [ref=f2e23]:
+      - region [ref=f2e24]:
+        - generic [ref=f2e25]:
+          - paragraph [ref=f2e26]: Consultoría tecnológica, automatización e IA
+          - heading "Tu empresa, funcionando mejor." [level=1] [ref=f2e28]:
+            - generic [ref=f2e29]: Tu empresa,
+            - generic [ref=f2e30]: funcionando mejor.
+          - paragraph [ref=f2e31]: Mejoramos tus procesos con automatización, IA y sistemas inteligentes.
+        - generic [ref=f2e36]:
+          - generic [ref=f2e37]: Tu agenda se organiza
+          - strong [ref=f2e38]: Reserva confirmada
+        - generic [ref=f2e44]:
+          - generic [ref=f2e45]: Tus clientes reciben respuesta
+          - strong [ref=f2e46]: Incluso fuera de horario
+        - generic [ref=f2e52]:
+          - generic [ref=f2e53]: El trabajo repetitivo, resuelto
+          - strong [ref=f2e54]: Factura enviada
+        - generic [ref=f2e57]:
+          - paragraph [ref=f2e58]: Primero entendemos cómo trabaja tu empresa.Después conectamos procesos, personas y herramientas para ahorrar tiempo y mejorar la operación.
+          - link "Analizar mi empresa" [ref=f2e59] [cursor=pointer]:
+            - /url: "#diagnostico"
+          - link "Descubre lo que podemos hacer" [ref=f2e63] [cursor=pointer]:
+            - /url: "#soluciones"
+        - generic [ref=f2e66]:
+          - generic [ref=f2e67]: Menos tareas. Más posibilidades.
+          - generic [ref=f2e68]: Hecho para tu empresa, a tu medida.
+      - region [ref=f2e69]:
+        - generic [ref=f2e70]:
+          - heading "No empezamos por la tecnología. Empezamos por entender tu empresa." [level=2] [ref=f2e71]
+          - generic [ref=f2e72]:
+            - paragraph [ref=f2e73]: Nos sentamos con quienes conocen el trabajo diario. Vemos cómo entra una solicitud, quién la gestiona, dónde se repite trabajo y qué impide avanzar.
+            - paragraph [ref=f2e74]: "Después proponemos la solución adecuada: simplificar un proceso, automatizar una tarea, conectar herramientas o desarrollar un sistema. La IA entra cuando aporta valor."
+            - paragraph [ref=f2e75]: Cada cambio debe responder a una necesidad real del negocio.
+      - region [ref=f2e76]:
+        - generic [ref=f2e77]:
+          - heading "Cómo trabajamos" [level=2] [ref=f2e78]
+          - paragraph [ref=f2e79]: De entender el problema a comprobar la mejora. Un proceso compartido con tu equipo.
+        - list [ref=f2e80]:
+          - listitem [ref=f2e81]:
+            - generic [ref=f2e82]: "01"
+            - heading "Analizamos" [level=3] [ref=f2e86]
+            - paragraph [ref=f2e87]: Escuchamos a tu equipo y entendemos cómo trabaja, qué herramientas utiliza y qué objetivos tiene.
+          - listitem [ref=f2e88]:
+            - generic [ref=f2e89]: "02"
+            - heading "Detectamos oportunidades" [level=3] [ref=f2e93]
+            - paragraph [ref=f2e94]: Identificamos tareas repetitivas, cuellos de botella y mejoras. Priorizamos por impacto y esfuerzo.
+          - listitem [ref=f2e95]:
+            - generic [ref=f2e96]: "03"
+            - heading "Diseñamos la solución" [level=3] [ref=f2e100]
+            - paragraph [ref=f2e101]: Definimos qué cambiar, cómo hacerlo y con qué indicadores comprobar si funciona.
+          - listitem [ref=f2e102]:
+            - generic [ref=f2e103]: "04"
+            - heading "Implementamos" [level=3] [ref=f2e107]
+            - paragraph [ref=f2e108]: Conectamos herramientas, automatizamos y ponemos el sistema en marcha con tu equipo.
+          - listitem [ref=f2e109]:
+            - generic [ref=f2e110]: "05"
+            - heading "Medimos y mejoramos" [level=3] [ref=f2e112]
+            - paragraph [ref=f2e113]: Revisamos tiempos, errores y resultados. Ajustamos la solución a la evolución de tu empresa.
+      - region [ref=f2e114]:
+        - generic [ref=f2e115]:
+          - heading "¿Te suena alguno de estos problemas?" [level=2] [ref=f2e116]
+          - paragraph [ref=f2e117]: El trabajo repetitivo suele parecer parte del día a día. No tiene por qué seguir siéndolo.
+          - link "Cuéntanos qué está pasando" [ref=f2e118] [cursor=pointer]:
+            - /url: "#diagnostico"
+        - generic [ref=f2e121]:
+          - group [ref=f2e122]:
+            - generic "Tu equipo pierde horas copiando información entre herramientas." [ref=f2e123] [cursor=pointer]
+            - paragraph [ref=f2e127]: Conectamos tus sistemas para que los datos pasen de uno a otro sin volver a introducirlos. Definimos validaciones para detectar errores antes de que se propaguen.
+          - group [ref=f2e128]:
+            - generic "Los comerciales hacen seguimiento manual de cada lead." [ref=f2e129] [cursor=pointer]
+          - group [ref=f2e131]:
+            - generic "Administración repite las mismas tareas cada día." [ref=f2e132] [cursor=pointer]
+          - group [ref=f2e134]:
+            - generic "Los clientes hacen siempre las mismas preguntas." [ref=f2e135] [cursor=pointer]
+          - group [ref=f2e137]:
+            - generic "La información está repartida entre Excel, emails y el CRM." [ref=f2e138] [cursor=pointer]
+          - group [ref=f2e140]:
+            - generic "Los responsables no ven con claridad qué ocurre en la empresa." [ref=f2e141] [cursor=pointer]
+      - region [ref=f2e143]:
+        - generic [ref=f2e144]:
+          - generic [ref=f2e145]:
+            - heading "Áreas que podemos optimizar" [level=2] [ref=f2e146]
+            - paragraph [ref=f2e147]: Miramos cada departamento y, sobre todo, lo que ocurre entre ellos.
+          - generic [ref=f2e148]:
+            - article [ref=f2e149]:
+              - heading "Ventas" [level=3] [ref=f2e154]
+              - paragraph [ref=f2e155]: Captación, seguimiento y gestión de leads y oportunidades.
+            - article [ref=f2e156]:
+              - heading "Administración" [level=3] [ref=f2e160]
+              - paragraph [ref=f2e161]: Documentos, registros, aprobaciones y tareas recurrentes.
+            - article [ref=f2e162]:
+              - heading "Operaciones" [level=3] [ref=f2e166]
+              - paragraph [ref=f2e167]: Coordinación de equipos, pedidos y flujos de trabajo.
+            - article [ref=f2e168]:
+              - heading "Atención al cliente" [level=3] [ref=f2e171]
+              - paragraph [ref=f2e172]: Consultas, solicitudes y derivación al equipo adecuado.
+            - article [ref=f2e173]:
+              - heading "Marketing" [level=3] [ref=f2e177]
+              - paragraph [ref=f2e178]: Conexión entre campañas, contactos y seguimiento comercial.
+            - article [ref=f2e179]:
+              - heading "Reporting" [level=3] [ref=f2e182]
+              - paragraph [ref=f2e183]: Indicadores claros para conocer la evolución del negocio.
+            - article [ref=f2e184]:
+              - heading "Gestión de datos" [level=3] [ref=f2e189]
+              - paragraph [ref=f2e190]: Información centralizada, ordenada y disponible.
+            - article [ref=f2e191]:
+              - heading "Sistemas internos" [level=3] [ref=f2e196]
+              - paragraph [ref=f2e197]: Herramientas a medida que se adaptan a tu forma de trabajar.
+      - region [ref=f2e198]:
+        - generic [ref=f2e199]:
+          - heading "Así se traduce en el día a día" [level=2] [ref=f2e200]
+          - paragraph [ref=f2e201]: Ejemplos de aplicación y beneficios esperados. El alcance y los resultados se definen tras analizar cada empresa.
+        - generic [ref=f2e202]:
+          - article [ref=f2e203]:
+            - paragraph [ref=f2e204]: Ventas
+            - heading "Cada oportunidad llega a la persona adecuada." [level=3] [ref=f2e205]
+            - generic [ref=f2e206]:
+              - term [ref=f2e207]: La situación
+              - definition [ref=f2e208]: Una empresa recibe leads por formularios, email y campañas. Los comerciales los reúnen y persiguen manualmente.
+              - term [ref=f2e209]: La solución
+              - definition [ref=f2e210]: Centralizamos los leads en el CRM, automatizamos el seguimiento y utilizamos IA para ayudar a priorizar oportunidades.
+              - generic [ref=f2e211]:
+                - term [ref=f2e212]: Qué buscamos mejorar
+                - definition [ref=f2e213]: Menos trabajo manual y mayor velocidad comercial.
+          - article [ref=f2e214]:
+            - paragraph [ref=f2e215]: Administración
+            - heading "Del documento al registro, sin copiar cada dato." [level=3] [ref=f2e216]
+            - generic [ref=f2e217]:
+              - term [ref=f2e218]: La situación
+              - definition [ref=f2e219]: El equipo recibe facturas por email, copia los datos y pregunta por el estado de cada aprobación.
+              - term [ref=f2e220]: La solución
+              - definition [ref=f2e221]: Organizamos la entrada de documentos, extraemos la información y conectamos el registro con un circuito de revisión y aprobación.
+              - generic [ref=f2e222]:
+                - term [ref=f2e223]: Qué buscamos mejorar
+                - definition [ref=f2e224]: Menos transcripción y mayor control de los documentos pendientes.
+          - article [ref=f2e225]:
+            - paragraph [ref=f2e226]: Atención al cliente
+            - heading "Las consultas frecuentes dejan espacio a las importantes." [level=3] [ref=f2e227]
+            - generic [ref=f2e228]:
+              - term [ref=f2e229]: La situación
+              - definition [ref=f2e230]: El equipo responde una y otra vez sobre horarios, servicios o el estado de una solicitud.
+              - term [ref=f2e231]: La solución
+              - definition [ref=f2e232]: Preparamos un agente de IA con información validada, conectado a los sistemas necesarios y con derivación a una persona.
+              - generic [ref=f2e233]:
+                - term [ref=f2e234]: Qué buscamos mejorar
+                - definition [ref=f2e235]: Respuestas más ágiles y más tiempo para los casos que necesitan atención personal.
+          - article [ref=f2e236]:
+            - paragraph [ref=f2e237]: Operaciones y reporting
+            - heading "Una visión compartida de lo que está pasando." [level=3] [ref=f2e238]
+            - generic [ref=f2e239]:
+              - term [ref=f2e240]: La situación
+              - definition [ref=f2e241]: Los responsables reúnen hojas de cálculo de varios departamentos para saber qué pedidos van con retraso.
+              - term [ref=f2e242]: La solución
+              - definition [ref=f2e243]: Conectamos las fuentes de datos, creamos un panel compartido y configuramos avisos ante bloqueos o desviaciones.
+              - generic [ref=f2e244]:
+                - term [ref=f2e245]: Qué buscamos mejorar
+                - definition [ref=f2e246]: Menos preparación de informes y más visibilidad para tomar decisiones.
+      - region [ref=f2e247]:
+        - generic [ref=f2e248]:
+          - heading "La tecnología adecuada para cada mejora." [level=2] [ref=f2e249]
+          - paragraph [ref=f2e250]: Aprovechamos las herramientas que ya utilizas y añadimos lo que haga falta. Elegimos según el problema, la integración y el uso que hará tu equipo.
+        - generic [ref=f2e251]:
+          - article [ref=f2e252]:
+            - heading "Automatizaciones e integraciones" [level=3] [ref=f2e253]
+            - paragraph [ref=f2e254]: Para que las tareas avancen y las herramientas compartan información mediante conexiones y APIs.
+          - article [ref=f2e255]:
+            - heading "IA y agentes de IA" [level=3] [ref=f2e256]
+            - paragraph [ref=f2e257]: Para interpretar documentos, clasificar solicitudes y asistir al equipo con límites y supervisión definidos.
+          - article [ref=f2e258]:
+            - heading "CRM y automatización comercial" [level=3] [ref=f2e259]
+            - paragraph [ref=f2e260]: Para centralizar contactos, coordinar el seguimiento y dar continuidad a cada oportunidad.
+          - article [ref=f2e261]:
+            - heading "Dashboards y datos" [level=3] [ref=f2e262]
+            - paragraph [ref=f2e263]: Para reunir la información y convertirla en indicadores que ayuden a decidir.
+          - article [ref=f2e264]:
+            - heading "Sistemas internos a medida" [level=3] [ref=f2e265]
+            - paragraph [ref=f2e266]: Para resolver necesidades de gestión que tus herramientas actuales no cubren.
+          - article [ref=f2e267]:
+            - heading "Desarrollo web" [level=3] [ref=f2e268]
+            - paragraph [ref=f2e269]: Cuando la solución necesita una web, un portal o un formulario conectado a tus procesos y sistemas.
+      - region [ref=f2e270]:
+        - generic [ref=f2e272]:
+          - heading "¿Listo para dar el siguiente paso?" [level=2] [ref=f2e273]
+          - paragraph [ref=f2e274]: Cuéntanos qué necesita tu empresa. Empezamos por entender tus procesos y detectar dónde podemos ayudarte.
+          - generic [ref=f2e275]:
+            - link "Hablemos por WhatsApp" [ref=f2e276] [cursor=pointer]:
+              - /url: https://wa.me/34644583808?text=Hola%2C%20quiero%20analizar%20los%20procesos%20de%20mi%20empresa.
+            - link "Agenda una reunión" [ref=f2e279] [cursor=pointer]:
+              - /url: https://calendly.com/frencia92/30min
+        - generic [ref=f2e282]:
+          - generic [ref=f2e283]:
+            - heading "¿Qué procesos de tu empresa podrían funcionar mejor?" [level=2] [ref=f2e284]
+            - paragraph [ref=f2e285]: Analizamos tu situación y detectamos oportunidades de automatización y mejora.
+            - paragraph [ref=f2e286]: Cuéntanos cómo trabajáis y qué os está quitando tiempo. Empezaremos por entenderlo y valorar dónde tiene sentido actuar.
+            - link "También puedes reservar una llamada" [ref=f2e287] [cursor=pointer]:
+              - /url: https://calendly.com/frencia92/30min
+          - generic [ref=f2e290]:
+            - heading "Empecemos por tu empresa" [level=3] [ref=f2e291]
+            - generic [ref=f2e292]: Nombre de la empresa
+            - textbox "Nombre de la empresa" [ref=f2e293]:
+              - /placeholder: Tu empresa
+            - generic [ref=f2e294]: ¿En qué área quieres mejorar?
+            - combobox "¿En qué área quieres mejorar?" [ref=f2e295]:
+              - option "Necesito ayuda para identificarlo" [selected]
+              - option "Ventas"
+              - option "Administración"
+              - option "Operaciones"
+              - option "Atención al cliente"
+              - option "Marketing"
+              - option "Reporting"
+              - option "Gestión de datos"
+              - option "Sistemas internos"
+              - option "Varias áreas"
+            - generic [ref=f2e296]: ¿Qué os está quitando tiempo?
+            - textbox "¿Qué os está quitando tiempo?" [ref=f2e297]:
+              - /placeholder: "Por ejemplo: recibimos pedidos por email y los copiamos a mano en varias herramientas."
+            - paragraph [ref=f2e298]:
+              - text: Se abrirá WhatsApp con tu mensaje preparado. Podrás revisarlo antes de enviarlo. Consulta nuestra
+              - link "política de privacidad" [ref=f2e299] [cursor=pointer]:
+                - /url: /politica-de-privacidad
+              - text: .
+            - button "Solicitar análisis" [ref=f2e300] [cursor=pointer]
+    - contentinfo [ref=f2e301]:
+      - generic [ref=f2e302]:
+        - generic [ref=f2e303]:
+          - link [ref=f2e304] [cursor=pointer]:
+            - /url: /
+            - img "UNAiFLY" [ref=f2e305]
+          - paragraph [ref=f2e306]:
+            - text: Consultoría tecnológica, automatización e IA.
+            - generic [ref=f2e307]: Procesos y sistemas que ayudan a tu empresa a funcionar mejor.
+        - generic [ref=f2e308]:
+          - paragraph [ref=f2e309]: Barcelona · Trabajamos en remoto en España
+          - link "info@unaifly.com" [ref=f2e310] [cursor=pointer]:
+            - /url: mailto:info@unaifly.com
+          - link "+34 644 58 38 08" [ref=f2e311] [cursor=pointer]:
+            - /url: https://wa.me/34644583808
+      - navigation "Más sobre nuestras soluciones" [ref=f2e312]:
+        - link "Digitalización de empresas" [ref=f2e313] [cursor=pointer]:
+          - /url: /digitalizacion-empresas-barcelona
+        - link "IA aplicada a empresas" [ref=f2e314] [cursor=pointer]:
+          - /url: /inteligencia-artificial-empresas-barcelona
+        - link "Desarrollo web como parte de tu solución" [ref=f2e315] [cursor=pointer]:
+          - /url: /desarrollo-web-barcelona
+      - generic [ref=f2e316]:
+        - generic [ref=f2e317]: © 2026 UNAiFLY
+        - navigation "Información legal" [ref=f2e318]:
+          - link "Aviso legal" [ref=f2e319] [cursor=pointer]:
+            - /url: /aviso-legal
+          - link "Privacidad" [ref=f2e320] [cursor=pointer]:
+            - /url: /politica-de-privacidad
+          - link "Términos y condiciones" [ref=f2e321] [cursor=pointer]:
+            - /url: /terminos-y-condiciones
+          - link "Cookies" [ref=f2e322] [cursor=pointer]:
+            - /url: /politica-de-cookies
+          - button "Configurar cookies" [ref=f2e323] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f2e329] [cursor=pointer]

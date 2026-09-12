@@ -1,0 +1,300 @@
+- generic [ref=f1e1]:
+  - generic [ref=f1e2]:
+    - link "Skip to content" [ref=f1e381] [cursor=pointer]:
+      - /url: "#contenido"
+    - banner [ref=f1e4]:
+      - link "UNAiFLY, home" [ref=f1e382] [cursor=pointer]:
+        - /url: /
+        - img "UNAiFLY" [ref=f1e6]
+      - navigation "Main navigation" [ref=f1e383]:
+        - link "How we work" [ref=f1e384] [cursor=pointer]:
+          - /url: "#metodo"
+        - link "What we improve" [ref=f1e385] [cursor=pointer]:
+          - /url: "#soluciones"
+        - link "Use cases" [ref=f1e386] [cursor=pointer]:
+          - /url: "#casos"
+      - generic [ref=f1e11]:
+        - switch "Modo claro" [ref=f1e12] [cursor=pointer]
+        - link "Analyse my business" [ref=f1e387] [cursor=pointer]:
+          - /url: "#diagnostico"
+    - main [ref=f1e23]:
+      - region [ref=f1e388]:
+        - generic [ref=f1e25]:
+          - paragraph [ref=f1e26]: Technology consulting, automation and AI
+          - heading "Your business, working better." [level=1] [ref=f1e389]:
+            - generic [ref=f1e29]: Your business,
+            - generic [ref=f1e30]: working better.
+          - paragraph [ref=f1e31]: We improve your processes with automation, AI and intelligent systems.
+        - generic [ref=f1e36]:
+          - generic [ref=f1e37]: Your schedule organises itself
+          - strong [ref=f1e38]: Booking confirmed
+        - generic [ref=f1e44]:
+          - generic [ref=f1e45]: Your customers get an answer
+          - strong [ref=f1e46]: Even outside business hours
+        - generic [ref=f1e52]:
+          - generic [ref=f1e53]: Repetitive work, handled
+          - strong [ref=f1e54]: Invoice sent
+        - generic [ref=f1e57]:
+          - paragraph [ref=f1e58]: First we understand how your business works.Then we connect processes, people and tools to save time and improve operations.
+          - link "Analyse my business" [ref=f1e390] [cursor=pointer]:
+            - /url: "#diagnostico"
+          - link "Discover what we can do" [ref=f1e391] [cursor=pointer]:
+            - /url: "#soluciones"
+        - generic [ref=f1e66]:
+          - generic [ref=f1e67]: Fewer tasks. More possibilities.
+          - generic [ref=f1e68]: Built for your business, your way.
+      - region [ref=f1e392]:
+        - generic [ref=f1e70]:
+          - heading "We don't start with technology. We start by understanding your business." [level=2] [ref=f1e393]
+          - generic [ref=f1e72]:
+            - paragraph [ref=f1e73]: We sit down with the people who know the daily work. We see how a request arrives, who handles it, where work is repeated and what gets in the way.
+            - paragraph [ref=f1e74]: "Then we propose the right solution: simplify a process, automate a task, connect tools or develop a system. AI comes in when it adds value."
+            - paragraph [ref=f1e75]: Every change must respond to a real business need.
+      - region [ref=f1e394]:
+        - generic [ref=f1e77]:
+          - heading "How we work" [level=2] [ref=f1e395]
+          - paragraph [ref=f1e79]: From understanding the problem to verifying the improvement. A process shared with your team.
+        - list [ref=f1e80]:
+          - listitem [ref=f1e396]:
+            - generic [ref=f1e397]: "01"
+            - heading "We analyse" [level=3] [ref=f1e401]
+            - paragraph [ref=f1e402]: We listen to your team and understand how it works, which tools it uses and what its goals are.
+          - listitem [ref=f1e403]:
+            - generic [ref=f1e404]: "02"
+            - heading "We identify opportunities" [level=3] [ref=f1e408]
+            - paragraph [ref=f1e409]: We identify repetitive tasks, bottlenecks and improvements. We prioritise by impact and effort.
+          - listitem [ref=f1e410]:
+            - generic [ref=f1e411]: "03"
+            - heading "We design the solution" [level=3] [ref=f1e415]
+            - paragraph [ref=f1e416]: We define what to change, how to do it and which indicators will show whether it works.
+          - listitem [ref=f1e417]:
+            - generic [ref=f1e418]: "04"
+            - heading "We implement" [level=3] [ref=f1e422]
+            - paragraph [ref=f1e423]: We connect tools, automate and launch the system with your team.
+          - listitem [ref=f1e424]:
+            - generic [ref=f1e425]: "05"
+            - heading "We measure and improve" [level=3] [ref=f1e427]
+            - paragraph [ref=f1e428]: We review time, errors and results. We adapt the solution as your business evolves.
+      - region [ref=f1e429]:
+        - generic [ref=f1e115]:
+          - heading "Do any of these problems sound familiar?" [level=2] [ref=f1e430]
+          - paragraph [ref=f1e117]: Repetitive work often seems like part of everyday life. It doesn't have to stay that way.
+          - link "Tell us what's happening" [ref=f1e431] [cursor=pointer]:
+            - /url: "#diagnostico"
+        - generic [ref=f1e121]:
+          - group [ref=f1e432]:
+            - generic "Your team spends hours copying information between tools." [ref=f1e433] [cursor=pointer]
+            - paragraph [ref=f1e437]: We connect your systems so data moves between them without being entered again. We define checks to detect errors before they spread.
+          - group [ref=f1e438]:
+            - generic "Your sales team follows up every lead manually." [ref=f1e439] [cursor=pointer]
+          - group [ref=f1e441]:
+            - generic "Administration repeats the same tasks every day." [ref=f1e442] [cursor=pointer]
+          - group [ref=f1e444]:
+            - generic "Customers always ask the same questions." [ref=f1e445] [cursor=pointer]
+          - group [ref=f1e447]:
+            - generic "Information is scattered across Excel, emails and the CRM." [ref=f1e448] [cursor=pointer]
+          - group [ref=f1e450]:
+            - generic "Managers can't clearly see what is happening in the business." [ref=f1e451] [cursor=pointer]
+      - region [ref=f1e453]:
+        - generic [ref=f1e144]:
+          - generic [ref=f1e145]:
+            - heading "Areas we can optimise" [level=2] [ref=f1e454]
+            - paragraph [ref=f1e147]: We look at every department and, above all, what happens between them.
+          - generic [ref=f1e148]:
+            - article [ref=f1e455]:
+              - heading "Sales" [level=3] [ref=f1e460]
+              - paragraph [ref=f1e461]: Lead and opportunity acquisition, follow-up and management.
+            - article [ref=f1e462]:
+              - heading "Administration" [level=3] [ref=f1e466]
+              - paragraph [ref=f1e467]: Documents, records, approvals and recurring tasks.
+            - article [ref=f1e468]:
+              - heading "Operations" [level=3] [ref=f1e472]
+              - paragraph [ref=f1e473]: Team coordination, orders and workflows.
+            - article [ref=f1e474]:
+              - heading "Customer service" [level=3] [ref=f1e477]
+              - paragraph [ref=f1e478]: Queries, requests and routing to the right team.
+            - article [ref=f1e173]:
+              - heading "Marketing" [level=3] [ref=f1e177]
+              - paragraph [ref=f1e178]: Connecting campaigns, contacts and sales follow-up.
+            - article [ref=f1e179]:
+              - heading "Reporting" [level=3] [ref=f1e182]
+              - paragraph [ref=f1e183]: Clear indicators to understand business performance.
+            - article [ref=f1e479]:
+              - heading "Data management" [level=3] [ref=f1e484]
+              - paragraph [ref=f1e485]: Centralised, organised and available information.
+            - article [ref=f1e486]:
+              - heading "Internal systems" [level=3] [ref=f1e491]
+              - paragraph [ref=f1e492]: Custom tools that adapt to the way you work.
+      - region [ref=f1e493]:
+        - generic [ref=f1e199]:
+          - heading "What this looks like day to day" [level=2] [ref=f1e494]
+          - paragraph [ref=f1e201]: Examples of applications and expected benefits. Scope and results are defined after analysing each business.
+        - generic [ref=f1e202]:
+          - article [ref=f1e495]:
+            - paragraph [ref=f1e496]: Sales
+            - heading "Every opportunity reaches the right person." [level=3] [ref=f1e497]
+            - generic [ref=f1e498]:
+              - term [ref=f1e499]: The situation
+              - definition [ref=f1e500]: A business receives leads through forms, email and campaigns. Salespeople gather and chase them manually.
+              - term [ref=f1e501]: The solution
+              - definition [ref=f1e502]: We centralise leads in the CRM, automate follow-up and use AI to help prioritise opportunities.
+              - generic [ref=f1e503]:
+                - term [ref=f1e504]: What we aim to improve
+                - definition [ref=f1e505]: Less manual work and faster sales response.
+          - article [ref=f1e506]:
+            - paragraph [ref=f1e507]: Administration
+            - heading "From document to record, without copying every field." [level=3] [ref=f1e508]
+            - generic [ref=f1e509]:
+              - term [ref=f1e510]: The situation
+              - definition [ref=f1e511]: The team receives invoices by email, copies the data and asks about each approval status.
+              - term [ref=f1e512]: The solution
+              - definition [ref=f1e513]: We organise incoming documents, extract information and connect the record to a review and approval workflow.
+              - generic [ref=f1e514]:
+                - term [ref=f1e515]: What we aim to improve
+                - definition [ref=f1e516]: Less transcription and greater control over pending documents.
+          - article [ref=f1e517]:
+            - paragraph [ref=f1e518]: Customer service
+            - heading "Common questions leave room for important ones." [level=3] [ref=f1e519]
+            - generic [ref=f1e520]:
+              - term [ref=f1e521]: The situation
+              - definition [ref=f1e522]: The team repeatedly answers questions about opening hours, services or request status.
+              - term [ref=f1e523]: The solution
+              - definition [ref=f1e524]: We prepare an AI agent with verified information, connected to the required systems and able to hand over to a person.
+              - generic [ref=f1e525]:
+                - term [ref=f1e526]: What we aim to improve
+                - definition [ref=f1e527]: Faster answers and more time for cases needing personal attention.
+          - article [ref=f1e528]:
+            - paragraph [ref=f1e529]: Operations and reporting
+            - heading "A shared view of what is happening." [level=3] [ref=f1e530]
+            - generic [ref=f1e531]:
+              - term [ref=f1e532]: The situation
+              - definition [ref=f1e533]: Managers combine spreadsheets from several departments to find out which orders are delayed.
+              - term [ref=f1e534]: The solution
+              - definition [ref=f1e535]: We connect data sources, create a shared dashboard and configure alerts for blocks or deviations.
+              - generic [ref=f1e536]:
+                - term [ref=f1e537]: What we aim to improve
+                - definition [ref=f1e538]: Less report preparation and more visibility for decision-making.
+      - region [ref=f1e539]:
+        - generic [ref=f1e248]:
+          - heading "The right technology for every improvement." [level=2] [ref=f1e540]
+          - paragraph [ref=f1e250]: We make the most of the tools you already use and add what is needed. We choose based on the problem, integration and how your team will use it.
+        - generic [ref=f1e251]:
+          - article [ref=f1e541]:
+            - heading "Automation and integrations" [level=3] [ref=f1e542]
+            - paragraph [ref=f1e543]: So tasks move forward and tools share information through connections and APIs.
+          - article [ref=f1e544]:
+            - heading "AI and AI agents" [level=3] [ref=f1e545]
+            - paragraph [ref=f1e546]: To interpret documents, classify requests and assist the team with defined limits and supervision.
+          - article [ref=f1e547]:
+            - heading "CRM and sales automation" [level=3] [ref=f1e548]
+            - paragraph [ref=f1e549]: To centralise contacts, coordinate follow-up and maintain continuity for every opportunity.
+          - article [ref=f1e550]:
+            - heading "Dashboards and data" [level=3] [ref=f1e551]
+            - paragraph [ref=f1e552]: To bring information together and turn it into indicators that support decisions.
+          - article [ref=f1e553]:
+            - heading "Custom internal systems" [level=3] [ref=f1e554]
+            - paragraph [ref=f1e555]: To solve management needs your current tools do not cover.
+          - article [ref=f1e556]:
+            - heading "Web development" [level=3] [ref=f1e557]
+            - paragraph [ref=f1e558]: When the solution needs a website, portal or form connected to your processes and systems.
+      - region [ref=f1e559]:
+        - generic [ref=f1e272]:
+          - heading "Ready to take the next step?" [level=2] [ref=f1e560]
+          - paragraph [ref=f1e274]: Tell us what your business needs. We start by understanding your processes and identifying where we can help.
+          - generic [ref=f1e275]:
+            - link "Let's talk on WhatsApp" [ref=f1e561] [cursor=pointer]:
+              - /url: https://wa.me/34644583808?text=Hola%2C%20quiero%20analizar%20los%20procesos%20de%20mi%20empresa.
+            - link "Schedule a meeting" [ref=f1e562] [cursor=pointer]:
+              - /url: https://calendly.com/frencia92/30min
+        - generic [ref=f1e282]:
+          - generic [ref=f1e283]:
+            - heading "Which processes in your business could work better?" [level=2] [ref=f1e563]
+            - paragraph [ref=f1e285]: We analyse your situation and identify opportunities for automation and improvement.
+            - paragraph [ref=f1e286]: Tell us how you work and what is taking up your time. We'll begin by understanding it and assessing where action makes sense.
+            - link "You can also book a call" [ref=f1e564] [cursor=pointer]:
+              - /url: https://calendly.com/frencia92/30min
+          - generic [ref=f1e290]:
+            - heading "Let's start with your business" [level=3] [ref=f1e565]
+            - generic [ref=f1e292]: Company name
+            - textbox "Company name" [ref=f1e566]:
+              - /placeholder: Your company
+            - generic [ref=f1e294]: Which area would you like to improve?
+            - combobox "Which area would you like to improve?" [ref=f1e567]:
+              - option "I need help identifying it" [selected]
+              - option "Sales"
+              - option "Administration"
+              - option "Operations"
+              - option "Customer service"
+              - option "Marketing"
+              - option "Reporting"
+              - option "Data management"
+              - option "Internal systems"
+              - option "Several areas"
+            - generic [ref=f1e296]: What is taking up your time?
+            - textbox "What is taking up your time?" [ref=f1e568]:
+              - /placeholder: "For example: we receive orders by email and copy them manually into several tools."
+            - paragraph [ref=f1e298]:
+              - text: WhatsApp will open with your message ready. You can review it before sending. See our
+              - link "privacy policy" [ref=f1e569] [cursor=pointer]:
+                - /url: /politica-de-privacidad
+              - text: .
+            - button "Request an analysis" [ref=f1e570] [cursor=pointer]
+    - contentinfo [ref=f1e301]:
+      - generic [ref=f1e302]:
+        - generic [ref=f1e303]:
+          - link [ref=f1e304] [cursor=pointer]:
+            - /url: /
+            - img "UNAiFLY" [ref=f1e305]
+          - paragraph [ref=f1e306]:
+            - text: Technology consulting, automation and AI.
+            - generic [ref=f1e571]: Processes and systems that help your business work better.
+        - generic [ref=f1e308]:
+          - paragraph [ref=f1e309]: Barcelona · We work remotely across Spain
+          - link "info@unaifly.com" [ref=f1e310] [cursor=pointer]:
+            - /url: mailto:info@unaifly.com
+          - link "+34 644 58 38 08" [ref=f1e311] [cursor=pointer]:
+            - /url: https://wa.me/34644583808
+      - navigation "More about our solutions" [ref=f1e572]:
+        - link "Business digitalisation" [ref=f1e573] [cursor=pointer]:
+          - /url: /digitalizacion-empresas-barcelona
+        - link "AI applied to business" [ref=f1e574] [cursor=pointer]:
+          - /url: /inteligencia-artificial-empresas-barcelona
+        - link "Web development as part of your solution" [ref=f1e575] [cursor=pointer]:
+          - /url: /desarrollo-web-barcelona
+      - generic [ref=f1e316]:
+        - generic [ref=f1e317]: © 2026 UNAiFLY
+        - navigation "Legal information" [ref=f1e576]:
+          - link "Legal notice" [ref=f1e577] [cursor=pointer]:
+            - /url: /aviso-legal
+          - link "Privacy" [ref=f1e578] [cursor=pointer]:
+            - /url: /politica-de-privacidad
+          - link "Terms and conditions" [ref=f1e579] [cursor=pointer]:
+            - /url: /terminos-y-condiciones
+          - link "Cookies" [ref=f1e322] [cursor=pointer]:
+            - /url: /politica-de-cookies
+          - button "Cookie settings" [ref=f1e580] [cursor=pointer]
+    - generic "Herramientas UNAiFLY" [ref=f1e333]:
+      - dialog "Idioma de la página" [ref=f1e359]:
+        - generic [ref=f1e360]:
+          - heading "Idioma de la página" [level=2] [ref=f1e361]
+          - button "Cerrar ajustes" [ref=f1e362] [cursor=pointer]
+        - paragraph [ref=f1e366]: Selecciona el idioma para traducir toda la página, las preguntas frecuentes, el asistente de IA y el planificador.
+        - button "ES Castellano" [ref=f1e367] [cursor=pointer]:
+          - strong [ref=f1e368]: ES
+          - generic [ref=f1e369]: Castellano
+        - button "EN English" [active] [pressed] [ref=f1e372] [cursor=pointer]:
+          - strong [ref=f1e373]: EN
+          - generic [ref=f1e374]: English
+        - button "CA Català" [ref=f1e375] [cursor=pointer]:
+          - strong [ref=f1e376]: CA
+          - generic [ref=f1e377]: Català
+        - button "IT Italiano" [ref=f1e378] [cursor=pointer]:
+          - strong [ref=f1e379]: IT
+          - generic [ref=f1e380]: Italiano
+      - button "Mover herramientas al otro lado" [ref=f1e334]
+      - button "Seleccionar moneda" [ref=f1e342] [cursor=pointer]
+      - button "Traducir toda la página" [expanded] [ref=f1e346] [cursor=pointer]
+      - button "Preguntas frecuentes" [ref=f1e351] [cursor=pointer]
+      - button "Asistente de IA" [ref=f1e354] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f1e329] [cursor=pointer]
+  - alert [ref=f1e358]
