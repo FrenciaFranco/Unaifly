@@ -22,7 +22,7 @@ export default function PoliticaDePrivacidadPage() {
       <h2 className="mt-8 text-2xl font-semibold">1. Responsable del tratamiento de datos</h2>
       <div className="mt-3 space-y-2 text-white/80">
         <p><strong>Nombre:</strong> Franco Frencia</p>
-        <p><strong>Email:</strong> frencia92@gmail.com</p>
+        <p><strong>Email:</strong> info@unaifly.com</p>
         <p><strong>Ubicación:</strong> Barcelona, España</p>
         <p><strong>Base legal:</strong> GDPR (UE), LOPDGDD (España)</p>
       </div>
@@ -115,7 +115,7 @@ export default function PoliticaDePrivacidadPage() {
         Para ejercer cualquiera de estos derechos, contacta a:
       </p>
       <div className="mt-3 space-y-1 text-white/80">
-        <p><strong>Email:</strong> frencia92@gmail.com</p>
+        <p><strong>Email:</strong> info@unaifly.com</p>
         <p><strong>Teléfono:</strong> +34 644 58 38 08</p>
         <p><strong>Respuesta esperada:</strong> Máximo 30 días</p>
       </div>
@@ -143,7 +143,7 @@ export default function PoliticaDePrivacidadPage() {
         <strong>Contacto directo:</strong>
       </p>
       <div className="mt-3 space-y-1 text-white/80">
-        <p>Email: frencia92@gmail.com</p>
+        <p>Email: info@unaifly.com</p>
         <p>Teléfono: +34 644 58 38 08</p>
       </div>
 

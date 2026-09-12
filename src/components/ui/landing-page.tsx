@@ -169,7 +169,7 @@ const translations: Record<
       sendEmail: "Send me an email",
       openChat: "Open chat",
       formTitle: "Send Me an Email",
-      formDescription: "Complete this form and your email app will open with the message ready for `frencia92@gmail.com`.",
+      formDescription: "Complete this form and your email app will open with the message ready for `info@unaifly.com`.",
       firstName: "First name",
       firstNamePlaceholder: "Your first name",
       lastName: "Last name",
@@ -245,7 +245,7 @@ const translations: Record<
       sendEmail: "Enviame un correo",
       openChat: "Abrir chat",
       formTitle: "Enviarme un correo",
-      formDescription: "Completa este formulario y se abrira tu app de correo con el mensaje listo para `frencia92@gmail.com`.",
+      formDescription: "Completa este formulario y se abrira tu app de correo con el mensaje listo para `info@unaifly.com`.",
       firstName: "Nombre",
       firstNamePlaceholder: "Tu nombre",
       lastName: "Apellido",
@@ -321,7 +321,7 @@ const translations: Record<
       sendEmail: "Envia'm un correu",
       openChat: "Obrir xat",
       formTitle: "Envia'm un correu",
-      formDescription: "Completa aquest formulari i s'obrira la teva app de correu amb el missatge llest per a `frencia92@gmail.com`.",
+      formDescription: "Completa aquest formulari i s'obrira la teva app de correu amb el missatge llest per a `info@unaifly.com`.",
       firstName: "Nom",
       firstNamePlaceholder: "El teu nom",
       lastName: "Cognom",
@@ -397,7 +397,7 @@ const translations: Record<
       sendEmail: "Mandami una email",
       openChat: "Apri chat",
       formTitle: "Mandami una email",
-      formDescription: "Compila questo modulo e si aprira la tua app email con il messaggio pronto per `frencia92@gmail.com`.",
+      formDescription: "Compila questo modulo e si aprira la tua app email con il messaggio pronto per `info@unaifly.com`.",
       firstName: "Nome",
       firstNamePlaceholder: "Il tuo nome",
       lastName: "Cognome",
@@ -1401,7 +1401,7 @@ export function DesignAgency() {
 
                 <motion.a
                   whileHover={{ y: -2 }}
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=frencia92@gmail.com"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=info@unaifly.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="glass-card group rounded-3xl p-5"
@@ -1410,7 +1410,7 @@ export function DesignAgency() {
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <h3 className="text-2xl font-semibold">{t.contact.email}</h3>
-                  <p className="mt-2 text-muted-foreground">frencia92@gmail.com</p>
+                  <p className="mt-2 text-muted-foreground">info@unaifly.com</p>
                   <div className="mt-4 flex items-center text-muted-foreground transition-colors group-hover:text-foreground">
                     <span className="text-sm font-medium">Connect</span>
                     <ArrowRight className="ml-2 h-4 w-4" />

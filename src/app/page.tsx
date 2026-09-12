@@ -1,4 +1,4 @@
-import HomeClientSections from "@/components/home-client-sections";
+import ConsultingHome from "@/components/consulting-home";
 
 export default function Home() {
   const structuredData = {
@@ -37,26 +37,26 @@ export default function Home() {
           "@id": "https://unaifly.com/#organization",
         },
         description:
-          "Agencia de desarrollo web en Barcelona. Creacion de paginas web, digitalizacion de pymes, automatizacion de procesos, SEO y marketing digital.",
+          "Consultoría tecnológica en Barcelona. Analizamos y optimizamos procesos empresariales con automatización, inteligencia artificial, integraciones y sistemas a medida.",
         knowsAbout: [
-          "Desarrollo web",
-          "Digitalizacion de empresas",
-          "Transformacion digital",
-          "Automatizacion de procesos",
-          "SEO y posicionamiento web",
-          "Marketing digital",
-          "Inteligencia artificial para pymes",
-          "CRM",
-          "Diseno web responsive",
-          "Experiencia de usuario",
+          "Consultoría tecnológica",
+          "Análisis y optimización de procesos empresariales",
+          "Automatización administrativa y operativa",
+          "Inteligencia artificial y agentes de IA",
+          "CRM y automatización comercial",
+          "Captación, seguimiento y gestión de leads",
+          "Integraciones entre herramientas y sistemas",
+          "Automatización de atención al cliente",
+          "Dashboards, reporting y gestión de datos",
+          "Sistemas internos y desarrollo web a medida",
         ],
       },
       {
         "@type": "Service",
-        "@id": "https://unaifly.com/#servicio-desarrollo-web",
-        serviceType: "Creacion de paginas web profesionales",
+        "@id": "https://unaifly.com/#servicio-consultoria",
+        serviceType: "Consultoría tecnológica y optimización de procesos empresariales",
         areaServed: "Barcelona",
-        url: "https://unaifly.com/desarrollo-web-barcelona",
+        url: "https://unaifly.com/#metodo",
         provider: {
           "@id": "https://unaifly.com/#organization",
         },
@@ -64,7 +64,7 @@ export default function Home() {
       {
         "@type": "Service",
         "@id": "https://unaifly.com/#servicio-digitalizacion",
-        serviceType: "Digitalizacion y transformacion digital de empresas",
+        serviceType: "Digitalización, integraciones y sistemas internos para empresas",
         areaServed: "Barcelona",
         url: "https://unaifly.com/digitalizacion-empresas-barcelona",
         provider: {
@@ -74,7 +74,7 @@ export default function Home() {
       {
         "@type": "Service",
         "@id": "https://unaifly.com/#servicio-ia",
-        serviceType: "Automatizacion e inteligencia artificial para pymes",
+        serviceType: "Automatización, inteligencia artificial y agentes de IA para empresas",
         areaServed: "Barcelona",
         url: "https://unaifly.com/inteligencia-artificial-empresas-barcelona",
         provider: {
@@ -82,25 +82,12 @@ export default function Home() {
         },
       },
       {
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Trabajais con empresas y pymes de Barcelona?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Si. Trabajamos con pymes y negocios locales para mejorar su presencia digital, automatizar procesos y captar mas clientes con una web orientada a conversion.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Ofreceis modernizacion con inteligencia artificial?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Si. Implementamos soluciones practicas de inteligencia artificial y automatizacion para ahorrar tiempo, mejorar la atencion y aumentar resultados comerciales.",
-            },
-          },
-        ],
+        "@type": "Service",
+        "@id": "https://unaifly.com/#servicio-desarrollo-web",
+        serviceType: "Desarrollo web integrado en soluciones empresariales",
+        areaServed: "Barcelona",
+        url: "https://unaifly.com/desarrollo-web-barcelona",
+        provider: { "@id": "https://unaifly.com/#organization" },
       },
     ],
   };
@@ -111,7 +98,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <HomeClientSections />
+      <ConsultingHome />
     </>
   );
 }

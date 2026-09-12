@@ -11,10 +11,6 @@ interface ChatMessage {
   content: string;
 }
 
-function sanitizeAssistantText(text: string): string {
-  return text.replace(/\*\*/g, "");
-}
-
 interface AIChatPanelProps {
   language: Language;
   isOpen: boolean;
@@ -43,14 +39,14 @@ const labels: Record<
 > = {
   es: {
     title: "Asistente UNAiFLY",
-    subtitle: "Agente de IA para tu web",
-    placeholder: "Escribe tu pregunta sobre UNAiFLY...",
+    subtitle: "IA aplicada a tu empresa",
+    placeholder: "Escribe un mensaje...",
     close: "Cerrar",
     poweredBy: "UNAiFLY AI",
     disclaimer:
-      "Así podría verse un agente de IA en tu web. Este chat es un ejemplo: puede responder sobre nuestros servicios y ayudarte a elegir una solución. Para un presupuesto exacto, contáctanos por WhatsApp o reserva una llamada.",
+      "Este es un ejemplo de lo que podría hacer una IA en tu web. ¿Te imaginas algo así para tu negocio? Contáctanos por WhatsApp para saber más.",
     welcome:
-      "¡Hola! Soy el asistente virtual de UNAiFLY. Puedo ayudarte con información sobre nuestros servicios de transformación digital, precios orientativos, proceso de trabajo y cómo contactarnos. Para presupuestos exactos, escríbenos por WhatsApp. ¿En qué puedo ayudarte?",
+      "¡Hola! Esto es una demostración de cómo una inteligencia artificial podría atender a los visitantes de tu web las 24 horas del día. ¿Te gustaría saber más?",
     errorGeneric: "Ha ocurrido un error. Inténtalo de nuevo.",
     errorRate: "Demasiados mensajes. Espera un momento.",
     chips: [
@@ -62,14 +58,14 @@ const labels: Record<
   },
   en: {
     title: "UNAiFLY Assistant",
-    subtitle: "AI Agent for your Website",
-    placeholder: "Ask about UNAiFLY...",
+    subtitle: "AI for your business",
+    placeholder: "Type a message...",
     close: "Close",
     poweredBy: "UNAiFLY AI",
     disclaimer:
-      "This is how an AI agent could look on your website. This chat is an example: it can answer questions about our services and help you choose the right solution. For exact pricing, contact us on WhatsApp or book a call.",
+      "This is an example of what an AI could do on your website. Imagine this for your business? Contact us on WhatsApp to learn more.",
     welcome:
-      "Hi! I'm UNAiFLY's virtual assistant. I can help with info about our digital transformation services, indicative pricing, our process, and how to contact us. For exact quotes, message us on WhatsApp. How can I help?",
+      "Hi! This is a demonstration of how an artificial intelligence could attend your website visitors 24/7. Would you like to know more?",
     errorGeneric: "An error occurred. Please try again.",
     errorRate: "Too many messages. Please wait a moment.",
     chips: [
@@ -81,14 +77,14 @@ const labels: Record<
   },
   ca: {
     title: "Assistent UNAiFLY",
-    subtitle: "Agent d'IA per al teu web",
-    placeholder: "Escriu la teva pregunta sobre UNAiFLY...",
+    subtitle: "IA aplicada a la teva empresa",
+    placeholder: "Escriu un missatge...",
     close: "Tancar",
     poweredBy: "UNAiFLY AI",
     disclaimer:
-      "Així podria veure's un agent d'IA al teu web. Aquest xat és un exemple: pot respondre sobre els nostres serveis i ajudar-te a triar una solució. Per a un pressupost exacte, contacta'ns per WhatsApp o reserva una trucada.",
+      "Això és un exemple del que podria fer una IA al teu web. T'imagines algo així pel teu negoci? Contacta'ns per WhatsApp per saber-ne més.",
     welcome:
-      "Hola! Soc l'assistent virtual d'UNAiFLY. Puc ajudar-te amb informació sobre els nostres serveis, preus orientatius, procés i com contactar-nos. Per a pressupostos exactes, escriu-nos per WhatsApp. En què puc ajudar-te?",
+      "Hola! Això és una demostració de com una intel·ligència artificial podria atendre els visitants del teu web les 24 hores del dia. Vols saber més?",
     errorGeneric: "S'ha produït un error. Torna-ho a provar.",
     errorRate: "Massa missatges. Espera un moment.",
     chips: [
@@ -100,14 +96,14 @@ const labels: Record<
   },
   it: {
     title: "Assistente UNAiFLY",
-    subtitle: "Agente IA per il tuo sito",
-    placeholder: "Scrivi la tua domanda su UNAiFLY...",
+    subtitle: "IA per la tua impresa",
+    placeholder: "Scrivi un messaggio...",
     close: "Chiudi",
     poweredBy: "UNAiFLY AI",
     disclaimer:
-      "Così potrebbe apparire un agente IA sul tuo sito. Questa chat è un esempio: può rispondere sui nostri servizi e aiutarti a scegliere la soluzione giusta. Per un preventivo esatto, contattaci su WhatsApp o prenota una chiamata.",
+      "Questo è un esempio di cosa potrebbe fare un'IA sul tuo sito. Te lo immagini per la tua attività? Contattaci su WhatsApp per saperne di più.",
     welcome:
-      "Ciao! Sono l'assistente virtuale di UNAiFLY. Posso aiutarti con informazioni sui nostri servizi, prezzi indicativi, processo e come contattarci. Per preventivi esatti, scrivici su WhatsApp. Come posso aiutarti?",
+      "Ciao! Questa è una dimostrazione di come un'intelligenza artificiale potrebbe servire i visitatori del tuo sito 24 ore su 24. Vuoi saperne di più?",
     errorGeneric: "Si è verificato un errore. Riprova.",
     errorRate: "Troppi messaggi. Attendi un momento.",
     chips: [
@@ -143,7 +139,7 @@ export function AIChatPanel({
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
   const messagesRef = useRef(messages);
-  messagesRef.current = messages;
+  useEffect(() => { messagesRef.current = messages; }, [messages]);
   const panelRef = useRef<HTMLDivElement>(null);
   const [anchoredStyle, setAnchoredStyle] = useState<React.CSSProperties>({});
   const adjustInputHeight = useCallback(() => {
@@ -293,102 +289,19 @@ export function AIChatPanel({
       setCooldown(true);
       setTimeout(() => setCooldown(false), COOLDOWN_MS);
 
-      // Abort previous request if any
-      abortRef.current?.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
-
-      try {
-        const res = await fetch("/api/ai-chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            messages: newMessages,
-            locale: language,
-          }),
-          signal: controller.signal,
-        });
-
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          if (res.status === 429) {
-            setError(l.errorRate);
-          } else {
-            setError(data.error || l.errorGeneric);
-          }
-          setIsLoading(false);
-          return;
-        }
-
-        // Check if it's a non-streaming JSON response (out-of-scope refusal)
-        const contentType = res.headers.get("content-type") || "";
-        if (contentType.includes("application/json")) {
-          const data = await res.json();
-          if (data.message) {
-            setMessages((prev) => [
-              ...prev,
-              { role: "assistant", content: sanitizeAssistantText(data.message) },
-            ]);
-          }
-          setIsLoading(false);
-          return;
-        }
-
-        // Stream SSE response
-        const reader = res.body?.getReader();
-        if (!reader) {
-          setError(l.errorGeneric);
-          setIsLoading(false);
-          return;
-        }
-
-        const decoder = new TextDecoder();
-        let assistantContent = "";
-        // Add placeholder assistant message
-        setMessages((prev) => [...prev, { role: "assistant", content: "" }]);
-
-        let buffer = "";
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-
-          buffer += decoder.decode(value, { stream: true });
-          const lines = buffer.split("\n");
-          buffer = lines.pop() || "";
-
-          for (const line of lines) {
-            const trimmedLine = line.trim();
-            if (!trimmedLine || !trimmedLine.startsWith("data: ")) continue;
-            const data = trimmedLine.slice(6);
-            if (data === "[DONE]") continue;
-
-            try {
-              const parsed = JSON.parse(data);
-              if (parsed.content) {
-                assistantContent += parsed.content;
-                const sanitizedContent = sanitizeAssistantText(assistantContent);
-                setMessages((prev) => {
-                  const updated = [...prev];
-                  updated[updated.length - 1] = {
-                    role: "assistant",
-                    content: sanitizedContent,
-                  };
-                  return updated;
-                });
-              }
-            } catch {
-              // Skip malformed chunks
-            }
-          }
-        }
-      } catch (err) {
-        if (err instanceof DOMException && err.name === "AbortError") return;
-        setError(l.errorGeneric);
-      } finally {
+      // Simulate typing delay then respond with fixed phrase
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: "assistant",
+            content: "Tu negocio podría tener una inteligencia artificial respondiendo 24/7",
+          },
+        ]);
         setIsLoading(false);
-      }
+      }, 800);
     },
-    [isLoading, cooldown, language, l]
+    [isLoading, cooldown]
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -421,30 +334,30 @@ export function AIChatPanel({
           transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.8 }}
           data-chat-panel="true"
           ref={panelRef}
-          className={`fixed z-[80] flex w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-visible rounded-2xl border border-violet-200/22 bg-gradient-to-br from-slate-900/95 via-violet-950/80 to-fuchsia-950/85 text-slate-100 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.4)] backdrop-blur-2xl ${useAnchoredPosition ? "" : panelPositionClasses[anchorCorner]}`}
+          className={`fixed z-[80] flex w-[calc(100vw-2rem)] max-w-[420px] flex-col overflow-visible rounded-2xl border border-violet-200/40 bg-gradient-to-br from-white/95 via-violet-50/80 to-fuchsia-50/85 text-slate-800 shadow-[0_20px_60px_-20px_rgba(139,92,246,0.2)] backdrop-blur-2xl dark:border-violet-200/22 dark:from-slate-900/95 dark:via-violet-950/80 dark:to-fuchsia-950/85 dark:text-slate-100 dark:shadow-[0_20px_60px_-20px_rgba(139,92,246,0.4)] ${useAnchoredPosition ? "" : panelPositionClasses[anchorCorner]}`}
           style={{ maxHeight: "min(80vh, 600px)", ...(useAnchoredPosition ? anchoredStyle : {}) }}
         >
           {/* Decorative elements */}
-          <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-violet-200/80 to-transparent" />
-          <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-violet-300/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-16 left-0 h-32 w-32 rounded-full bg-fuchsia-400/8 blur-3xl" />
+          <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-violet-400/60 to-transparent dark:via-violet-200/80" />
+          <div className="pointer-events-none absolute -top-24 right-0 h-40 w-40 rounded-full bg-violet-300/15 blur-3xl dark:bg-violet-300/10" />
+          <div className="pointer-events-none absolute -bottom-16 left-0 h-32 w-32 rounded-full bg-fuchsia-400/10 blur-3xl dark:bg-fuchsia-400/8" />
 
           {/* Header */}
-          <div className="relative z-10 flex shrink-0 items-center justify-between border-b border-violet-200/12 px-4 py-3">
+          <div className="relative z-10 flex shrink-0 items-center justify-between border-b border-violet-300/30 px-4 py-3 dark:border-violet-200/12">
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/20">
-                <Bot className="h-4 w-4 text-violet-300" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-500/15 dark:bg-violet-500/20">
+                <Bot className="h-4 w-4 text-violet-600 dark:text-violet-300" />
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-violet-50">
+                <h3 className="text-sm font-semibold text-violet-800 dark:text-violet-50">
                   {l.title}
                 </h3>
-                <p className="text-[10px] text-violet-200/70">{l.subtitle}</p>
+                <p className="text-[10px] text-violet-600/70 dark:text-violet-200/70">{l.subtitle}</p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-white/10"
+              className="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-black/5 dark:hover:bg-white/10"
               aria-label={l.close}
             >
               <X className="h-4 w-4" />
@@ -465,7 +378,7 @@ export function AIChatPanel({
                 className="mb-4"
               >
                 <div className="mb-3 flex justify-start">
-                  <div className="max-w-[92%] rounded-2xl rounded-bl-md bg-white/8 px-3.5 py-2.5 text-xs leading-relaxed text-slate-200 ring-1 ring-white/10">
+                  <div className="max-w-[92%] rounded-2xl rounded-bl-md bg-black/5 px-3.5 py-2.5 text-xs leading-relaxed text-slate-700 ring-1 ring-black/8 dark:bg-white/8 dark:text-slate-200 dark:ring-white/10">
                     {l.welcome}
                   </div>
                 </div>
@@ -483,15 +396,15 @@ export function AIChatPanel({
                 className={`mb-3 flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {msg.role === "assistant" && (
-                  <div className="mr-2 mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/20">
-                    <Bot className="h-3 w-3 text-violet-300" />
+                  <div className="mr-2 mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/15 dark:bg-violet-500/20">
+                    <Bot className="h-3 w-3 text-violet-600 dark:text-violet-300" />
                   </div>
                 )}
                 <div
                   className={`max-w-[82%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed ${
                     msg.role === "user"
-                      ? "rounded-br-md bg-violet-500/25 text-violet-50 ring-1 ring-violet-300/20"
-                      : "rounded-bl-md bg-white/8 text-slate-200 ring-1 ring-white/10"
+                      ? "rounded-br-md bg-violet-500/15 text-violet-800 ring-1 ring-violet-300/25 dark:bg-violet-500/25 dark:text-violet-50 dark:ring-violet-300/20"
+                      : "rounded-bl-md bg-black/5 text-slate-700 ring-1 ring-black/8 dark:bg-white/8 dark:text-slate-200 dark:ring-white/10"
                   }`}
                 >
                   {msg.content ? (
@@ -505,14 +418,14 @@ export function AIChatPanel({
                       {msg.content}
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1 text-slate-400">
+                    <span className="inline-flex items-center gap-1 text-slate-400 dark:text-slate-400">
                       <Loader2 className="h-3 w-3 animate-spin" />
                     </span>
                   )}
                 </div>
                 {msg.role === "user" && (
-                  <div className="ml-2 mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/10">
-                    <User className="h-3 w-3 text-violet-200/60" />
+                  <div className="ml-2 mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/10 dark:bg-violet-500/10">
+                    <User className="h-3 w-3 text-violet-400/70 dark:text-violet-200/60" />
                   </div>
                 )}
               </motion.div>
@@ -525,11 +438,11 @@ export function AIChatPanel({
                 animate={{ opacity: 1 }}
                 className="mb-3 flex justify-start"
               >
-                <div className="mr-2 mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/20">
-                  <Bot className="h-3 w-3 text-violet-300" />
+                <div className="mr-2 mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-violet-500/15 dark:bg-violet-500/20">
+                  <Bot className="h-3 w-3 text-violet-600 dark:text-violet-300" />
                 </div>
-                <div className="rounded-2xl rounded-bl-md bg-white/8 px-3.5 py-2.5 ring-1 ring-white/10">
-                  <Loader2 className="h-3.5 w-3.5 animate-spin text-violet-300/60" />
+                <div className="rounded-2xl rounded-bl-md bg-black/5 px-3.5 py-2.5 ring-1 ring-black/8 dark:bg-white/8 dark:ring-white/10">
+                  <Loader2 className="h-3.5 w-3.5 animate-spin text-violet-400/60 dark:text-violet-300/60" />
                 </div>
               </motion.div>
             )}
@@ -547,8 +460,8 @@ export function AIChatPanel({
           </div>
 
           {/* Input area */}
-          <div className="relative z-10 shrink-0 border-t border-violet-200/12 p-3">
-            <div className="flex items-center gap-2 rounded-xl bg-white/8 px-3 py-1.5 ring-1 ring-white/10 focus-within:ring-violet-300/30">
+          <div className="relative z-10 shrink-0 border-t border-violet-300/25 p-3 dark:border-violet-200/12">
+            <div className="flex items-center gap-2 rounded-xl bg-black/5 px-3 py-1.5 ring-1 ring-black/8 focus-within:ring-violet-400/40 dark:bg-white/8 dark:ring-white/10 dark:focus-within:ring-violet-300/30">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -556,27 +469,27 @@ export function AIChatPanel({
                 onKeyDown={handleKeyDown}
                 placeholder={l.placeholder}
                 rows={1}
-                className="min-w-0 flex-1 resize-none bg-transparent text-xs leading-4 text-slate-100 placeholder:text-slate-400 focus:outline-none"
+                className="min-w-0 flex-1 resize-none bg-transparent text-xs leading-4 text-slate-800 placeholder:text-slate-400 focus:outline-none dark:text-slate-100 dark:placeholder:text-slate-400"
                 disabled={isLoading}
               />
               <button
                 onClick={() => sendMessage(input)}
                 disabled={!input.trim() || isLoading || cooldown}
-                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-violet-500/20 text-violet-300 transition-all hover:bg-violet-500/30 disabled:opacity-30 disabled:hover:bg-violet-500/20"
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-violet-500/15 text-violet-500 transition-all hover:bg-violet-500/25 disabled:opacity-30 disabled:hover:bg-violet-500/15 dark:bg-violet-500/20 dark:text-violet-300 dark:hover:bg-violet-500/30 dark:disabled:hover:bg-violet-500/20"
               >
                 <Send className="h-3 w-3" />
               </button>
             </div>
 
             {/* Disclaimer */}
-            <p className="mt-2 text-center text-[9px] leading-tight text-violet-200/40">
+            <p className="mt-2 text-center text-[9px] leading-tight text-violet-400/50 dark:text-violet-200/40">
               {l.disclaimer}
             </p>
           </div>
 
           {/* Footer */}
-          <div className="relative z-10 shrink-0 border-t border-violet-200/8 px-4 py-1.5 text-center">
-            <span className="text-[9px] text-violet-200/40">{l.poweredBy}</span>
+          <div className="relative z-10 shrink-0 border-t border-violet-300/20 px-4 py-1.5 text-center dark:border-violet-200/8">
+            <span className="text-[9px] text-violet-400/50 dark:text-violet-200/40">{l.poweredBy}</span>
           </div>
         </motion.div>
       )}

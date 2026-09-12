@@ -1,0 +1,178 @@
+[     134ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     243ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     323ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     384ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     438ms] [LOG] [Fast Refresh] done in 177ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[     537ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[     537ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[     537ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[     537ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 1800536ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 1800537ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 3600538ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 3600539ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 5400544ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 5400544ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 7200538ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 7200538ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 9000544ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 9000544ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[10800539ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[10800539ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12008123ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/services-builder:0
+[12008123ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12008133ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/services-builder:0
+[12008133ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12010401ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12010401ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12010401ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12010401ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12213625ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/services-builder:0
+[12213625ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12213625ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/services-builder:0
+[12213625ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12235823ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12235886ms] [LOG] [Fast Refresh] done in 169ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12335323ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12335324ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12335324ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12335324ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12400758ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12400798ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12400812ms] [LOG] [Fast Refresh] done in 141ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12400916ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12401897ms] [LOG] [Fast Refresh] done in 1081ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12402332ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12402388ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12402446ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12402669ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12402669ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12402669ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12402669ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12430352ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12430415ms] [LOG] [Fast Refresh] done in 169ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12433953ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12433958ms] [LOG] [Fast Refresh] done in 108ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12720758ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12720760ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12721056ms] [LOG] [Fast Refresh] done in 81ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12721159ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12721193ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12721224ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12721353ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12721353ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12721353ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12721353ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12801004ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12801010ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12801076ms] [LOG] [Fast Refresh] done in 112ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12801192ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12801224ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12801254ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12801381ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12801381ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12801381ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12801381ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12811402ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12811404ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12811464ms] [LOG] [Fast Refresh] done in 80ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12811585ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12811614ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12811642ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12811759ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12811759ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12811762ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12811762ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12820256ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12820258ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12820319ms] [LOG] [Fast Refresh] done in 80ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12820418ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12820448ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12820487ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12820613ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12820613ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12820614ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12820614ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12829937ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12829939ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12829996ms] [LOG] [Fast Refresh] done in 81ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12830111ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12830142ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12830174ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12830297ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12830297ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12830297ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12830297ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12840341ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12840343ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12840407ms] [LOG] [Fast Refresh] done in 96ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12840505ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12840541ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12840573ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12840694ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12840694ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12840694ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12840694ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[14640689ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[14640690ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[16440698ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[16440698ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[16789992ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[16789993ms] [LOG] [Fast Refresh] done in 108ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[16963250ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[16963356ms] [LOG] [HMR] connected @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[16963442ms] [LOG] [GA] consent update → denied @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[16963586ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[16963586ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[16963586ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[16963586ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[17030576ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297

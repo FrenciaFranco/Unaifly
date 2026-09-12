@@ -2,10 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const HeroFuturistic = dynamic(
-  () => import("@/components/ui/hero-futuristic"),
-  { ssr: false, loading: () => <div className="h-svh bg-black" /> }
-);
+import HeroFuturistic from "@/components/ui/hero-futuristic";
 
 const DigitalTransformation = dynamic(
   () => import("@/components/ui/digital-transformation"),
@@ -16,7 +13,9 @@ export default function HomeClientSections() {
   return (
     <>
       <HeroFuturistic />
-      <DigitalTransformation />
+      <div id="soluciones" tabIndex={-1}>
+        <DigitalTransformation />
+      </div>
     </>
   );
 }

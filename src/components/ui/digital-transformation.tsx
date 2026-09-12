@@ -1000,6 +1000,18 @@ function BlurText({ text, className, as: Tag = "span", delay = 0 }: { text: stri
 
 // --- MAIN COMPONENT ---
 export default function DigitalTransformation() {
+  const [welcomeVisible, setWelcomeVisible] = useState(true);
+
+  useEffect(() => {
+    const welcome = document.querySelector('[aria-labelledby="welcome-title"]');
+    if (!welcome) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      setWelcomeVisible(entry.isIntersecting);
+    }, { threshold: 0.15 });
+    observer.observe(welcome);
+    return () => observer.disconnect();
+  }, []);
+
   const [language, setLanguage] = useState<Language>(getInitialLanguage);
   const [currency, setCurrency] = useState<Currency>(getInitialCurrency);
   const [currencyRates, setCurrencyRates] = useState<Record<Currency, number>>(fallbackCurrencyRates);
@@ -1298,27 +1310,37 @@ export default function DigitalTransformation() {
       <main className="relative z-10 flex-1 py-8 px-3 sm:px-4 lg:px-6">
 
         {/* ── HEADER ── */}
-        <section className="w-full px-3 py-8 sm:px-4 md:py-10 lg:px-6 lg:py-12">
+        <section className="w-full px-3 py-4 sm:px-4 md:py-6 lg:px-6 lg:py-8">
           <motion.div
             initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
             className="mx-auto w-full max-w-[1280px] border border-muted rounded-3xl bg-background/80 backdrop-blur-sm px-4 sm:px-6 lg:px-8"
           >
-            <div className="flex flex-col items-center justify-center space-y-4 text-center py-10">
+            <div className="flex flex-col items-center justify-center space-y-3 text-center py-6">
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative h-32 w-[420px] sm:h-40 sm:w-[520px]"
+                className="relative h-20 w-[320px] sm:h-24 sm:w-[400px]"
               >
-                <Image
-                  src="/logoname.png"
-                  alt="UNAiFLY"
-                  fill
-                  sizes="(max-width: 640px) 420px, 520px"
-                  className="object-contain"
-                  priority
-                />
+                <div className="flex items-center justify-center gap-3">
+                  <Image
+                    src="/orb.png"
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                    priority
+                  />
+                  <Image
+                    src="/wordlogo.png"
+                    alt="UNAiFLY"
+                    width={140}
+                    height={34}
+                    className="object-contain"
+                    priority
+                  />
+                </div>
               </motion.div>
               <h1 className="text-foreground text-3xl font-bold tracking-tight leading-[1.2] sm:text-4xl md:text-5xl">
                 <BlurText as="span" text={lang.headerTitle} delay={0.2} className="block" />
@@ -1823,8 +1845,8 @@ export default function DigitalTransformation() {
                   <a href="https://wa.me/34644583808" target="_blank" rel="noreferrer" className="block transition hover:text-white">
                     +34 644 58 38 08
                   </a>
-                  <a href="mailto:frencia92@gmail.com" className="block break-all transition hover:text-white">
-                    frencia92@gmail.com
+                  <a href="mailto:info@unaifly.com" className="block break-all transition hover:text-white">
+                    info@unaifly.com
                   </a>
                   <p className="pt-1 text-xs text-slate-400">{footerCopy.response}</p>
                 </div>
@@ -1892,7 +1914,8 @@ export default function DigitalTransformation() {
         ref={bubblesContainerRef}
         layout
         transition={{ type: "spring", stiffness: 360, damping: 28, mass: 0.9 }}
-        style={{ touchAction: isDraggingBubbles ? "none" : "auto" }}
+        inert={welcomeVisible}
+        style={{ touchAction: isDraggingBubbles ? "none" : "auto", visibility: welcomeVisible ? "hidden" : "visible" }}
         className={`fixed z-50 flex max-w-[calc(100vw-1.5rem)] flex-wrap items-center gap-2 rounded-full p-1 select-none sm:flex-nowrap ${cornerContainerClasses[bubbleCorner]} ${isDraggingBubbles ? "cursor-grabbing" : "cursor-grab"}`}
         onPointerDown={handleBubblesPointerDown}
         onPointerMove={handleBubblesPointerMove}

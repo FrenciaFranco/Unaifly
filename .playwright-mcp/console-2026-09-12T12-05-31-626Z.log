@@ -1,0 +1,20 @@
+[  438836ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  438837ms] [LOG] [Fast Refresh] done in 105ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  438941ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[  439024ms] [LOG] [Fast Refresh] done in 186ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[ 2005845ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 2005845ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 3805854ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 3805855ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 5605849ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 5605849ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 7405846ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 7405847ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[ 9205854ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[ 9205855ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[11005852ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[11005852ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0
+[12674411ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12674474ms] [LOG] [Fast Refresh] done in 169ms @ http://localhost:5000/_next/static/chunks/node_modules_next_dist_f3530cac._.js:2297
+[12805850ms] [ERROR] Access to fetch at 'https://api.frankfurter.app/latest?from=EUR&to=USD,ARS' from origin 'http://localhost:5000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:5000/:0
+[12805850ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://api.frankfurter.app/latest?from=EUR&to=USD,ARS:0

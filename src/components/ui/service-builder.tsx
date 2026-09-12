@@ -866,9 +866,9 @@ function PresetSelector({
 }
 
 // --- MAIN COMPONENT ---
-export default function ServiceBuilder() {
-  const [language, setLanguage] = useState<LangKey>(getInitialLanguage);
-  const [currency, setCurrency] = useState<Currency>(getInitialCurrency);
+export default function ServiceBuilder({ initialLanguage, initialCurrency }: { initialLanguage?: LangKey; initialCurrency?: Currency } = {}) {
+  const [language, setLanguage] = useState<LangKey>(() => initialLanguage ?? getInitialLanguage());
+  const [currency, setCurrency] = useState<Currency>(() => initialCurrency ?? getInitialCurrency());
   const [currencyRates, setCurrencyRates] = useState<Record<Currency, number>>(fallbackCurrencyRates);
   const [langBubbleOpen, setLangBubbleOpen] = useState(false);
   const [currencyBubbleOpen, setCurrencyBubbleOpen] = useState(false);

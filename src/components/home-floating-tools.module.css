@@ -1,0 +1,30 @@
+.dock { position: fixed; z-index: 70; bottom: 20px; display: flex; align-items: center; gap: 8px; padding: 9px 12px 9px 7px; border: 1px solid #dceeff21; border-radius: 40px; background: #111322d9; color: #f2f5fc; backdrop-filter: blur(22px); box-shadow: 0 12px 38px #0004; }
+.right { right: 24px; }
+.left { left: 24px; }
+.bubble { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--glow) 45%, transparent); background: color-mix(in srgb, var(--glow) 10%, transparent); box-shadow: 0 5px 18px color-mix(in srgb, var(--glow) 12%, transparent), inset 0 1px 0 #ffffff14; transition: transform .2s, box-shadow .2s; cursor: pointer; }
+.bubble:hover, .bubble[aria-expanded="true"] { transform: translateY(-3px); box-shadow: 0 0 25px color-mix(in srgb, var(--glow) 28%, transparent); background: color-mix(in srgb, var(--glow) 20%, transparent); }
+.gold { --glow: #e8c76c; }
+.blue { --glow: #85c3eb; }
+.green { --glow: #8edbb5; }
+.purple { --glow: #c5a1ff; }
+.grip { display: grid; place-items: center; width: 20px; height: 44px; color: #98a3b8; cursor: grab; touch-action: none; }
+.grip:active { cursor: grabbing; }
+.popover { position: absolute; bottom: calc(100% + 14px); right: 0; width: min(320px, calc(100vw - 32px)); padding: 20px; border-radius: 20px; border: 1px solid color-mix(in srgb, var(--glow) 35%, transparent); background: linear-gradient(135deg, #182330, #17142a); color: #eff6ff; box-shadow: 0 12px 50px #0006, 0 0 35px color-mix(in srgb, var(--glow) 10%, transparent); max-height: calc(100dvh - 125px); overflow-y: auto; }
+.left .popover { left: 0; right: auto; }
+.popoverHeader { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.popover .popoverHeader h2 { font-size: 15px; font-weight: 600; letter-spacing: 0; line-height: 1.5; }
+.popoverHeader button { display: grid; place-items: center; min-width: 32px; height: 32px; cursor: pointer; }
+.popover p { font-size: 12px; line-height: 1.6; color: #bac8db; margin: 8px 0 16px; }
+.option { display: flex; align-items: center; width: 100%; gap: 12px; padding: 12px; border-radius: 9px; font-size: 13px; cursor: pointer; text-align: left; }
+.option strong { width: 36px; }
+.option span { flex: 1; }
+.option[aria-pressed="true"], .option:hover { background: color-mix(in srgb, var(--glow) 17%, transparent); }
+.plannerLink { display: block; padding: 13px; border: 1px solid #ffffff40; border-radius: 9px; margin-top: 14px; font-size: 13px; text-align: center; }
+.dock button:focus-visible, .dock a:focus-visible { outline: 2px solid #8bdcff; outline-offset: 4px; }
+:global(.light) .dock { background: #f7fbffed; color: #192f48; border-color: #b6c9dc; box-shadow: 0 8px 30px #273e5829; }
+:global(.light) .bubble { border-color: color-mix(in srgb, var(--glow) 80%, #192f48); }
+:global(.light) .popover { background: linear-gradient(135deg, #fff, #eef2ff); color: #192f48; }
+:global(.light) .popover p { color: #4a6077; }
+:global(.light) .plannerLink { border-color: #6e879f; }
+@media (max-width: 520px) { .dock { bottom: 12px; gap: 7px; padding: 7px; } .left { left: 12px; } .right { right: 12px; } .bubble { width: 44px; height: 44px; } }
+@media (prefers-reduced-motion: reduce) { .bubble { transition: none; } }

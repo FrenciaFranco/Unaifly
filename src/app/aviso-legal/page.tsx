@@ -25,7 +25,7 @@ export default function AvisoLegalPage() {
           <strong>Domicilio:</strong> Barcelona, España
         </p>
         <p>
-          <strong>Email de contacto:</strong> frencia92@gmail.com
+          <strong>Email de contacto:</strong> info@unaifly.com
         </p>
         <p>
           <strong>Teléfono:</strong> +34 644 58 38 08
@@ -102,7 +102,7 @@ export default function AvisoLegalPage() {
       </p>
       <div className="mt-3 space-y-1 text-white/80">
         <p>
-          <strong>Email:</strong> frencia92@gmail.com
+          <strong>Email:</strong> info@unaifly.com
         </p>
         <p>
           <strong>Teléfono:</strong> +34 644 58 38 08

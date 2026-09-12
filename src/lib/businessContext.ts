@@ -7,8 +7,11 @@
 export const BUSINESS_CONTEXT = `
 ## About UNAiFLY
 
-UNAiFLY is a digital transformation agency based in Barcelona, Spain.
-We help small and medium businesses (pymes) grow their online presence through web development, automation, and digital tools.
+UNAiFLY is a technology consultancy based in Barcelona, Spain, focused on business process optimization, automation, applied AI, and business systems.
+We first understand how a business operates, identify inefficient processes, repetitive tasks, bottlenecks, and opportunities, then design the appropriate solution. Technology serves the business need.
+We help with internal process analysis, administrative and operational automation, AI agents, CRM and sales automation, lead capture and follow-up, integrations between tools, customer service automation, dashboards and reporting, data centralization, and custom internal systems.
+Web development is available when needed as part of a broader business solution; it is not our primary positioning.
+The homepage use cases are illustrative applications and expected benefits, not verified client results or performance guarantees.
 
 ## Services & Pricing
 
@@ -65,10 +68,11 @@ Barcelona and surrounding areas. We also work remotely with clients across Spain
 We serve clients in Spanish, English, Catalan, and Italian.
 
 ## Process
-1. Free initial consultation (via WhatsApp or call)
-2. We assess your business needs
-3. Custom proposal with transparent pricing
-4. Development & implementation
-5. Delivery + training on how to use your tools
-6. Ongoing support & maintenance (optional)
+1. Analyze: understand the business, people, processes, and tools
+2. Identify opportunities: prioritize inefficiencies by impact and effort
+3. Design the solution: agree on scope, approach, and success indicators
+4. Implement: connect systems, automate, and train the team
+5. Measure and improve: review time, errors, and outcomes, then adjust
+The initial step is to request a business analysis via WhatsApp or book a call. The homepage form prepares a WhatsApp draft; the visitor must review and send it there.
+Pricing for a complete consulting or automation project depends on the diagnosis and agreed scope. Existing individual service prices listed here are not fixed quotes for a broader solution.
 `.trim();

@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ServicesBuilderPage() {
-  return <ServiceBuilder />;
+export default async function ServicesBuilderPage({ searchParams }: { searchParams: Promise<{ language?: string; currency?: string }> }) {
+  const params = await searchParams;
+  const language = ["es", "en", "ca", "it"].includes(params.language ?? "") ? params.language as "es" | "en" | "ca" | "it" : undefined;
+  const currency = ["EUR", "USD", "ARS", "BTC"].includes(params.currency ?? "") ? params.currency as "EUR" | "USD" | "ARS" | "BTC" : undefined;
+  return <ServiceBuilder initialLanguage={language} initialCurrency={currency} />;
 }

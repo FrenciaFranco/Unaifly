@@ -3,25 +3,25 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: 0 0% 100%;
+  --background: 230 30% 97%;
   --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
+  --card: 230 30% 97%;
   --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
+  --popover: 230 30% 97%;
   --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
+  --primary: 250 50% 45%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
+  --secondary: 230 25% 93%;
   --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
+  --muted: 230 20% 94%;
+  --muted-foreground: 240 5% 40%;
+  --accent: 250 30% 93%;
   --accent-foreground: 240 5.9% 10%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
+  --border: 230 20% 89%;
+  --input: 230 20% 89%;
+  --ring: 250 50% 45%;
   --radius: 0.5rem;
 }
 
@@ -120,48 +120,6 @@
 @keyframes pulse-soft {
   0%, 100% { opacity: 0.025; }
   50% { opacity: 0.05; }
-}
-
-/* Hero Futuristic — exact original CSS */
-.fade-in {
-  animation: fadeInFromBottom 0.8s ease-out forwards;
-}
-
-.fade-in-subtitle {
-  animation: fadeInFromBottom 0.8s ease-out forwards;
-}
-
-@keyframes fadeInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Hero shimmer text effect */
-.hero-shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0.6) 0%,
-    rgba(255,255,255,1) 40%,
-    rgba(200,180,255,1) 50%,
-    rgba(255,255,255,1) 60%,
-    rgba(255,255,255,0.6) 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: heroShimmer 3s ease-in-out infinite;
-}
-
-@keyframes heroShimmer {
-  0% { background-position: 100% 50%; }
-  100% { background-position: -100% 50%; }
 }
 
 /* Assistant typing shimmer in chat bubbles */

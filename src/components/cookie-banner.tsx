@@ -140,13 +140,13 @@ export default function CookieBanner() {
 
   return (
     <div className="pointer-events-auto fixed bottom-3 left-3 right-auto z-[2147483647] w-[52vw] max-w-[220px] sm:left-4 sm:w-[380px]">
-      <div className="rounded-xl border border-white/15 bg-[#0b1020]/92 p-3 shadow-[0_14px_40px_-18px_rgba(56,189,248,0.45)] backdrop-blur-xl">
-        <p className="text-xs leading-relaxed text-slate-300">
+      <div className="rounded-xl border border-black/10 bg-white/95 p-3 shadow-[0_14px_40px_-18px_rgba(56,189,248,0.25)] backdrop-blur-xl dark:border-white/15 dark:bg-[#0b1020]/92 dark:shadow-[0_14px_40px_-18px_rgba(56,189,248,0.45)]">
+        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-300">
           Utilizamos cookies para mejorar tu experiencia (análisis de uso,
           preferencias). Consulta nuestra{" "}
           <Link
             href="/politica-de-cookies"
-            className="underline hover:text-white"
+            className="underline hover:text-slate-900 dark:hover:text-white"
           >
             Política de Cookies
           </Link>
@@ -157,7 +157,7 @@ export default function CookieBanner() {
             type="button"
             onClick={reject}
             aria-label="Rechazar todas las cookies"
-            className="rounded-md border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 transition hover:bg-white/10"
+            className="rounded-md border border-black/15 bg-black/5 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-black/10 dark:border-white/20 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
           >
             Rechazar
           </button>
@@ -165,7 +165,7 @@ export default function CookieBanner() {
             type="button"
             onClick={accept}
             aria-label="Aceptar todas las cookies"
-            className="rounded-md bg-cyan-500 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-cyan-400"
+            className="rounded-md bg-violet-500 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-violet-400 dark:bg-cyan-500 dark:hover:bg-cyan-400"
           >
             Aceptar
           </button>
